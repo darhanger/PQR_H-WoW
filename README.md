@@ -15,8 +15,8 @@ Support Status Meanings
 <br>• ⁉️ - currently unknown or in development;
 
 ## Death Knight
-• DPS - ⁉️
-<br>• Tank - ⁉️
+• DPS - ✅
+<br>• Tank - ✅
 ## Druid
 • DPS Balance - ⁉️
 <br>• DPS Feral - ⁉️

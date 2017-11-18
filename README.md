@@ -46,5 +46,5 @@ Support Status Meanings
 • DPS - ✅
 ## Warrior
 • DPS Fury - ✔️
-• DPS Arms - ✔️
-• Tank - ⁉️
+<br>• DPS Arms - ✔️
+<br>• Tank - ⁉️

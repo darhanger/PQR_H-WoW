@@ -86,7 +86,7 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Poison</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if applypoison and GetTime() - applypoison &amp;gt; 4 then applypoison = nil end
 if UnitAffectingCombat(&amp;quot;player&amp;quot;) == nil and applypoison == nil then
 
-local activepoisons = { &amp;quot;Instant Poison IX&amp;quot;, &amp;quot;Deadly Poison VIII&amp;quot; }
+local activepoisons = { &amp;quot;Instant Poison IX&amp;quot;, &amp;quot;Instant Poison IX&amp;quot; }
 local _,poisonMH,_,_,poisonOH,_,_,poisonTR = GetWeaponEnchantInfo()
 applypoison = GetTime()
 

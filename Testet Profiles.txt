@@ -1,0 +1,60 @@
+English Client from Warmane on Ac-Web Repack V-0.7 64bit Repack Server with no AddOns.
+
+Class:		Profile:			Rotation:		Function:
+------------------------------------------------------------------------------------------------------
+Warlock:		Own_WARLOCK		All		Yeah
+------------------------------------------------------------------------------------------------------
+Druid:		BalancePvE_DRUID		All		Yeah
+		FeralPvE_DRUID		All		Yeah
+		PVE_DRUID		All		Yeah
+		PVP_DRUID		All		Yeah	
+------------------------------------------------------------------------------------------------------
+Paladin:
+		Ret_PALADIN		All		Yeah
+		Prot_PALADIN		All 		Yeah
+		LTE_PVE_PALADIN		All		Yeah
+		PVE_PALADIN		All		Yeah 		
+		Own_PALADIN		All		Yeah 		
+-----------------------------------------------------------------------------------------------------
+Deathknight:
+		Own_DEATHKNIGHT	All		Yeah	
+		LTE_PVE_DEATHKNIGHT	All		Yeah
+		LTE_PVP_DEATHKNIGHT	All		Yeah
+		PVP_DEATHKNIGHT	All		Yeah
+-----------------------------------------------------------------------------------------------------
+Warrior:
+		3.3.5 Warrior PvP_WARRIORAll		Yeah
+		Beefkek's Fury Warrior_WARRIOR		Yeah
+		LTE_PVE_WARRIOR	All		Yeah
+		PVE_WARRIOR		All		Yeah
+-----------------------------------------------------------------------------------------------------
+Rogue:
+		PVE_ROGUE		All		Yeah
+		PvP Rogue_ROGUE		All		Yeah
+-----------------------------------------------------------------------------------------------------
+Hunter:
+		Marks_HUNTER		All		Yeah
+		LTE_PVP_HUNTER		All		Yeah
+		LTE_PVE_HUNTER		All		Yeah
+		PVE_HUNTER		All		Yeah
+		PVP_HUNTER		All		Yeah
+-----------------------------------------------------------------------------------------------------
+Shaman:
+		Feraleo_SHAMAN		All		Yeah
+		Resto Shaman_SHAMAN	All		Yeah
+		PVE_SHAMAN		All		Yeah
+		PVP_SHAMAN		All 		Yeah
+-----------------------------------------------------------------------------------------------------
+Priest:
+		PVE_PRIEST		All		Yeah
+		PVP_PRIEST 		All		Yeah
+		Holy_PRIEST		All		Yeah
+-----------------------------------------------------------------------------------------------------
+Mage:
+		
+		Own_MAGE		All		Yeah
+		LTE_PVE_MAGE		All		Yeah	
+			
+		
+		
+

@@ -19,7 +19,7 @@ If you have code to improve a class you can send a "pull request". We will look 
 Support Status Meanings
 <br>
 <br>• ✅ - **BEST - use multispec rotattion for max DPS**
-<br>• ✔️ - works good, but not so good for release
+<br>• ✔️ - works well, but not as I would like)
 <br>• ⁉️ - currently unknown or in development;
 
 ## Death Knight
@@ -53,6 +53,5 @@ Support Status Meanings
 ## Warlock
 • DPS - ✅
 ## Warrior
-• DPS Fury - ✔️
-<br>• DPS Arms - ✔️
+• DPS - ✔️
 <br>• Tank - ⁉️

@@ -1,6 +1,15 @@
 # PQR 3.3.5a for [Heroes WoW](https://heroes-wow.com/wotlk/index.php?page=register&raf=f5665b13f04b02826bc3a9723d13129898068c37)
-# About
+# About PQR
+PQR is a bot designed to perform complex DPS, healing and tanking rotations for the player. It was mainly designed to reduce the tediousness of performing a complex rotation for hours on end, which for many can be a huge relief and provide them with a better WoW experience where they may have wanted to quit in other cases.
+<br>
+<br>• No addons to configure.
+<br>• No pixel scanning to hinder performance.
+<br>• Easily customizable and shareable abilities and rotations.
+<br>
+<br>
+# About PQR for [Heroes WoW](https://heroes-wow.com/wotlk/index.php?page=register&raf=f5665b13f04b02826bc3a9723d13129898068c37)
 PriorityQueueRotation 3.3.5a for [Heroes WoW](https://heroes-wow.com/wotlk/index.php?page=register&raf=f5665b13f04b02826bc3a9723d13129898068c37) - optimized profiles specifically for the realities of this server, **only for PvE**.
+**[Youtube Example](https://youtu.be/BoO4OjCa5e8)**
 <br>
 <br>
 # Updates

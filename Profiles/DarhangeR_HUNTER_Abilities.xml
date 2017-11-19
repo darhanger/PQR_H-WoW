@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?><HUNTER><Ability><Name>-- Hotkeys --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>--Pause/the/rotation!
+
+if not leftkeydown then leftkeydown = 0 end
+
+if IsLeftControlKeyDown()  and GetTime() - leftkeydown &amp;gt; 1 then
+	leftkeydown = GetTime()
+
+  	if StopRota  then 
+
+    		StopRota  = false 
+		print(&amp;quot;Rotation reenabled!&amp;quot;)
+
+  	else 
+    	
+		StopRota  = true 
+		print(&amp;quot;Rotation stopped!&amp;quot;)
+
+  	end
+end
+
+--Pause/the/rotation!
+
+if not rightkeydown then rightkeydown = 0 end
+
+if IsRightControlKeyDown()  and GetTime() - rightkeydown &amp;gt; 1 then
+	leftkeydown = GetTime()
+
+  	if UseCD  then 
+
+    		UseCD  = false 
+		print(&amp;quot;Cooldowns disabled!&amp;quot;)
+
+  	else 
+    	
+		UseCD  = true 
+		print(&amp;quot;Cooldowns enabled!&amp;quot;)
+
+  	end
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Start Fight --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if StopRota
+or UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)
+or IsMounted()
+or UnitChannelInfo(&amp;quot;player&amp;quot;) ~= nil
+or UnitCastingInfo(&amp;quot;player&amp;quot;) ~= nil
+or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Essen&amp;quot;)
+or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Trinken&amp;quot;)
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Tank Target</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if GetNumPartyMembers() &amp;gt; 0 and UnitInRaid(&amp;quot;player&amp;quot;) == nil then
+
+local heisthetank = nil
+
+for i = 1, GetNumPartyMembers(), 1 do
+  if UnitGroupRolesAssigned(&amp;quot;party&amp;quot;..tostring(i)) == &amp;quot;TANK&amp;quot; then heisthetank = &amp;quot;party&amp;quot;..tostring(i) end
+end
+
+if heisthetank and UnitExists(&amp;quot;target&amp;quot;) == nil 
+and UnitAffectingCombat(heisthetank) 
+and UnitAffectingCombat(heisthetank..&amp;quot;target&amp;quot;) 
+and UnitIsDead(heisthetank..&amp;quot;target&amp;quot;) == nil
+and UnitCanAttack(&amp;quot;player&amp;quot;,heisthetank..&amp;quot;target&amp;quot;)
+then TargetUnit(heisthetank..&amp;quot;target&amp;quot;) end
+
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Hunter&amp;apos;s Mark</Name><Default>false</Default><SpellID>53338</SpellID><Actions></Actions><Lua>if UnitCanAttack(&amp;quot;player&amp;quot;,&amp;quot;target&amp;quot;) 
+and UnitIsDead(&amp;quot;target&amp;quot;) == nil 
+and UnitHealth(&amp;quot;target&amp;quot;) &amp;gt; UnitHealthMax(&amp;quot;player&amp;quot;) 
+and UnitDebuffID(&amp;quot;target&amp;quot;, 53338) == nil
+and UnitLevel(&amp;quot;target&amp;quot;) == -1
+and IsSpellInRange(&amp;quot;Hunter&amp;apos;s Mark&amp;quot;, &amp;quot;target&amp;quot;) == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Kill Command</Name><Default>false</Default><SpellID>34026</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Call of the Wild</Name><Default>false</Default><SpellID>53434</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
+and IsSpellInRange(&amp;quot;Kill Shot&amp;quot;, &amp;quot;target&amp;quot;) == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Kill Shot</Name><Default>false</Default><SpellID>61006</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;target&amp;quot;) / UnitHealthMax(&amp;quot;target&amp;quot;) &amp;lt;= 20
+and IsSpellInRange(&amp;quot;Kill Shot&amp;quot;, &amp;quot;target&amp;quot;) == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Offensive Spells --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) == nil
+or ( not UnitAffectingCombat(&amp;quot;target&amp;quot;) and not UnitIsPlayer(&amp;quot;target&amp;quot;) )
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Tranquilizing Shot</Name><Default>false</Default><SpellID>19801</SpellID><Actions></Actions><Lua>local i = 1
+local buff,_,_,_,bufftype = UnitBuff(&amp;quot;target&amp;quot;, i)
+while buff do
+  if bufftype == &amp;quot;Magic&amp;quot; or buff == &amp;quot;Enrage&amp;quot;
+  and IsSpellInRange(&amp;quot;Tranquilizing Shot&amp;quot;, &amp;quot;target&amp;quot;) == 1
+  then
+    return true
+  end
+  i = i + 1;
+  buff,_,_,_,bufftype = UnitBuff(&amp;quot;target&amp;quot;, i)
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Aspect of the Dragonhawk</Name><Default>false</Default><SpellID>61847</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,61847) == nil
+and UnitPower(&amp;quot;player&amp;quot;) / UnitPowerMax(&amp;quot;player&amp;quot;) * 100 &amp;gt; 10
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Rapid Fire</Name><Default>false</Default><SpellID>3045</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
+and IsSpellInRange(&amp;quot;Kill Shot&amp;quot;, &amp;quot;target&amp;quot;) == 1
+and UnitBuffID(&amp;quot;player&amp;quot;, 3045) == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>SV:Explosive Shot (LnL)</Name><Default>false</Default><SpellID>60053</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Explosive Shot&amp;quot;, &amp;quot;target&amp;quot;) == 1
+and UnitBuffID(&amp;quot;player&amp;quot;, 56453)
+then return true end</Lua><RecastDelay>1100</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Misdirection</Name><Default>false</Default><SpellID>34477</SpellID><Actions></Actions><Lua>local InParty = GetNumPartyMembers()
+if InParty &amp;gt; 0 and UnitInRaid(&amp;quot;player&amp;quot;) == nil then
+	for i = 1, InParty, 1 do
+		local member = &amp;quot;party&amp;quot;..tostring(i)
+		if UnitGroupRolesAssigned(member) == &amp;quot;TANK&amp;quot;
+		and UnitThreatSituation(member,&amp;quot;target&amp;quot;) ~= 3
+		and PQR_SpellAvailable(34477) then
+			CastSpellByName(&amp;quot;Misdirection&amp;quot;)
+    		SpellTargetUnit(member)
+    	end
+    end
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>MM:Trueshot Aura</Name><Default>false</Default><SpellID>19506</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,19506) ~= nil then return false else return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>SV:Black Arrow</Name><Default>false</Default><SpellID>63672</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Black Arrow&amp;quot;, &amp;quot;target&amp;quot;) == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Steady Shot</Name><Default>false</Default><SpellID>49052</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Steady Shot&amp;quot;, &amp;quot;target&amp;quot;) == 1
+and PQR_IsCastingSpell(49052) == false
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Aimed Shot</Name><Default>false</Default><SpellID>49050</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Aimed Shot&amp;quot;, &amp;quot;target&amp;quot;) == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Serpent Sting</Name><Default>false</Default><SpellID>49001</SpellID><Actions></Actions><Lua>if UnitDebuffID(&amp;quot;target&amp;quot;, 49001, &amp;quot;player&amp;quot;) == nil
+and IsSpellInRange(&amp;quot;Serpent Sting&amp;quot;, &amp;quot;target&amp;quot;) == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>USE:Mouseover Skill</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) and IsMouseButtonDown()
+	then RunMacroText(&amp;quot;/click &amp;quot;..GetMouseFocus():GetName()) end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>MM:Silencing Shot</Name><Default>false</Default><SpellID>34490</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Silencing Shot&amp;quot;, &amp;quot;target&amp;quot;) == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>SV:Explosive Shot</Name><Default>false</Default><SpellID>60053</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Explosive Shot&amp;quot;, &amp;quot;target&amp;quot;) == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Aspect of the Viper</Name><Default>false</Default><SpellID>34074</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,34074) == nil
+and UnitPower(&amp;quot;player&amp;quot;) / UnitPowerMax(&amp;quot;player&amp;quot;) * 100 &amp;lt; 10
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>MM:Chimera Shot</Name><Default>false</Default><SpellID>53209</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Chimera Shot&amp;quot;, &amp;quot;target&amp;quot;) == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Arcane Shot</Name><Default>false</Default><SpellID>49045</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Arcane Shot&amp;quot;, &amp;quot;target&amp;quot;) == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>BM:Bestial Wrath</Name><Default>false</Default><SpellID>19574</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
+and IsSpellInRange(&amp;quot;Kill Shot&amp;quot;, &amp;quot;target&amp;quot;) == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>MM:Volley</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if IsRightShiftKeyDown() 
+and not GetCurrentKeyBoardFocus() 
+and not UnitChannelInfo(&amp;quot;player&amp;quot;) 
+then
+  CastSpellByID(58434)
+  if SpellIsTargeting() then CameraOrSelectOrMoveStart() CameraOrSelectOrMoveStop() end  
+  return true
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>MM:Multi-Shot</Name><Default>false</Default><SpellID>49048</SpellID><Actions></Actions><Lua>if IsLeftShiftKeyDown() and GetCurrentKeyBoardFocus() == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></HUNTER>

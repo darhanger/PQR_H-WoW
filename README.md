@@ -31,7 +31,7 @@ Support Status Meanings
 <br>• Tank - ⁉️
 <br>• Heal - ⁉️
 ## Hunter
-• DPS - ⁉️
+• DPS - ✅
 ## Mage
 • DPS Fire - ⁉️
 <br>• DPS Frost - ⁉️

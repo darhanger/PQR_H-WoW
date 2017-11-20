@@ -13,21 +13,20 @@
 <br>
 
 # HWoW PQR 1.0.3
-+ **Released Death Knight DPS MultiSpec PvE Profile**;
+- **Released Death Knight DPS MultiSpec PvE Profile**;
 + **Released Death Knight Tank MultiSpec PvE Profile**;
   + In both profiles you need to use the keyboard depending on the situations.
-Specific commands:
-•• Hold Left Shift for Death and Decay
-•• Hold Right Ctrl for Pestilence
+    + Hold Left Shift for Death and Decay
+    + Hold Right Ctrl for Pestilence
 <br>
 
 # HWoW PQR 1.0.2
-- Released Rogue DPS MultiSpec PvE Profile
+- **Released Rogue DPS MultiSpec PvE Profile**;
 <br>
 
 # HWoW PQR 1.0.1
-- Released Warlock DPS MultiSpec PvE Profile
+- **Released Warlock DPS MultiSpec PvE Profile**;
 <br>
 
 # HWoW PQR 1.0.0
-- Released PQR for Heroes WoW Private Server
+- **Released PQR for Heroes WoW Private Server**;

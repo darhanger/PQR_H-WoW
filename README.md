@@ -4,6 +4,15 @@ PQR is a bot designed to perform complex DPS, healing and tanking rotations for 
 + No addons to configure.
 + No pixel scanning to hinder performance.
 + Easily customizable and shareable abilities and rotations.
+### How to Use Rotation Bot
++ Launch PriorityQueueRotation.exe
++ Select the process you would like to attach to. You must be logged into your character to do this.
++ Select your Primary and Secondary rotations.
++ Press ALT+X to start your Primary rotation, and ALT+Z to start your Secondary rotation. Pressing the key(s) again will either stop the bot or switch the rotation, depending on what you have selected.
+
+### How to Use Interrupt Bot
++ Add/Remove any spell that you would like to interrupt on the main form or select "Interrupt All Spells".
++ Press ALT+C to start/stop Interrupt Mode.
 
 # About PQR for [Heroes WoW](https://heroes-wow.com/wotlk/index.php?page=register&raf=f5665b13f04b02826bc3a9723d13129898068c37)
 PriorityQueueRotation 3.3.5a for [Heroes WoW](https://heroes-wow.com/wotlk/index.php?page=register&raf=f5665b13f04b02826bc3a9723d13129898068c37) - optimized profiles specifically for the realities of this server, **only for PvE**.

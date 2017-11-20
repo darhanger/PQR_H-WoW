@@ -1,4 +1,6 @@
 # About PQR
+**Many thanks to the original developer of PQR - [Xelper](http://www.ownedcore.com/forums/members/44279-xelper.html)**
+
 PQR is a bot designed to perform complex DPS, healing and tanking rotations for the player. It was mainly designed to reduce the tediousness of performing a complex rotation for hours on end, which for many can be a huge relief and provide them with a better WoW experience where they may have wanted to quit in other cases.
 <br>
 + No addons to configure.

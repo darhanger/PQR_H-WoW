@@ -1,3 +1,6 @@
+# DISCLAIMER
+**Before any use, I highly recommend reading [DISCLAIMER](https://github.com/darhanger/PQR_3.3.5a-for-Heroes-WoW/blob/master/DISCLAIMER.md)**
+
 # About PQR
 **Many thanks to the original developer of PQR - [Xelper](http://www.ownedcore.com/forums/members/44279-xelper.html)**
 

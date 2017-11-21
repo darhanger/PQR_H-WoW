@@ -282,4 +282,19 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 and UnitLevel(&amp;quot;target&amp;quot;) == -1
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Affli: Shadow Bolt (Non Cast)</Name><Default>false</Default><SpellID>47809</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;, 17941)
 and PQR_IsCastingSpell(47809) == false
-then return true end</Lua><RecastDelay>1500</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></WARLOCK>
+then return true end</Lua><RecastDelay>1500</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Destro: Rain of Fire</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if IsLeftShiftKeyDown() 
+and not GetCurrentKeyBoardFocus() 
+and not UnitChannelInfo(&amp;quot;player&amp;quot;) 
+then
+  CastSpellByID(47820)
+  if SpellIsTargeting() then CameraOrSelectOrMoveStart() CameraOrSelectOrMoveStop() end  
+  return true
+end</Lua><RecastDelay>500</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Destro: Shadowfury</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if IsLeftAltKeyDown() 
+and not GetCurrentKeyBoardFocus() 
+and not UnitChannelInfo(&amp;quot;player&amp;quot;) 
+then
+  CastSpellByID(47847)
+  if SpellIsTargeting() then CameraOrSelectOrMoveStart() CameraOrSelectOrMoveStop() end  
+  return true
+end</Lua><RecastDelay>500</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Affli: Sead of Corruption (AOE)</Name><Default>false</Default><SpellID>47836</SpellID><Actions></Actions><Lua>if IsRightAltKeyDown() and GetCurrentKeyBoardFocus() == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></WARLOCK>

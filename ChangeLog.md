@@ -1,3 +1,19 @@
+# HWoW PQR 1.0.4.1
++ **Small improvements Death Knight Profiles**;
+  + Specific commands:
+    + Hold Left Shift for Pestilence;
+    + Hold Left Alt for Death and Decay;
++ **Small improvements Warlock Profile**;
+  + Specific commands:
+    + Hold Left Shift for Rain of Fire;
+    + Hold Left Alt for Shadowfury;
+    + Hold Right Alt for Seed of Corruption;
++ **Small improvements Hunter Profile**;
+  + Specific commands:
+    + Hold Left Shift for Volley;
+    + Hold Left Alt for Multi-Shot;
+<br>
+
 # HWoW PQR 1.0.4
 + **Released Warrior DPS MultiSpec AOE and SOLO PvE Profile**;
   + Need more improvements for better performance of this profile;

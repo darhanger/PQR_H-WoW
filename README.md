@@ -38,10 +38,10 @@ Support Status Meanings
 + DPS - ✅
 + Tank - ✅
 ## Druid
-+ DPS Balance - ⁉️
-+ DPS Feral - ⁉️
++ DPS Balance - ✅
++ DPS Feral - ✅
 + Tank - ⁉️
-+ Heal - ⁉️
++ Heal - ✅
 ## Hunter
 + DPS - ✅
 ## Mage

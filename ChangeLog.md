@@ -1,3 +1,18 @@
+# HWoW PQR 1.0.5
++ **Released Druid Moonkin Profile**;
+  + Specific commands:
+    + Hold Left Shift for use Force of Nature;
+    + Hold Left Alt for use Typhoon;
++ **Released Druid Feral (Cat) Profile**;
+  + Specific commands:
+    + Hold Left Shift for use Swipe;
+    + Hold Left Alt for use Rejuvenation;
++ **Released Druid Resto Profile**;
+  + Specific commands:
+    + Hold Left Shift for enter Tree of Life form;
+    + Hold Left Alt for use Tranquil;
+<br>
+
 # HWoW PQR 1.0.4.1
 + **Small improvements Death Knight Profiles**;
   + Specific commands:

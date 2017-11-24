@@ -40,7 +40,7 @@ Support Status Meanings
 ## Druid
 + DPS Balance - ✅
 + DPS Feral - ✅
-+ Tank - ⁉️
++ Tank - ✔️
 + Heal - ✅
 ## Hunter
 + DPS - ✅

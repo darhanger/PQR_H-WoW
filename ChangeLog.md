@@ -1,3 +1,10 @@
+# HWoW PQR 1.0.5.1
++ **Released Druid Bear Profile**;
+  + Specific commands:
+    + Hold Left Shift for use Swipe;
+    + Hold Left Alt for use Bash;
+<br>
+
 # HWoW PQR 1.0.5
 + **Released Druid Moonkin Profile**;
   + Specific commands:

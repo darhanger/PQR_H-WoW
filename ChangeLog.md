@@ -1,3 +1,12 @@
+# HWoW PQR 1.0.5.2
++ **More improvements for future**;
+  + Add some spell and mechanics to Warlock Profile:
+    + Curse of Elements;
+    + Metamophosis: Immolation Aura;
+    + Metamophosis: Shadow Cleave;
+    + Metamophosis: Demon Charge;
+<br>
+
 # HWoW PQR 1.0.5.1
 + **Released Druid Bear Profile**;
   + Specific commands:

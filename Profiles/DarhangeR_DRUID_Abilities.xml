@@ -197,7 +197,8 @@ and UnitBuffID(&amp;quot;player&amp;quot;, 52610) == nil
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Feral: Rip</Name><Default>false</Default><SpellID>49800</SpellID><Actions></Actions><Lua>if GetComboPoints(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) == 5
 and UnitDebuffID(&amp;quot;target&amp;quot;, 49800, &amp;quot;player&amp;quot;) == nil
 and checkSpell(49800, &amp;quot;target&amp;quot;)
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Feral: Mangle (Cat)</Name><Default>false</Default><SpellID>48566</SpellID><Actions></Actions><Lua>if ComboPoints &amp;lt; 5 
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Feral: Mangle (Cat)</Name><Default>false</Default><SpellID>48566</SpellID><Actions></Actions><Lua>--Mangle
+if ComboPoints &amp;lt; 5 
 and PQR_NotBehindTarget() 
 and cdRemains(48566) == 0  then
 	CastSpellByID(48566)

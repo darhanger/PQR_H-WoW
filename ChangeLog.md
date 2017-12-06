@@ -1,3 +1,15 @@
+# HWoW PQR 1.0.6
++ **Released Paladin Profiles**;
+  + Retri AOE and Solo;
+    + Hold Left Shift for use Flash of Light + Art of War
+    + Hold Left Alt for use Consecration
+  + Prot - Specific commands:
+    + Hold Left Shift for use Exorcism + Art of War
+    + Hold Left Alt for use Consecration
+  + Prot - Specific Function:
+     + Focus target to use Beacon of Light + Sacred Shield (Best on Tank)
+<br>
+
 # HWoW PQR 1.0.5.2
 + **More improvements for future**;
   + Add some spell and mechanics to Warlock Profile:

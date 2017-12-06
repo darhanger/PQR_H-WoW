@@ -1,5 +1,3 @@
-<iframe src="https://funding.webmoney.ru/widgets/vertical/72aed362-6b45-4b27-b3ff-6c9c986b974b?bt=4&hs=1&sum=5" width="240" height="240" scrolling="no" style="border:none;"></iframe>
-
 # DISCLAIMER
 **Before any use, I highly recommend reading [DISCLAIMER](https://github.com/darhanger/PQR_3.3.5a-for-Heroes-WoW/blob/master/DISCLAIMER.md)**
 

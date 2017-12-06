@@ -1,3 +1,4 @@
+[![Github All Releases](https://img.shields.io/github/downloads/atom/atom/total.svg)]()
 # DISCLAIMER
 **Before any use, I highly recommend reading [DISCLAIMER](https://github.com/darhanger/PQR_3.3.5a-for-Heroes-WoW/blob/master/DISCLAIMER.md)**
 

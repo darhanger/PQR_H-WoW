@@ -6,7 +6,7 @@
   + Prot - Specific commands:
     + Hold Left Shift for use Exorcism + Art of War
     + Hold Left Alt for use Consecration
-  + Prot - Specific Function:
+  + Holly - Specific Function:
      + Focus target to use Beacon of Light + Sacred Shield (Best on Tank)
 <br>
 

@@ -49,9 +49,9 @@ Support Status Meanings
 + DPS Frost - ⁉️
 + DPS Arcane - ⁉️
 ## Paladin
-+ DPS - ⁉️
-+ Tank - ⁉️
-+ Heal - ⁉️
++ DPS - ✅
++ Tank - ✅
++ Heal - ✅
 ## Priest
 + DPS - ⁉️
 + Heal Holly- ⁉️

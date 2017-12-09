@@ -1,3 +1,13 @@
+# HWoW PQR 1.0.7
++ **Released Mage Profile**;
+  + Fire (More inpovments in future for best DPS);
+    + Hold Left Shift for use Flamestrike
+    + Hold Left Alt for use Blink
++ **Correction grammatical errors**;
++ **Fix Lay of Hands (Paladin Profiles)**;
+
+<br>
+
 # HWoW PQR 1.0.6
 + **Released Paladin Profiles**;
   + Retri AOE and Solo;

@@ -234,7 +234,7 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 and checkHP(&amp;quot;target&amp;quot;, 20)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Hand of Salvation</Name><Default>false</Default><SpellID>1038</SpellID><Actions></Actions><Lua>if checkAggro(&amp;quot;player&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Lay on Hands</Name><Default>false</Default><SpellID>48788</SpellID><Actions></Actions><Lua>if checkHP(&amp;quot;player&amp;quot;, 20)
-and checkVorahnung(&amp;quot;player&amp;quot;)
+and checkForbearance(&amp;quot;player&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Holy Wrath</Name><Default>false</Default><SpellID>48817</SpellID><Actions></Actions><Lua>if (checkSpell(35395, &amp;quot;target&amp;quot;) and UnitCreatureType(&amp;quot;target&amp;quot;) == &amp;quot;Untoter&amp;quot;)
 or UnitBuffID(&amp;quot;player&amp;quot;, 20375)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Crusader Strike</Name><Default>false</Default><SpellID>35395</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Crusader Strike&amp;quot;, &amp;quot;target&amp;quot;)  == 1

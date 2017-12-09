@@ -47,9 +47,7 @@ Support Status Meanings
 ## Hunter
 + DPS - ✅
 ## Mage
-+ DPS Fire - ⁉️
-+ DPS Frost - ⁉️
-+ DPS Arcane - ⁉️
++ DPS Multi - ✔️
 ## Paladin
 + DPS - ✅
 + Tank - ✅

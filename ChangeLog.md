@@ -1,4 +1,4 @@
-# HWoW PQR 1.0.7 and 1.0.7.1
+# HWoW PQR 1.0.8
 + **Released Warrior Proto Profile**;
   + Tank
     + Hold Left Shift for use Bladestorm

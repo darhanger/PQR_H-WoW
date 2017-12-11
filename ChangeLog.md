@@ -1,4 +1,12 @@
 # HWoW PQR 1.0.7 and 1.0.7.1
++ **Released Warrior Proto Profile**;
+  + Tank
+    + Hold Left Shift for use Bladestorm
+    + Hold Left Alt for use Thunder Clap
++ **Improve Druid Tank Profile**;
+<br>
+
+# HWoW PQR 1.0.7 and 1.0.7.1
 + **Released Mage Profile**;
   + Fire (More inpovments in future for best DPS);
     + Hold Left Shift for use Flamestrike
@@ -6,7 +14,6 @@
 + **Correction grammatical errors**;
 + **Fix Lay of Hands (Paladin Profiles)**;
 + **Hunter Profile - Focus tank in target to autouse Misdirection**;
-
 <br>
 
 # HWoW PQR 1.0.6

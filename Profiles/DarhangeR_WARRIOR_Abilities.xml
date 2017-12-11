@@ -101,9 +101,13 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 and IsSpellInRange(&amp;quot;Heroic Strike&amp;quot;, &amp;quot;target&amp;quot;)  == 1
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Mortal Strike</Name><Default>false</Default><SpellID>47486</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Mortal Strike&amp;quot;, &amp;quot;target&amp;quot;)  == 1
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Bladestorm</Name><Default>false</Default><SpellID>46924</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Mortal Strike&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+and UnitLevel(&amp;quot;target&amp;quot;) == -1
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Death Wish</Name><Default>false</Default><SpellID>12292</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Heroic Strike&amp;quot;, &amp;quot;target&amp;quot;)  == 1
 and UnitLevel(&amp;quot;target&amp;quot;) == -1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Battle Shout</Name><Default>false</Default><SpellID>47436</SpellID><Actions></Actions><Lua>local Shout, _, _, _, _, _, hwexpire = UnitBuffID(&amp;quot;player&amp;quot;, 47436)
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Shockwave</Name><Default>false</Default><SpellID>46968</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Heroic Strike&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Concussion Blow</Name><Default>false</Default><SpellID>12809</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Heroic Strike&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Sweeping Strikes</Name><Default>false</Default><SpellID>12328</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Heroic Strike&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Battle Shout</Name><Default>false</Default><SpellID>47436</SpellID><Actions></Actions><Lua>local Shout, _, _, _, _, _, hwexpire = UnitBuffID(&amp;quot;player&amp;quot;, 47436)
 
 if Shout ~= nill then
 	hwexpire =(hwexpire - GetTime())
@@ -112,10 +116,22 @@ if Shout ~= nill then
 	end
 else
 	return true
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Shockwave</Name><Default>false</Default><SpellID>46968</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Heroic Strike&amp;quot;, &amp;quot;target&amp;quot;)  == 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Concussion Blow</Name><Default>false</Default><SpellID>12809</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Heroic Strike&amp;quot;, &amp;quot;target&amp;quot;)  == 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Rend</Name><Default>false</Default><SpellID>47465</SpellID><Actions></Actions><Lua>local DS = GetShapeshiftForm()
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Defensive Stance</Name><Default>false</Default><SpellID>71</SpellID><Actions></Actions><Lua>local DS = GetShapeshiftForm()
 
-if DS ~= 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Sweeping Strikes</Name><Default>false</Default><SpellID>12328</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Heroic Strike&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+if DS ~= 2
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Commanding Shout</Name><Default>false</Default><SpellID>47440</SpellID><Actions></Actions><Lua>local Shout, _, _, _, _, _, hwexpire = UnitBuffID(&amp;quot;player&amp;quot;, 47440)
+
+if Shout ~= nill then
+	hwexpire =(hwexpire - GetTime())
+	if hwexpire &amp;lt; 5 then
+		return true
+	end
+else
+	return true
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Last Stand</Name><Default>false</Default><SpellID>12975</SpellID><Actions>/use Enraged Regeneration</Actions><Lua>if 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;) &amp;lt; 35
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Shield Wall</Name><Default>false</Default><SpellID>871</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;) &amp;lt; 50
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Demoralizing Shout</Name><Default>false</Default><SpellID>47437</SpellID><Actions></Actions><Lua>if UnitDebuffID(&amp;quot;target&amp;quot;,47437,&amp;quot;player&amp;quot;) == nil
+and IsSpellInRange(&amp;quot;Rend&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Bladestorm(Sh)</Name><Default>false</Default><SpellID>46924</SpellID><Actions></Actions><Lua>if IsLeftShiftKeyDown() and GetCurrentKeyBoardFocus() == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Thunder Clap</Name><Default>false</Default><SpellID>47502</SpellID><Actions></Actions><Lua>if IsLeftAltKeyDown() and GetCurrentKeyBoardFocus() == nil
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></WARRIOR>

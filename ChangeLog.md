@@ -1,3 +1,7 @@
+# HWoW PQR 1.0.8.1
++ **Improve Profile usability**;
+<br>
+
 # HWoW PQR 1.0.8
 + **Released Warrior Proto Profile**;
   + Tank

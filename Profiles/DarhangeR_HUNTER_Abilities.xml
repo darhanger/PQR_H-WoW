@@ -118,4 +118,16 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 and IsSpellInRange(&amp;quot;Kill Shot&amp;quot;, &amp;quot;target&amp;quot;) == 1
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>SV:Mongoose Bite</Name><Default>false</Default><SpellID>53339</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Mongoose Bite&amp;quot;, &amp;quot;target&amp;quot;) == 1
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>SV:Raptor Strike</Name><Default>false</Default><SpellID>48996</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Mongoose Bite&amp;quot;, &amp;quot;target&amp;quot;) == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>BM:Call Pet</Name><Default>false</Default><SpellID>883</SpellID><Actions></Actions><Lua>if not UnitExists(&amp;quot;pet&amp;quot;) 
+and not IsMounted() 
+and not UnitIsDead(&amp;quot;pet&amp;quot;) 
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>BM:Mend Pet</Name><Default>false</Default><SpellID>48890</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;pet&amp;quot;) / UnitHealthMax(&amp;quot;pet&amp;quot;) &amp;lt; 60
+and UnitBuffID(&amp;quot;pet&amp;quot;, 48990) == nil
+and UnitExists(&amp;quot;pet&amp;quot;)
+and (not UnitIsDeadOrGhost(&amp;quot;pet&amp;quot;))
+and UnitInRange(&amp;quot;pet&amp;quot;)
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Pet</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>SV:Deterrence</Name><Default>false</Default><SpellID>19263</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;) &amp;lt; 60
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>MM:Readiness</Name><Default>false</Default><SpellID>23989</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,3045) == nil
+and UnitLevel(&amp;quot;target&amp;quot;) == -1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>SV:Disengage</Name><Default>false</Default><SpellID>781</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;) &amp;lt; 50
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></HUNTER>

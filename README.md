@@ -59,9 +59,9 @@ Support Status Meanings
 ## Rogue
 + DPS - ✅
 ## Shaman
-+ DPS Ench - ⁉️ 
-+ DPS Elem - ⁉️
-+ Heal - ⁉️
++ DPS Ench - ✅ 
++ DPS Elem - ✅
++ Heal - ✅
 ## Warlock
 - DPS - ✅
 ## Warrior

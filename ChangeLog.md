@@ -1,3 +1,14 @@
+# HWoW PQR 1.0.9
++ **Released Shaman Profiles**;
+  + Enchantment MDPS - for multiple situations;
+  + Elem:
+      + Left Shift for enabled/disabled Chain Lightning;
+  + Resto:
+      + Focus target to use Earth Shield;
++ **All profiles correct to ONE code "style"**;
++ **Improve DK, Hunter, Paladin and Warlock Profiles;
+<br>
+
 # HWoW PQR 1.0.8.1
 + **Improve Profile usability**;
 <br>

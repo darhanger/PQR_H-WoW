@@ -6,7 +6,7 @@
   + Resto:
       + Focus target to use Earth Shield;
 + **All profiles correct to ONE code "style"**;
-+ **Improve DK, Hunter, Paladin and Warlock Profiles;
++ **Improve DK, Hunter, Paladin and Warlock Profiles**;
 <br>
 
 # HWoW PQR 1.0.8.1

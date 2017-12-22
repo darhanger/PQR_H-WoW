@@ -1,1 +1,0 @@
-Copy calibri font to WoW folder.

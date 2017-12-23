@@ -151,4 +151,7 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 if count == 4
 and IsSpellInRange(&amp;quot;Arcane Missiles&amp;quot;, &amp;quot;target&amp;quot;) == 1
 and PQR_IsCastingSpell(42846) == false
-then return true end</Lua><RecastDelay>2000</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></MAGE>
+then return true end</Lua><RecastDelay>2000</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- DarhangeR --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- I&amp;apos;m the original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: 
+-- VK: https://vk.com/darhanger
+-- FB: https://fb.com/darhanger
+-- E-mail: civayan@gmail.com</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></MAGE>

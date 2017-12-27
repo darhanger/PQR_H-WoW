@@ -1,4 +1,4 @@
-# [Donate/Help US](https://github.com/darhanger/PQR-HWoW/blob/master/DONATE.md)
+# [Donate/Help US](https://github.com/darhanger/PQR-HWoW/wiki/Donate)
 <br>
 
 # Updates

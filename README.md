@@ -5,7 +5,7 @@
 If you have code to improve a class you can send a "pull request". We will look over it and may merge it with our Profiles
 <br>
 <br>
-# Profile Status & [ChangeLog](https://github.com/darhanger/PQR_3.3.5a-for-Heroes-WoW/blob/master/ChangeLog.md)
+# Profile Status & [ChangeLog](https://github.com/darhanger/PQR-HWoW/wiki/ChangeLog)
 Support Status Meanings 
 <br>
 + ✅ - **BEST - use multispec rotattion for max DPS**

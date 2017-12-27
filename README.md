@@ -1,4 +1,4 @@
-                                                                                                                                                                   ![Donate](https://img.shields.io/badge/Donate-Help%20US-orange.svg?style=for-the-badge)
+# [Donate/Help US](https://github.com/darhanger/PQR-HWoW/blob/master/DONATE.md)
 
 # DISCLAIMER
 **Before any use, I highly recommend reading [DISCLAIMER](https://github.com/darhanger/PQR_3.3.5a-for-Heroes-WoW/blob/master/DISCLAIMER.md)**

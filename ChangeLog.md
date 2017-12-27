@@ -1,3 +1,8 @@
+# HWoW PQR 1.0.9.1
++ **First part of Priest Profiles**; 
++ **Shaman Profiles imrovments**;
+<br>
+
 # HWoW PQR 1.0.9
 + **Released Shaman Profiles**;
   + Enchantment MDPS - for multiple situations;

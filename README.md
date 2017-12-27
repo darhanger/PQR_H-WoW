@@ -11,14 +11,12 @@ PQR is a bot designed to perform complex DPS, healing and tanking rotations for 
 + No addons to configure.
 + No pixel scanning to hinder performance.
 + Easily customizable and shareable abilities and rotations.
-<br>
 
 ### How to Use Rotation Bot
 + Launch PriorityQueueRotation.exe
 + Select the process you would like to attach to. You must be logged into your character to do this.
 + Select your Primary and Secondary rotations.
 + Press ALT+X to start your Primary rotation, and ALT+Z to start your Secondary rotation. Pressing the key(s) again will either stop the bot or switch the rotation, depending on what you have selected.
-<br>
 
 ### How to Use Interrupt Bot
 + Add/Remove any spell that you would like to interrupt on the main form or select "Interrupt All Spells".
@@ -42,31 +40,40 @@ Support Status Meanings
 ## Death Knight
 + DPS - ✅
 + Tank - ✅
+
 ## Druid
 + DPS Balance - ✅
 + DPS Feral - ✅
 + Tank - ✅
 + Heal - ✅
+
 ## Hunter
 + DPS - ✅
+
 ## Mage
 + DPS Multi - ✔️
+
 ## Paladin
 + DPS - ✅
 + Tank - ✅
 + Heal - ✅
+
 ## Priest
 + DPS - ✅
 + Heal Holly- ⁉️
 + Heal DC - ⁉️
+
 ## Rogue
 + DPS - ✅
+
 ## Shaman
 + DPS Ench - ✅ 
 + DPS Elem - ✅
 + Heal - ✅
+
 ## Warlock
 - DPS - ✅
+
 ## Warrior
 + DPS - ✅
 + Tank - ✅

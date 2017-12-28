@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?><PRIEST><Ability><Name>H:Power Word: Shield (Low HP)</Name><Default>false</Default><SpellID>48066</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;) &amp;lt;= 70
+<?xml version="1.0" encoding="utf-8" ?><PRIEST><Ability><Name>H:Power Word: Shield (Low HP)</Name><Default>false</Default><SpellID>48066</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;) &amp;lt;= 65
 and UnitDebuffID(PQR_CustomTarget,6788) == nil 
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>S:Vampiric Touch</Name><Default>false</Default><SpellID>48160</SpellID><Actions></Actions><Lua>local VT, _, _, _, _, _, timer = UnitDebuffID(&amp;quot;target&amp;quot;, 48160, &amp;quot;PLAYER&amp;quot;)
 
@@ -281,7 +281,7 @@ while buff do
   then return true end
   i = i + 1;
   buff,_,_,count,bufftype,duration = UnitDebuff(PQR_CustomTarget, i)
-end</Lua><RecastDelay>500</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Mass Dispel</Name><Default>false</Default><SpellID>32375</SpellID><Actions></Actions><Lua>if IsShiftKeyDown() 
+end</Lua><RecastDelay>500</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Mass Dispel</Name><Default>false</Default><SpellID>32375</SpellID><Actions></Actions><Lua>if IsLeftAltKeyDown() 
 and GetCurrentKeyBoardFocus() == nil 
 and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil 
 then
@@ -306,7 +306,7 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Focus</Target><Can
 then return true else return false end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Flash Heal</Name><Default>false</Default><SpellID>48071</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,33151) 
 then return true end
 
-if PQR_CustomTargetHP &amp;lt; 85 
+if PQR_CustomTargetHP &amp;lt; 80 
 and 100 * UnitPower(&amp;quot;player&amp;quot;) / UnitPowerMax(&amp;quot;player&amp;quot;) &amp;gt; 30
 and PQR_IsCastingSpell(48071) == false
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Renew</Name><Default>false</Default><SpellID>48068</SpellID><Actions></Actions><Lua>if UnitBuffID(PQR_CustomTarget, 48068,&amp;quot;PLAYER&amp;quot;) == nil 
@@ -345,7 +345,7 @@ and PQR_IsCastingSpell(48072) == false
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Greater Heal</Name><Default>false</Default><SpellID>48063</SpellID><Actions></Actions><Lua>local sd={UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Serendipity&amp;quot;)}
 
 if sd[4] == nil then return false end
-if PQR_CustomTargetHP &amp;lt; 70 
+if PQR_CustomTargetHP &amp;lt; 65 
 and 100 * UnitPower(&amp;quot;player&amp;quot;) / UnitPowerMax(&amp;quot;player&amp;quot;) &amp;gt; 50
 and sd[4] &amp;gt;= 2
 and PQR_IsCastingSpell(48063) == false
@@ -369,7 +369,7 @@ while buff do
   then return true end
   i = i + 1;
   buff,_,_,count,bufftype,duration = UnitDebuff(PQR_CustomTarget, i)
-end</Lua><RecastDelay>500</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Circle of Healing</Name><Default>false</Default><SpellID>48089</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 100
+end</Lua><RecastDelay>500</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Circle of Healing</Name><Default>false</Default><SpellID>48089</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 95
 and lowhpmembers &amp;gt;= 3 
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Power Word: Shield</Name><Default>false</Default><SpellID>48066</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 60 
 and UnitDebuffID(PQR_CustomTarget,6788) == nil 
@@ -417,7 +417,7 @@ and 100 * UnitPower(&amp;quot;player&amp;quot;) / UnitPowerMax(&amp;quot;player&
 and PQR_IsCastingSpell(32546) == false
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>H:Desperate Prayer</Name><Default>false</Default><SpellID>48173</SpellID><Actions></Actions><Lua>local unithealth = 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;)
 
-if unithealth &amp;lt; 20 then return true else return false end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>S:Devouring Plague</Name><Default>false</Default><SpellID>48300</SpellID><Actions></Actions><Lua>local DP, _, _, _, _, _, timer = UnitDebuffID(&amp;quot;target&amp;quot;, 48300, &amp;quot;PLAYER&amp;quot;)
+if unithealth &amp;lt; 15 then return true else return false end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>S:Devouring Plague</Name><Default>false</Default><SpellID>48300</SpellID><Actions></Actions><Lua>local DP, _, _, _, _, _, timer = UnitDebuffID(&amp;quot;target&amp;quot;, 48300, &amp;quot;PLAYER&amp;quot;)
 
 if IsSpellInRange(&amp;quot;Devouring Plague&amp;quot;, &amp;quot;target&amp;quot;) ~= 1 then return false else
 	if DP ~= nil then
@@ -437,4 +437,5 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><Ca
 -- FB: https://fb.com/darhanger
 -- E-mail: civayan@gmail.com</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Racial:Blood Fury</Name><Default>false</Default><SpellID>33697</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Racial:Berserking</Name><Default>false</Default><SpellID>26297</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></PRIEST>
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Pain Suppression(Self)</Name><Default>false</Default><SpellID>33206</SpellID><Actions></Actions><Lua>if 100 * UnitPower(&amp;quot;player&amp;quot;) / UnitPowerMax(&amp;quot;player&amp;quot;) &amp;lt;= 40
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></PRIEST>

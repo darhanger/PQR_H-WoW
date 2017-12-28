@@ -125,7 +125,6 @@ and IsSpellInRange(&amp;quot;Starfire&amp;quot;, &amp;quot;target&amp;quot;)  ==
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Tree of Life</Name><Default>false</Default><SpellID>33891</SpellID><Actions></Actions><Lua>if IsShiftKeyDown()
 and UnitBuffID(&amp;quot;player&amp;quot;, 33891) == nil
 and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
-and UnitCastingInfo(&amp;quot;player&amp;quot;) == nil
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Lifebloom</Name><Default>false</Default><SpellID>48451</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;, 16870)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Remove Curse</Name><Default>false</Default><SpellID>2782</SpellID><Actions></Actions><Lua>local buff = { 30108, 34914, 74562, 74792 }
 local group = &amp;quot;party&amp;quot;

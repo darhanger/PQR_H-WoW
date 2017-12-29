@@ -35,8 +35,7 @@ Support Status Meanings
 
 ## Priest
 + DPS - ✅
-+ Heal Holly- ⁉️
-+ Heal DC - ⁉️
++ Heal Holly - ✔️
 
 ## Rogue
 + DPS - ✅

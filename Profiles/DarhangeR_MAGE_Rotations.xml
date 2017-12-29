@@ -1,3 +1,3 @@
 <?xml version="1.0" encoding="utf-8" ?><MAGE><Rotation><RotationName>HWoW_PvE_Fire</RotationName><RotationDefault>false</RotationDefault><RotationList>-- Hotkeys --|-- Start Fight --|USE:Mouseover Skill|A:Arcane Brilliance|F:Molten Armor|A:Blink|-- Offensive Spells --|FR:Ice Block|FR:Ice Barrier|F:Flamestrike|A:Spellsteal|A:Evocation|A:Mana Shield|A:Arcane Power|FR:Icy Veins|Racial:Berserking|Racial:Blood Fury|A:Mirror Image|FR:Summon Water Elemental|FR:Cold Snap|F:Living Bomb|F:Pyroblast|F:Fireball</RotationList><RequireCombat>false</RequireCombat><RotationNotes>Specific commands:
-- Hold Left Shift for use Flamestrike
-- Hold Left Alt for use Blink</RotationNotes></Rotation></MAGE>
+- Hold Left Shift for use Flamestrike;
+- Hold Left Alt for use Blink;</RotationNotes></Rotation></MAGE>

@@ -15,39 +15,39 @@ Support Status Meanings
 ## Death Knight
 + DPS - ✅
 + Tank - ✅
-
+***
 ## Druid
 + DPS Balance - ✅
 + DPS Feral - ✅
 + Tank - ✅
 + Heal - ✅
-
+***
 ## Hunter
 + DPS - ✅
-
+***
 ## Mage
 + DPS Multi - ✔️
-
+***
 ## Paladin
 + DPS - ✅
 + Tank - ✅
 + Heal - ✅
-
+***
 ## Priest
 + DPS - ✅
 + Heal Holly - ✔️
-
+***
 ## Rogue
 + DPS - ✅
-
+***
 ## Shaman
 + DPS Ench - ✅ 
 + DPS Elem - ✅
 + Heal - ✅
-
+***
 ## Warlock
 - DPS - ✅
-
+***
 ## Warrior
 + DPS - ✅
 + Tank - ✅

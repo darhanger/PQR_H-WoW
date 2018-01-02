@@ -12,42 +12,42 @@ Support Status Meanings
 + ✔️ - works well, but not as I would like)
 + ⁉️ - currently unknown or in development;
 
-## Death Knight
+## [Death Knight](https://github.com/darhanger/PQR-HWoW/wiki/List-of-Profiles#death-knight)
 + DPS - ✅
 + Tank - ✅
 ***
-## Druid
+## [Druid](https://github.com/darhanger/PQR-HWoW/wiki/List-of-Profiles#druid)
 + DPS Balance - ✅
 + DPS Feral - ✅
 + Tank - ✅
 + Heal - ✅
 ***
-## Hunter
+## [Hunter](https://github.com/darhanger/PQR-HWoW/wiki/List-of-Profiles#hunter)
 + DPS - ✅
 ***
-## Mage
+## [Mage](https://github.com/darhanger/PQR-HWoW/wiki/List-of-Profiles#mage)
 + DPS Multi - ✔️
 ***
-## Paladin
+## [Paladin](https://github.com/darhanger/PQR-HWoW/wiki/List-of-Profiles#paladin)
 + DPS - ✅
 + Tank - ✅
 + Heal - ✅
 ***
-## Priest
+## [Priest](https://github.com/darhanger/PQR-HWoW/wiki/List-of-Profiles#priest)
 + DPS - ✅
 + Heal Holly - ✔️
 ***
-## Rogue
+## [Rogue](https://github.com/darhanger/PQR-HWoW/wiki/List-of-Profiles#rogue)
 + DPS - ✅
 ***
-## Shaman
+## [Shaman](https://github.com/darhanger/PQR-HWoW/wiki/List-of-Profiles#shaman)
 + DPS Ench - ✅ 
 + DPS Elem - ✅
 + Heal - ✅
 ***
-## Warlock
+## [Warlock](https://github.com/darhanger/PQR-HWoW/wiki/List-of-Profiles#warlock)
 - DPS - ✅
 ***
-## Warrior
+## [Warrior](https://github.com/darhanger/PQR-HWoW/wiki/List-of-Profiles#warrior)
 + DPS - ✅
 + Tank - ✅

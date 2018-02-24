@@ -84,7 +84,7 @@ end
 if havebuff
 and IsSpellInRange(&amp;quot;Spellsteal&amp;quot;, &amp;quot;target&amp;quot;) == 1
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Evocation</Name><Default>false</Default><SpellID>12051</SpellID><Actions></Actions><Lua>if 100 * UnitPower(&amp;quot;player&amp;quot;) / UnitPowerMax(&amp;quot;player&amp;quot;) &amp;lt;= 20 
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Mirror Image</Name><Default>false</Default><SpellID>55342</SpellID><Actions>/petattack</Actions><Lua>if IsSpellInRange(&amp;quot;Pyroblast&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Mirror Image</Name><Default>false</Default><SpellID>55342</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Pyroblast&amp;quot;, &amp;quot;target&amp;quot;)  == 1
 and UnitLevel(&amp;quot;target&amp;quot;) == -1
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>FR:Icy Veins</Name><Default>false</Default><SpellID>12472</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Frostfire Bolt</Name><Default>false</Default><SpellID>47610</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Frostfire Bolt&amp;quot;, &amp;quot;target&amp;quot;) == 1
@@ -118,7 +118,7 @@ then
   CastSpellByID(42926)
   if SpellIsTargeting() then CameraOrSelectOrMoveStart() CameraOrSelectOrMoveStop() end  
   return true
-end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>FR:Summon Water Elemental</Name><Default>false</Default><SpellID>31687</SpellID><Actions>/petattack</Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
+end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>FR:Summon Water Elemental</Name><Default>false</Default><SpellID>31687</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>FR:Cold Snap</Name><Default>false</Default><SpellID>11958</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,12472) == nil
 and UnitExists(&amp;quot;pet&amp;quot;) == nil
 and UnitLevel(&amp;quot;target&amp;quot;) == -1

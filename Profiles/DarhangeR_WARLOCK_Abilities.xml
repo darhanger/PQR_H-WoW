@@ -118,7 +118,6 @@ then
     UseItemByName(&amp;quot;Grand Spellstone&amp;quot;,&amp;quot;player&amp;quot;) 
     if SpellIsTargeting() then PickupInventoryItem(16) end
 end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Create Spellstone</Name><Default>false</Default><SpellID>47888</SpellID><Actions></Actions><Lua>if GetItemCount(&amp;quot;Grand Spellstone&amp;quot;) == 0
-and GetItemCount(&amp;quot;Soul Shard&amp;quot;) &amp;gt;= 1
 and UnitAffectingCombat(&amp;quot;player&amp;quot;) == nil
 and PQR_IsCastingSpell(47888) == false
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>DM/A:Corruption</Name><Default>false</Default><SpellID>47813</SpellID><Actions></Actions><Lua>if UnitDebuffID(&amp;quot;target&amp;quot;, 47813, &amp;quot;player&amp;quot;) == nil

@@ -26,7 +26,7 @@ Support Status Meanings
 + DPS - ✅
 ***
 ## [Mage](https://github.com/darhanger/PQR-HWoW/wiki/List-of-Profiles#mage)
-+ DPS Multi - ✔️
++ DPS Multi - ✅
 ***
 ## [Paladin](https://github.com/darhanger/PQR-HWoW/wiki/List-of-Profiles#paladin)
 + DPS - ✅
@@ -35,7 +35,7 @@ Support Status Meanings
 ***
 ## [Priest](https://github.com/darhanger/PQR-HWoW/wiki/List-of-Profiles#priest)
 + DPS - ✅
-+ Heal Holly - ✔️
++ Heal Holly - ✅
 ***
 ## [Rogue](https://github.com/darhanger/PQR-HWoW/wiki/List-of-Profiles#rogue)
 + DPS - ✅

@@ -153,4 +153,35 @@ then
     CastSpellByID(20572)
 end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Hamstring</Name><Default>false</Default><SpellID>1715</SpellID><Actions></Actions><Lua>if UnitDebuffID(&amp;quot;target&amp;quot;,1715,&amp;quot;player&amp;quot;) == nil
 and IsSpellInRange(&amp;quot;Rend&amp;quot;, &amp;quot;target&amp;quot;)  == 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></WARRIOR>
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Autotarget --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) 
+and UnitExists(&amp;quot;target&amp;quot;) == nil 
+then TargetNearestEnemy() end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>D:Vigilance</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) == nil then
+
+local mytarget = nil
+local doneVG = nil
+local tophp = 0
+local allinrange = 1
+local group = &amp;quot;party&amp;quot;
+local members = GetNumPartyMembers()
+
+if GetNumRaidMembers() &amp;gt; 0 then
+  group = &amp;quot;raid&amp;quot;
+  members = GetNumRaidMembers()
+end
+
+for i = 1, members, 1 do
+  local member = group..tostring(i)
+  local memberhp = UnitHealthMax(member)
+  local _,_,_,_,_,_,_,source = UnitBuffID(member, 50720)
+  if source == &amp;quot;player&amp;quot; then doneVG = 1 end
+  if UnitInRange(member) == false then allinrange = nil end
+  if memberhp &amp;gt; tophp and UnitInRange(member) and UnitIsUnit(&amp;quot;player&amp;quot;,member) == nil and source == nil and UnitGroupRolesAssigned(&amp;quot;target&amp;quot;) ~= &amp;quot;HEALER&amp;quot; then
+    mytarget = member
+    tophp = memberhp
+  end
+end
+
+
+if mytarget and doneVG == nil and allinrange and UnitIsDead(mytarget) == nil then CastSpellByID(50720, mytarget) end
+
+end</Lua><RecastDelay>500</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></WARRIOR>

@@ -125,6 +125,7 @@ and IsItemInRange(34368, &amp;quot;target&amp;quot;) == 1
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Metamorphosis</Name><Default>false</Default><SpellID>47241</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,47893)
 and UnitLevel(&amp;quot;target&amp;quot;) == -1
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dest:Shadowburn</Name><Default>false</Default><SpellID>47827</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Shadowburn&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+and GetItemCount(&amp;quot;Soul Shard&amp;quot;) &amp;gt;= 1
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Felguard</Name><Default>false</Default><SpellID>30146</SpellID><Actions>/use Fel Domination</Actions><Lua>if UnitExists(&amp;quot;pet&amp;quot;) == nil
 and PQR_IsCastingSpell(30146) == false
 and GetItemCount(&amp;quot;Soul Shard&amp;quot;) &amp;gt;= 1
@@ -166,8 +167,6 @@ then
 end</Lua><RecastDelay>500</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Af:Sead of Corruption (AOE)</Name><Default>false</Default><SpellID>47836</SpellID><Actions></Actions><Lua>if Cleave == true
 and IsSpellInRange(&amp;quot;Incinerate&amp;quot;, &amp;quot;target&amp;quot;)  == 1
 and PQR_IsCastingSpell(47836) == false
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dest:Shadowburn</Name><Default>false</Default><SpellID>47827</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Shadowburn&amp;quot;, &amp;quot;target&amp;quot;)  == 1
-and GetItemCount(&amp;quot;Soul Shard&amp;quot;) &amp;gt;= 1
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Shadow Cleave</Name><Default>false</Default><SpellID>50581</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;, 47241)
 and IsItemInRange(34368, &amp;quot;target&amp;quot;) == 1
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Dem:Demon Charge</Name><Default>false</Default><SpellID>54785</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;, 47241)
@@ -186,4 +185,50 @@ then
 end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Racial:Berserking</Name><Default>false</Default><SpellID>26297</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Autotarget --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) 
 and UnitExists(&amp;quot;target&amp;quot;) == nil 
-then TargetNearestEnemy() end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></WARLOCK>
+then TargetNearestEnemy() end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Stats Buffs --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if NoKings == nil then
+		for b = 0, 4 do
+			for s = 1, GetContainerNumSlots(b) do
+				if GetContainerItemID(b, s) == 26 then
+					NoKings = true
+				--else
+					--NoKings = false
+				end
+			end
+		end
+	end
+
+if not UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)  then
+	--Voter Buff
+	if not UnitBuffID(&amp;quot;player&amp;quot;, 35912) and NoKings == true then
+		for b = 0, 4 do
+			for s = 1, GetContainerNumSlots(b) do
+				if GetContainerItemID(b, s) == 26 then
+					RunMacroText(&amp;quot;/use &amp;quot;..b..&amp;quot; &amp;quot;..s)
+					return true
+				end	
+			end
+		end
+	end
+	--Donor Buff
+	if not UnitBuffID(&amp;quot;player&amp;quot;, 35874) then
+		for b = 0, 4 do
+			for s = 1, GetContainerNumSlots(b) do
+				if GetContainerItemID(b, s) == 27 then
+					RunMacroText(&amp;quot;/use &amp;quot;..b..&amp;quot; &amp;quot;..s)
+					return true	
+				end
+			end
+		end
+	end
+	--Kings Buff			
+	if GetZoneText() ~= &amp;quot;Scarlet Monastery&amp;quot; and not UnitBuffID(&amp;quot;player&amp;quot;, 43223) and not UnitBuffID(&amp;quot;player&amp;quot;, 35912) and not UnitBuffID(&amp;quot;player&amp;quot;, 25898) and NoKings == nil then
+		for b = 0, 4 do
+			for s = 1, GetContainerNumSlots(b) do
+				if GetContainerItemID(b, s) == 49633 then
+					RunMacroText(&amp;quot;/use &amp;quot;..b..&amp;quot; &amp;quot;..s)
+					return true
+				end
+			end
+		end
+	end
+end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></WARLOCK>

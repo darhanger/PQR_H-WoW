@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8" ?><MAGE><Ability><Name>Fire:Fire Blast</Name><Default>false</Default><SpellID>42873</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Fire Blast&amp;quot;, &amp;quot;target&amp;quot;) == 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Fire:Fireball</Name><Default>false</Default><SpellID>42833</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Fireball&amp;quot;, &amp;quot;target&amp;quot;) == 1
+<?xml version="1.0" encoding="utf-8" ?><MAGE><Ability><Name>F:Fire Blast</Name><Default>false</Default><SpellID>42873</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Fire Blast&amp;quot;, &amp;quot;target&amp;quot;) == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Fireball</Name><Default>false</Default><SpellID>42833</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Fireball&amp;quot;, &amp;quot;target&amp;quot;) == 1
 and PQR_IsCastingSpell(42833) == false
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Frost:Ice Block</Name><Default>false</Default><SpellID>45438</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;) &amp;lt;= 20
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Fr:Ice Block</Name><Default>false</Default><SpellID>45438</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;) &amp;lt;= 20
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Hotkeys --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not leftkeydown then leftkeydown = 0 end
 
 if IsLeftControlKeyDown()  and GetTime() - leftkeydown &amp;gt; 1 then
@@ -43,37 +43,37 @@ and UnitLevel(&amp;quot;target&amp;quot;) == -1
 then 
   UseInventoryItem(14) 
   return true
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Arcane:Presence of Mind</Name><Default>false</Default><SpellID>12043</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Presence of Mind</Name><Default>false</Default><SpellID>12043</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Offensive Spells --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) == nil
 or ( not UnitAffectingCombat(&amp;quot;target&amp;quot;) and not UnitIsPlayer(&amp;quot;target&amp;quot;) )
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Mouseover Skill</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) and IsMouseButtonDown()
-    then RunMacroText(&amp;quot;/click &amp;quot;..GetMouseFocus():GetName()) end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Fire:Combustion</Name><Default>false</Default><SpellID>11129</SpellID><Actions></Actions><Lua>if (UnitBuffID(&amp;quot;player&amp;quot;, 75473) or UnitBuffID(&amp;quot;player&amp;quot;, 2825) or UnitBuffID(&amp;quot;player&amp;quot;, 32182) or 100 * UnitHealth(&amp;quot;target&amp;quot;) / UnitHealthMax(&amp;quot;target&amp;quot;) &amp;lt;= 35)
+    then RunMacroText(&amp;quot;/click &amp;quot;..GetMouseFocus():GetName()) end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Combustion</Name><Default>false</Default><SpellID>11129</SpellID><Actions></Actions><Lua>if (UnitBuffID(&amp;quot;player&amp;quot;, 75473) or UnitBuffID(&amp;quot;player&amp;quot;, 2825) or UnitBuffID(&amp;quot;player&amp;quot;, 32182) or 100 * UnitHealth(&amp;quot;target&amp;quot;) / UnitHealthMax(&amp;quot;target&amp;quot;) &amp;lt;= 35)
 and UnitLevel(&amp;quot;target&amp;quot;) == -1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Arcane:Blink</Name><Default>false</Default><SpellID>1953</SpellID><Actions></Actions><Lua>if IsLeftAltKeyDown() and GetCurrentKeyBoardFocus() == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Blink</Name><Default>false</Default><SpellID>1953</SpellID><Actions></Actions><Lua>if IsLeftAltKeyDown() and GetCurrentKeyBoardFocus() == nil
 and UnitChannelInfo(&amp;quot;player&amp;quot;)  == nil and UnitCastingInfo(&amp;quot;player&amp;quot;) == nil
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Frost:Blizzard</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if IsLeftShiftKeyDown() and GetCurrentKeyBoardFocus() == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Fr:Blizzard</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if IsLeftShiftKeyDown() and GetCurrentKeyBoardFocus() == nil
 and UnitChannelInfo(&amp;quot;player&amp;quot;)  == nil and UnitCastingInfo(&amp;quot;player&amp;quot;) == nil
 then 
   CastSpellByName(&amp;quot;Blizzard&amp;quot;)
   if SpellIsTargeting() then CameraOrSelectOrMoveStart() CameraOrSelectOrMoveStop() end 
   return true 
-end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Frost:Frostbolt</Name><Default>false</Default><SpellID>42842</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Frostbolt&amp;quot;, &amp;quot;target&amp;quot;) == 1
+end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Fr:Frostbolt</Name><Default>false</Default><SpellID>42842</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Frostbolt&amp;quot;, &amp;quot;target&amp;quot;) == 1
 and PQR_IsCastingSpell(42842) == false
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Arcane:Arcane Power</Name><Default>false</Default><SpellID>12042</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Pyroblast&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Arcane Power</Name><Default>false</Default><SpellID>12042</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Pyroblast&amp;quot;, &amp;quot;target&amp;quot;)  == 1
 and UnitLevel(&amp;quot;target&amp;quot;) == -1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Arcane:Conjure Mana Gem</Name><Default>false</Default><SpellID>42985</SpellID><Actions></Actions><Lua>if GetItemCount(&amp;quot;Mana Sapphire&amp;quot;) == 0
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Conjure Mana Gem</Name><Default>false</Default><SpellID>42985</SpellID><Actions></Actions><Lua>if GetItemCount(&amp;quot;Mana Sapphire&amp;quot;) == 0
 and UnitAffectingCombat(&amp;quot;player&amp;quot;) == nil
 and PQR_IsCastingSpell(42985) == false
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Fire:Scorch</Name><Default>false</Default><SpellID>42859</SpellID><Actions></Actions><Lua>if UnitDebuffID(&amp;quot;target&amp;quot;, 22959) == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Scorch</Name><Default>false</Default><SpellID>42859</SpellID><Actions></Actions><Lua>if UnitDebuffID(&amp;quot;target&amp;quot;, 22959) == nil
 and UnitDebuffID(&amp;quot;target&amp;quot;, 17800) == nil
 and IsSpellInRange(&amp;quot;Scorch&amp;quot;, &amp;quot;target&amp;quot;) == 1
 and PQR_IsCastingSpell(42859) == false
 and UnitLevel(&amp;quot;target&amp;quot;) == -1
-then return true end</Lua><RecastDelay>1500</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Frost:Deep Freeze</Name><Default>false</Default><SpellID>44572</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Deep Freeze&amp;quot;, &amp;quot;target&amp;quot;) == 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Arcane:Arcane Brilliance</Name><Default>false</Default><SpellID>43002</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,43002) == nil
+then return true end</Lua><RecastDelay>1500</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Fr:Deep Freeze</Name><Default>false</Default><SpellID>44572</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Deep Freeze&amp;quot;, &amp;quot;target&amp;quot;) == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Arcane Brilliance</Name><Default>false</Default><SpellID>43002</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,43002) == nil
 and GetItemCount(&amp;quot;Arcane Powder&amp;quot;) &amp;gt;= 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Fire:Molten Armor</Name><Default>false</Default><SpellID>43046</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,43046) == nil
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Arcane:Spellsteal</Name><Default>false</Default><SpellID>30449</SpellID><Actions></Actions><Lua>buff = { 43242, 31884, 2825, 32182, 1719, 17, 33763, 6940, 67108, 67107, 67106, 66228 }
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Molten Armor</Name><Default>false</Default><SpellID>43046</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,43046) == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Spellsteal</Name><Default>false</Default><SpellID>30449</SpellID><Actions></Actions><Lua>buff = { 43242, 31884, 2825, 32182, 1719, 17, 33763, 6940, 67108, 67107, 67106, 66228 }
 local havebuff = nil
 
 for i,v in ipairs(buff) do
@@ -83,20 +83,22 @@ end
 
 if havebuff
 and IsSpellInRange(&amp;quot;Spellsteal&amp;quot;, &amp;quot;target&amp;quot;) == 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Arcane:Evocation</Name><Default>false</Default><SpellID>12051</SpellID><Actions></Actions><Lua>if 100 * UnitPower(&amp;quot;player&amp;quot;) / UnitPowerMax(&amp;quot;player&amp;quot;) &amp;lt;= 20 
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Arcane:Mirror Image</Name><Default>false</Default><SpellID>55342</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Pyroblast&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Evocation</Name><Default>false</Default><SpellID>12051</SpellID><Actions></Actions><Lua>if 100 * UnitPower(&amp;quot;player&amp;quot;) / UnitPowerMax(&amp;quot;player&amp;quot;) &amp;lt;= 20 
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Mirror Image</Name><Default>false</Default><SpellID>55342</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Pyroblast&amp;quot;, &amp;quot;target&amp;quot;)  == 1
 and UnitLevel(&amp;quot;target&amp;quot;) == -1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Frost:Icy Veins</Name><Default>false</Default><SpellID>12472</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Fire:Frostfire Bolt</Name><Default>false</Default><SpellID>47610</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Frostfire Bolt&amp;quot;, &amp;quot;target&amp;quot;) == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Fr:Icy Veins</Name><Default>false</Default><SpellID>12472</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Frostfire Bolt</Name><Default>false</Default><SpellID>47610</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Frostfire Bolt&amp;quot;, &amp;quot;target&amp;quot;) == 1
 and PQR_IsCastingSpell(47610) == false
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Frost:Ice Lance</Name><Default>false</Default><SpellID>42914</SpellID><Actions></Actions><Lua>--if UnitDebuffID(&amp;quot;target&amp;quot;,12497,&amp;quot;player&amp;quot;) == nil
---and IsSpellInRange(&amp;quot;Ice Lance&amp;quot;, &amp;quot;target&amp;quot;)  == 1
---then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Fire:Pyroblast</Name><Default>false</Default><SpellID>42891</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Pyroblast&amp;quot;, &amp;quot;target&amp;quot;) == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Fr:Ice Lance</Name><Default>false</Default><SpellID>42914</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;target&amp;quot;, 12494) == 1
+and UnitBuffID(&amp;quot;target&amp;quot;, 11071) == 1
+and UnitBuffID(&amp;quot;target&amp;quot;, 12496) == 1
+and UnitBuffID(&amp;quot;target&amp;quot;, 12497) == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Pyroblast</Name><Default>false</Default><SpellID>42891</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Pyroblast&amp;quot;, &amp;quot;target&amp;quot;) == 1
 and PQR_IsCastingSpell(47610) == false
 and PQR_IsCastingSpell(42833) == false
 and PQR_IsCastingSpell(42859) == false
 and UnitBuffID(&amp;quot;player&amp;quot;, 48108)
-then return true end</Lua><RecastDelay>2000</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Arcane:Mana Sapphire</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if 100 * UnitPower(&amp;quot;player&amp;quot;) / UnitPowerMax(&amp;quot;player&amp;quot;) &amp;lt;= 60 
+then return true end</Lua><RecastDelay>2000</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Mana Sapphire</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if 100 * UnitPower(&amp;quot;player&amp;quot;) / UnitPowerMax(&amp;quot;player&amp;quot;) &amp;lt;= 60 
 and GetItemCount(&amp;quot;Mana Sapphire&amp;quot;) == 1 
 and GetItemCooldown(&amp;quot;Manasaphir&amp;quot;) == 0 
 and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
@@ -104,27 +106,26 @@ and UnitCastingInfo(&amp;quot;player&amp;quot;) == nil
 then
   UseItemByName(&amp;quot;Mana Sapphire&amp;quot;)
   return true 
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Arcane:Mana Shield</Name><Default>false</Default><SpellID>43020</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,43020) == nil
-and GetItemCount(&amp;quot;Arcane Powder&amp;quot;) &amp;gt;= 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Frost:Ice Barrier</Name><Default>false</Default><SpellID>43039</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;) &amp;lt;= 50
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Frost:Frost Nova</Name><Default>false</Default><SpellID>42917</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;, 43002)
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Mana Shield</Name><Default>false</Default><SpellID>43020</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;) &amp;lt;= 60
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Fr:Ice Barrier</Name><Default>false</Default><SpellID>43039</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;) &amp;lt;= 45
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Fr:Frost Nova</Name><Default>false</Default><SpellID>42917</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;, 43002)
 and IsItemInRange(34368, &amp;quot;target&amp;quot;) == 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Fire:Living Bomb</Name><Default>false</Default><SpellID>55360</SpellID><Actions></Actions><Lua>if UnitDebuffID(&amp;quot;target&amp;quot;,55360,&amp;quot;player&amp;quot;) == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Living Bomb</Name><Default>false</Default><SpellID>55360</SpellID><Actions></Actions><Lua>if UnitDebuffID(&amp;quot;target&amp;quot;,55360,&amp;quot;player&amp;quot;) == nil
 and IsSpellInRange(&amp;quot;Pyroblast&amp;quot;, &amp;quot;target&amp;quot;)  == 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Fire:Flamestrike</Name><Default>false</Default><SpellID>42926</SpellID><Actions></Actions><Lua>if IsLeftShiftKeyDown() 
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Flamestrike</Name><Default>false</Default><SpellID>42926</SpellID><Actions></Actions><Lua>if IsLeftShiftKeyDown() 
 and not GetCurrentKeyBoardFocus() 
 and not UnitChannelInfo(&amp;quot;player&amp;quot;) 
 then
   CastSpellByID(42926)
   if SpellIsTargeting() then CameraOrSelectOrMoveStart() CameraOrSelectOrMoveStop() end  
   return true
-end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Frost:Summon Water Elemental</Name><Default>false</Default><SpellID>31687</SpellID><Actions>/cast Waterbolt</Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Frost:Cold Snap</Name><Default>false</Default><SpellID>11958</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,12472) == nil
+end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Fr:Summon Water Elemental</Name><Default>false</Default><SpellID>31687</SpellID><Actions>/cast Waterbolt</Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Fr:Cold Snap</Name><Default>false</Default><SpellID>11958</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,12472) == nil
 and UnitExists(&amp;quot;pet&amp;quot;) == nil
 and UnitLevel(&amp;quot;target&amp;quot;) == -1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Arcane:Arcane Blast</Name><Default>false</Default><SpellID>42897</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Arcane Blast&amp;quot;, &amp;quot;target&amp;quot;) == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Arcane Blast</Name><Default>false</Default><SpellID>42897</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Arcane Blast&amp;quot;, &amp;quot;target&amp;quot;) == 1
 and PQR_IsCastingSpell(42897) == false
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Arcane:Arcane Missiles</Name><Default>false</Default><SpellID>42846</SpellID><Actions></Actions><Lua>local _,_,_,count = UnitDebuffID(&amp;quot;player&amp;quot;,36032)
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Arcane Missiles</Name><Default>false</Default><SpellID>42846</SpellID><Actions></Actions><Lua>local _,_,_,count = UnitDebuffID(&amp;quot;player&amp;quot;,36032)
 
 if count == 4
 and IsSpellInRange(&amp;quot;Arcane Missiles&amp;quot;, &amp;quot;target&amp;quot;) == 1
@@ -141,7 +142,59 @@ if UnitLevel(&amp;quot;target&amp;quot;) == -1
 then
     CastSpellByID(20572)
 end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Racial:Berserking</Name><Default>false</Default><SpellID>26297</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Arcane:Mage Armor</Name><Default>false</Default><SpellID>43024</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,43024) == nil
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Mage Armor</Name><Default>false</Default><SpellID>43024</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,43024) == nil
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Autotarget --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) 
 and UnitExists(&amp;quot;target&amp;quot;) == nil 
-then TargetNearestEnemy() end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></MAGE>
+then TargetNearestEnemy() end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Stats Buffs --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if NoKings == nil then
+		for b = 0, 4 do
+			for s = 1, GetContainerNumSlots(b) do
+				if GetContainerItemID(b, s) == 26 then
+					NoKings = true
+				--else
+					--NoKings = false
+				end
+			end
+		end
+	end
+
+if not UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)  then
+	--Voter Buff
+	if not UnitBuffID(&amp;quot;player&amp;quot;, 35912) and NoKings == true then
+		for b = 0, 4 do
+			for s = 1, GetContainerNumSlots(b) do
+				if GetContainerItemID(b, s) == 26 then
+					RunMacroText(&amp;quot;/use &amp;quot;..b..&amp;quot; &amp;quot;..s)
+					return true
+				end	
+			end
+		end
+	end
+	--Donor Buff
+	if not UnitBuffID(&amp;quot;player&amp;quot;, 35874) then
+		for b = 0, 4 do
+			for s = 1, GetContainerNumSlots(b) do
+				if GetContainerItemID(b, s) == 27 then
+					RunMacroText(&amp;quot;/use &amp;quot;..b..&amp;quot; &amp;quot;..s)
+					return true	
+				end
+			end
+		end
+	end
+	--Kings Buff			
+	if GetZoneText() ~= &amp;quot;Scarlet Monastery&amp;quot; and not UnitBuffID(&amp;quot;player&amp;quot;, 43223) and not UnitBuffID(&amp;quot;player&amp;quot;, 35912) and not UnitBuffID(&amp;quot;player&amp;quot;, 25898) and NoKings == nil then
+		for b = 0, 4 do
+			for s = 1, GetContainerNumSlots(b) do
+				if GetContainerItemID(b, s) == 49633 then
+					RunMacroText(&amp;quot;/use &amp;quot;..b..&amp;quot; &amp;quot;..s)
+					return true
+				end
+			end
+		end
+	end
+end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Slow</Name><Default>false</Default><SpellID>31589</SpellID><Actions></Actions><Lua>if UnitDebuffID(&amp;quot;target&amp;quot;, 31589, &amp;quot;player&amp;quot;) == nil
+and IsSpellInRange(&amp;quot;Ice Lance&amp;quot;, &amp;quot;target&amp;quot;)  == 1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Frostfire Bolt(Non Cast)</Name><Default>false</Default><SpellID>47610</SpellID><Actions></Actions><Lua>if IsSpellInRange(&amp;quot;Pyroblast&amp;quot;, &amp;quot;target&amp;quot;) == 1
+and PQR_IsCastingSpell(42842) == false
+and PQR_IsCastingSpell(47610) == false
+and UnitBuffID(&amp;quot;player&amp;quot;, 57761)
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></MAGE>

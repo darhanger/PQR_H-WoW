@@ -34,7 +34,14 @@
    + `Writed Arcane Fun/Test profil - its simple and just for fun/test`;
    + **Look NEW Specific commands on PQR Menu**:
 ---
-<br>
++ _**Rewritten Paladin profiles**_;
+   + **Look NEW Specific commands on PQR Menu**:
+   + ~~AOE Profile~~ deleted;
+   + DPS UP by 5% and survival by 10% (Compared with HWoW PQR 1.1.3);
+---
++ _**Rewritten Priest profiles**_;
+   + **Look NEW Specific commands on PQR Menu**:
+   + DPS UP by 25% and healing by 10% (Compared with HWoW PQR 1.1.3)
 <br>
 
 # Profile Status & [ChangeLog](https://github.com/darhanger/PQR-HWoW/wiki/ChangeLog)

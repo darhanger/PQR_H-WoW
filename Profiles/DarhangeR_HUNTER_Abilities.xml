@@ -55,6 +55,7 @@ and UnitHealth(&amp;quot;target&amp;quot;) &amp;gt; UnitHealthMax(&amp;quot;play
 and UnitDebuffID(&amp;quot;target&amp;quot;, 53338) == nil
 and IsSpellInRange(GetSpellInfo(53338), &amp;quot;target&amp;quot;) == 1
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Kill Command</Name><Default>false</Default><SpellID>34026</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
+and not CooldownRemains(34026)
 and UnitExists(&amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Offensive Spells --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) == nil
 or ( not UnitAffectingCombat(&amp;quot;target&amp;quot;) and not UnitIsPlayer(&amp;quot;target&amp;quot;) )
@@ -648,4 +649,8 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 and IsSpellInRange(GetSpellInfo(61006), &amp;quot;target&amp;quot;) == 1
 and not CooldownRemains(61006)
 and UnitExists(&amp;quot;target&amp;quot;)
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Pet:Call of the Wild</Name><Default>false</Default><SpellID>53434</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
+and UnitExists(&amp;quot;target&amp;quot;)
+and IsSpellInRange(GetSpellInfo(49052), &amp;quot;target&amp;quot;) == 1
+and not CooldownRemains(53434)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></HUNTER>

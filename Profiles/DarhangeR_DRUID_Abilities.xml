@@ -479,19 +479,26 @@ if rake == nil
 	return true
 end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Shred</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local berserk = select(11, UnitBuffID(&amp;quot;player&amp;quot;, 50334))
 local cp = GetComboPoints(&amp;quot;player&amp;quot;)
-local savage,_,_,_,_,_, savagetime = UnitBuffID(&amp;quot;player&amp;quot;, 52610)
+local savage = UnitBuffID(&amp;quot;player&amp;quot;, 52610)
 local clearcast = UnitBuffID(&amp;quot;player&amp;quot;, 16870)
-local rake, _, _, _, _, _, raketime = UnitDebuffID(&amp;quot;target&amp;quot;, 48574, &amp;quot;player&amp;quot;)
+local rake = UnitDebuffID(&amp;quot;target&amp;quot;, 48574, &amp;quot;player&amp;quot;)
 local mangle = UnitDebuffID(&amp;quot;target&amp;quot;, 48566)
-local energy = UnitPower(&amp;quot;player&amp;quot;)
 
-if energycost(48572) and ( mangle or CantMangle() == true )
-and UnitExists(&amp;quot;target&amp;quot;)
-and IsSpellInRange(GetSpellInfo(48574), &amp;quot;target&amp;quot;) == 1
-and ( ( cp &amp;lt;= 4 or rip(0.8) ) and rake and raketime - GetTime() &amp;gt;= 0.4 and ( energy &amp;gt;= 80 or berserk == 50334 or ( CooldownRemains(50213) == false or CooldownRemains(50213) &amp;lt;= 3 ) )
-or ( calc_time ~= nil and calc_time &amp;lt;= 9 )
-or ( cp &amp;lt;= 0 and ( savage == nil or ( savage and savagetime - GetTime() &amp;lt;= 2 ) ) ) )
-then
+--if clearcast and ( mangle or CantMangle() == true ) and not AoE then
+--	if NotBehindCheck() == false then
+--		CastSpellByID(48572)
+--		return true
+--	elseif NotBehindCheck() == true then
+--		CastSpellByID(48566)
+--		return true
+--	end
+--end
+
+if cp &amp;lt; 5
+ and energycost(48572)
+ and ( mangle or CantMangle() == true )
+ and rake
+ then
 	if NotBehindCheck() == false then
 		CastSpellByID(48572)
 		return true
@@ -750,6 +757,40 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 	FuncLoaded = true
 
 	GotClearCast = 0
+	
+	function CalculateHP(t)
+		local ActualWithIncoming = 100 * UnitHealth(t) / UnitHealthMax(t)
+		if UnitExists(t) then
+			return ActualWithIncoming
+		else
+			return 100
+		end
+	end
+
+	function CanHeal(t)
+		if UnitExists(t)
+		and not UnitIsCharmed(t) 
+		--and UnitInRange(t) == 1
+		and IsSpellInRange(&amp;quot;Healing Touch&amp;quot;, t) == 1
+		and not UnitIsDeadOrGhost(t)
+		--and UnitCanCooperate(&amp;quot;player&amp;quot;, t) == 1
+		--and ZoneHealCheck(t) == true
+		--and not UnitDebuffID(t, 30843) --Kara healing Debuff
+		--and not UnitDebuffID(t, 55593) 
+		--and not UnitDebuffID(t, 33786) then --Clone
+		then
+			return true
+		end 
+	end
+
+	function threat(t)
+		if UnitExists(t)
+		and UnitThreatSituation(t) ~= nil then
+			return UnitThreatSituation(t)
+		else
+			return 0
+		end
+	end
 	
 	      -- Stuff for shit --
 	function HealEngine()
@@ -1145,4 +1186,26 @@ if IsRightAltKeyDown() and not GetCurrentKeyBoardFocus() and GetTime() - modtime
 		AoE = true
 		PQR_WriteToChat(&amp;quot;AoE: \124cFF15E615Enabled&amp;quot;)
 	end
-end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></DRUID>
+end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Shred(PRO)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local berserk = select(11, UnitBuffID(&amp;quot;player&amp;quot;, 50334))
+local cp = GetComboPoints(&amp;quot;player&amp;quot;)
+local savage,_,_,_,_,_, savagetime = UnitBuffID(&amp;quot;player&amp;quot;, 52610)
+local clearcast = UnitBuffID(&amp;quot;player&amp;quot;, 16870)
+local rake, _, _, _, _, _, raketime = UnitDebuffID(&amp;quot;target&amp;quot;, 48574, &amp;quot;player&amp;quot;)
+local mangle = UnitDebuffID(&amp;quot;target&amp;quot;, 48566)
+local energy = UnitPower(&amp;quot;player&amp;quot;)
+
+if energycost(48572) and ( mangle or CantMangle() == true )
+and UnitExists(&amp;quot;target&amp;quot;)
+and IsSpellInRange(GetSpellInfo(48574), &amp;quot;target&amp;quot;) == 1
+and ( ( cp &amp;lt;= 4 or rip(0.8) ) and rake and raketime - GetTime() &amp;gt;= 0.4 and ( energy &amp;gt;= 80 or berserk == 50334 or ( CooldownRemains(50213) == false or CooldownRemains(50213) &amp;lt;= 3 ) )
+or ( calc_time ~= nil and calc_time &amp;lt;= 9 )
+or ( cp &amp;lt;= 0 and ( savage == nil or ( savage and savagetime - GetTime() &amp;lt;= 2 ) ) ) )
+then
+	if NotBehindCheck() == false then
+		CastSpellByID(48572)
+		return true
+	elseif NotBehindCheck() == true then
+		CastSpellByID(48566)
+		return true
+	end
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></DRUID>

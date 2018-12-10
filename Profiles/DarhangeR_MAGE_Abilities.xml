@@ -117,7 +117,7 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><Ca
 if not moltenarmor
 and not UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)
 and not IsMounted()
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Spellsteal</Name><Default>false</Default><SpellID>30449</SpellID><Actions></Actions><Lua>buff = { 43242, 31884, 2825, 32182, 1719, 17, 33763, 6940, 67108, 67107, 67106, 66228, 97795 }
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Spellsteal</Name><Default>false</Default><SpellID>30449</SpellID><Actions></Actions><Lua>buff = { 43242, 31884, 2825, 32182, 1719, 17, 33763, 6940, 67108, 67107, 67106, 66228 }
 local havebuff = nil
 
 for i,v in ipairs(buff) do

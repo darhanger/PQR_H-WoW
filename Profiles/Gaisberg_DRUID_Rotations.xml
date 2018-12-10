@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?><DRUID><Rotation><RotationName>HWoW_PvE_Resto25</RotationName><RotationDefault>false</RotationDefault><RotationList>-- Hotkeys --|-- Start Fight --|-- Stats Buffs --|R:Gift of the Wild|B:Thorns|R:Tree of Life|-- Offensive Spells --|Use:Mouseover Skill|R:Heal Eng (Simp)|B:Barkskin|R:Swiftmend|R:Abolish Poison|R:Remove Curse|R:Healing Touch|R:Wild Growth|R:Regrowth|R:Regrowth (All)|R:Rejuvenation (All)</RotationList><RequireCombat>false</RequireCombat><RotationNotes>Gaisberg profiles are copied from Darhanger profiles, but modified for the best PvE experience on HeroesWoW.
+
+Specific commands:
+- None;
+
+Notes:
+- DO NOT TARGET A FRIENDLY PLAYER.</RotationNotes></Rotation><Rotation><RotationName>HWoW_PvE_Moonkin</RotationName><RotationDefault>false</RotationDefault><RotationList>-- Functions --|-- Hotkeys --|-- Start Fight --|-- Stats Buffs --|R:Gift of the Wild|B:Thorns|B:Moonkin Form|-- Offensive Spells --|Use:Mouseover Skill|Racial:Berserking|Racial:Blood Fury|B:Starfall|B:Hurricane|B:Faerie Fire|B:Insect Swarm|B:Moonfire|B:Eclipse|B:Wrath|B:Starfire</RotationList><RequireCombat>false</RequireCombat><RotationNotes>Gaisberg profiles are copied from Darhanger profiles, but modified for the best PvE experience on HeroesWoW.
+
+Specific commands:
+- Hold Left Alt to cast Starfall;
+- Hold Left Alt to cast Hurricane;</RotationNotes></Rotation></DRUID>

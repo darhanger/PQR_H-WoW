@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8" ?><PRIEST><Rotation><RotationName>HWoW_PvE_DPS</RotationName><RotationDefault>false</RotationDefault><RotationList>-- Function --|S:-- Hotkeys --|-- Start Fight --|-- Stats Buffs --|-- Interrupt Engine --|Use:Mouseover Skill|D:Inner Fire|D:Prayer of Fortitude|D:Prayer of Spirit|S:Prayer of Shadow Protection|S:Vampiric Embrace|S:Shadowform|-- Offensive Spells --|D:Heal Target Eng(Simp)|D:Dispel Magic|D:Pain Suppression(Self)|S:Power Infusion|Racial: HORDE|S:Mind Sear (AoE)|S:Shadow Word: Death(Always)|S:Vampiric Touch|S:Shadow Word: Pain|S:Devouring Plague|S:Mind Blast|S:Mind Flay|D:Cure Disease</RotationList><RequireCombat>false</RequireCombat><RotationNotes>Gaisberg profiles are copied from Darhanger profiles, but modified for the best PvE experience on HeroesWoW.
+
+
+Specific commands:
+- Left Shift for enabled/disabled Mind Sear (AoE);</RotationNotes></Rotation></PRIEST>

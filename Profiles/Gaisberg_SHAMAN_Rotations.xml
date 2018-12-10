@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?><SHAMAN><Rotation><RotationName>HWoW_PvE_Ench</RotationName><RotationDefault>false</RotationDefault><RotationList>-- Function --|-- Hotkeys --|-- Start Fight --|-- Stats Buffs --|-- Interrupt Engine --|Use:Mouseover Skill|All:Lightning Shield|Enc:Frostbrand + Flametongue|-- Offensive Spells --|All:Fire Elemental Totem|All:Searing Totem|Racial: HORDE|All:Fire Nova|Enc:Chain Lightning/Bolt|Enc:Stormstrike|All:Flame Shock|All:Earth Shock|All:Magma Totem</RotationList><RequireCombat>false</RequireCombat><RotationNotes>Gaisberg profiles are copied from Darhanger profiles, but modified for the best PvE experience on HeroesWoW.
+
+Specific commands:
+- Press Left SHIFT to change from Single to AOE mode;
+
+Notes:
+- For shamans with &amp;gt;110k haste.
+</RotationNotes></Rotation></SHAMAN>

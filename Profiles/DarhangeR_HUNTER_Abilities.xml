@@ -16,7 +16,7 @@ if IsLeftControlKeyDown()  and GetTime() - leftkeydown &amp;gt; 1 then
   	end
 end
 
-if IsRightShiftKeyDown() and not GetCurrentKeyBoardFocus() and GetTime() - modtime &amp;gt; 0.3 then
+if IsLeftShiftKeyDown() and not GetCurrentKeyBoardFocus() and GetTime() - modtime &amp;gt; 0.3 then
 	modtime = GetTime()
   	if VoL then
 		VoL = false
@@ -55,7 +55,6 @@ and UnitHealth(&amp;quot;target&amp;quot;) &amp;gt; UnitHealthMax(&amp;quot;play
 and UnitDebuffID(&amp;quot;target&amp;quot;, 53338) == nil
 and IsSpellInRange(GetSpellInfo(53338), &amp;quot;target&amp;quot;) == 1
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Kill Command</Name><Default>false</Default><SpellID>34026</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
-and not CooldownRemains(34026)
 and UnitExists(&amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Offensive Spells --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) == nil
 or ( not UnitAffectingCombat(&amp;quot;target&amp;quot;) and not UnitIsPlayer(&amp;quot;target&amp;quot;) )
@@ -645,12 +644,17 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 	currentaspect = 61847
 	
 functionsloaded = true
+end
+
+function userOverride()
+	if AnyKeyPressed()
+		print(&amp;quot;User Override&amp;quot;)
+		StopRota = true
+	else
+		StopRota = false
+	end
 end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>M:Kill Shot</Name><Default>false</Default><SpellID>61006</SpellID><Actions></Actions><Lua>if 100 * UnitHealth(&amp;quot;target&amp;quot;) / UnitHealthMax(&amp;quot;target&amp;quot;) &amp;lt;= 20
 and IsSpellInRange(GetSpellInfo(61006), &amp;quot;target&amp;quot;) == 1
 and not CooldownRemains(61006)
 and UnitExists(&amp;quot;target&amp;quot;)
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Pet:Call of the Wild</Name><Default>false</Default><SpellID>53434</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
-and UnitExists(&amp;quot;target&amp;quot;)
-and IsSpellInRange(GetSpellInfo(49052), &amp;quot;target&amp;quot;) == 1
-and not CooldownRemains(53434)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></HUNTER>

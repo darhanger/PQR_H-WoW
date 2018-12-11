@@ -105,15 +105,6 @@ and UnitExists(&amp;quot;target&amp;quot;)
 and UnitCanAttack(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) == 1
 and not CooldownRemains(49233)
 and IsSpellInRange(GetSpellInfo(49233), &amp;quot;target&amp;quot;) == 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Magma Totem</Name><Default>false</Default><SpellID>58734</SpellID><Actions></Actions><Lua>haveTotem, totemName, startTime, duration = GetTotemInfo(1)
-
-if AOE
-and totemName ~= &amp;quot;Magma Totem&amp;quot;
-and IsSpellInRange(GetSpellInfo(17364), &amp;quot;target&amp;quot;) == 1
-then return true else end</Lua><RecastDelay>8500</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>E:Lightning Bolt</Name><Default>false</Default><SpellID>49238</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;target&amp;quot;)
-and UnitCanAttack(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) == 1
-and IsSpellInRange(GetSpellInfo(49238), &amp;quot;target&amp;quot;) == 1
-and PQR_IsCastingSpell(49238) == false
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>E:Elemental Mastery</Name><Default>false</Default><SpellID>16166</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
 and UnitExists(&amp;quot;target&amp;quot;)
 and UnitCanAttack(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) == 1
@@ -172,13 +163,7 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 if enchant == nil
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Water Shield</Name><Default>false</Default><SpellID>57960</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,57960) ~= nil or UnitBuffID(&amp;quot;player&amp;quot;,49284) ~= nil then return false else return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Healing Wave</Name><Default>false</Default><SpellID>49273</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 90
 and PQR_IsCastingSpell(49273) == false
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Enc:Lightning Bolt</Name><Default>false</Default><SpellID>49238</SpellID><Actions></Actions><Lua>local maelstrom, _, _, maelstromstack = UnitBuffID(&amp;quot;player&amp;quot;, 53817)
-
-if maelstromstack == 5
-and UnitExists(&amp;quot;target&amp;quot;)
-and UnitCanAttack(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) == 1
-and IsSpellInRange(GetSpellInfo(49238), &amp;quot;target&amp;quot;) == 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Enc:Lava Lash</Name><Default>false</Default><SpellID>60103</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;target&amp;quot;)
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Enc:Lava Lash</Name><Default>false</Default><SpellID>60103</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;target&amp;quot;)
 and UnitCanAttack(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) == 1
 and valid(&amp;quot;target&amp;quot;, 60103)
 and not CooldownRemains(60103)
@@ -237,14 +222,7 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><Ca
 
 if maelstromstack == 5
 and 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;) &amp;lt; 55
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Enc:Chain Lightning</Name><Default>false</Default><SpellID>49271</SpellID><Actions></Actions><Lua>local maelstrom, _, _, maelstromstack = UnitBuffID(&amp;quot;player&amp;quot;, 53817)
-
-if maelstromstack == 5
-and UnitExists(&amp;quot;target&amp;quot;)
-and UnitCanAttack(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) == 1
-and not CooldownRemains(49271)
-and IsSpellInRange(GetSpellInfo(49271), &amp;quot;target&amp;quot;) == 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- DarhangeR --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- I&amp;apos;m the original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: 
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- DarhangeR --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- I&amp;apos;m the original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: 
 -- VK: https://vk.com/darhanger
 -- FB: https://fb.com/darhanger
 -- E-mail: civayan@gmail.com</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Enc:Shamanistic Rage(Burst)</Name><Default>false</Default><SpellID>30823</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
@@ -934,12 +912,92 @@ and UnitAffectingCombat(&amp;quot;player&amp;quot;) == 1
 		CastSpellByID(49238)
 		return true
 	end
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Searing Totem</Name><Default>false</Default><SpellID>58704</SpellID><Actions></Actions><Lua>haveTotem, totemName, startTime, duration = GetTotemInfo(1)
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Totems</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local incombat = UnitAffectingCombat(&amp;quot;player&amp;quot;)
+local _, WaterTotem = GetTotemInfo(3)
+local _, FireTotem = GetTotemInfo(1)
+local _, AirTotem = GetTotemInfo(4)
+local _, EarthTotem = GetTotemInfo(2)
+local MQ = UnitBuffID(&amp;quot;player&amp;quot;, 49868)
+local MA = UnitBuffID(&amp;quot;player&amp;quot;, 24907)
+local HP = UnitBuffID(&amp;quot;player&amp;quot;, 53290)
+local IIT = UnitBuffID(&amp;quot;player&amp;quot;, 55610)
+local DA = UnitBuffID(&amp;quot;player&amp;quot;, 465)
+local ST = UnitBuffID(&amp;quot;player&amp;quot;, 8071)
+local BoM = UnitBuffID(&amp;quot;player&amp;quot;, 19740)
+local FI = UnitBuffID(&amp;quot;player&amp;quot;, 54424)
 
-if totemName ~= &amp;quot;&amp;quot;
-and UnitLevel(&amp;quot;target&amp;quot;) == -1
-and UnitExists(&amp;quot;target&amp;quot;)
-and UnitCanAttack(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) == 1
-then return false 
-else return true	
+if FireTotem == &amp;quot;&amp;quot; and  AirTotem == &amp;quot;&amp;quot; and EarthTotem == &amp;quot;&amp;quot; and WaterTotem == &amp;quot;&amp;quot; and incombat == 1  then
+  CastSpellByID(66842)
+  return true
+end
+
+
+if FireTotem == &amp;quot;&amp;quot; and incombat == 1 and not AOE  then
+RunMacroText(&amp;quot;/console Sound_EnableSFX 0&amp;quot;)
+     CastSpellByID(58704)
+RunMacroText(&amp;quot;/console Sound_EnableSFX 1&amp;quot;)
+     return true
+end
+
+if FireTotem ==&amp;quot;&amp;quot; and AOE and incombat == 1 then
+RunMacroText(&amp;quot;/console Sound_EnableSFX 0&amp;quot;)
+     CastSpellByID(58734)
+RunMacroText(&amp;quot;/console Sound_EnableSFX 1&amp;quot;)
+     return true
+end
+
+if HP == nil and IIT == nil  then
+  SetMultiCastSpell (136,8512)
+  if AirTotem == &amp;quot;&amp;quot; and incombat == 1  then
+    RunMacroText(&amp;quot;/console Sound_EnableSFX 0&amp;quot;)
+    CastSpellByID(8512)
+    RunMacroText(&amp;quot;/console Sound_EnableSFX 1&amp;quot;)
+    return true
+  end
+else
+  if MQ == nil and MA == nil  then
+    SetMultiCastSpell (136,3738)
+    if AirTotem == &amp;quot;&amp;quot; and incombat == 1  then
+      RunMacroText(&amp;quot;/console Sound_EnableSFX 0&amp;quot;)
+      CastSpellByID(3738)
+      RunMacroText(&amp;quot;/console Sound_EnableSFX 1&amp;quot;)
+      return true
+    end
+  end
+end
+
+if DA == nil then
+  SetMultiCastSpell (134,8071)
+  if EarthTotem == &amp;quot;&amp;quot; and incombat == 1  then
+RunMacroText(&amp;quot;/console Sound_EnableSFX 0&amp;quot;)
+     CastSpellByID(8071)
+RunMacroText(&amp;quot;/console Sound_EnableSFX 1&amp;quot;)
+     return true
+  end
+else
+   SetMultiCastSpell (134,8075)
+   if EarthTotem == &amp;quot;&amp;quot; and incombat == 1  then
+RunMacroText(&amp;quot;/console Sound_EnableSFX 0&amp;quot;)
+       CastSpellByID(8075)
+RunMacroText(&amp;quot;/console Sound_EnableSFX 1&amp;quot;)
+       return true
+   end
+end
+
+if  BoM == nil and FI == nil  then
+  SetMultiCastSpell (135,5675)
+  if WaterTotem == &amp;quot;&amp;quot; and incombat == 1  then
+RunMacroText(&amp;quot;/console Sound_EnableSFX 0&amp;quot;)
+     CastSpellByID(5675)
+RunMacroText(&amp;quot;/console Sound_EnableSFX 1&amp;quot;)
+     return true
+  end
+else 
+  SetMultiCastSpell (135,5394)
+  if WaterTotem == &amp;quot;&amp;quot; and incombat == 1  then
+RunMacroText(&amp;quot;/console Sound_EnableSFX 0&amp;quot;)
+      CastSpellByID(5394)
+RunMacroText(&amp;quot;/console Sound_EnableSFX 1&amp;quot;)
+      return true
+    end
 end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></SHAMAN>

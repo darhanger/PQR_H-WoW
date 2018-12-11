@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8" ?><SHAMAN><Rotation><RotationName>HWoW_PvE_Ench</RotationName><RotationDefault>false</RotationDefault><RotationList>-- Function --|-- Hotkeys --|-- Start Fight --|-- Stats Buffs --|-- Interrupt Engine --|Use:Mouseover Skill|All:Lightning Shield|Enc:Frostbrand + Flametongue|-- Offensive Spells --|Totems|Enc:Shamanistic Rage(Burst)|Racial: HORDE|All:Fire Nova|Enc:Chain Lightning/Bolt|Enc:Stormstrike|All:Flame Shock|All:Earth Shock</RotationList><RequireCombat>false</RequireCombat><RotationNotes>Gaisberg profiles are copied from Darhanger profiles, but modified for the best PvE experience on HeroesWoW.
+<?xml version="1.0" encoding="utf-8" ?><SHAMAN><Rotation><RotationName>HWoW_PvE_Ench</RotationName><RotationDefault>false</RotationDefault><RotationList>-- Function --|-- Hotkeys --|-- Start Fight --|-- Stats Buffs --|Use:Mouseover Skill|All:Lightning Shield|Enc:Frostbrand + Flametongue|-- Offensive Spells --|All:Purge|Totems|Enc:Shamanistic Rage(Burst)|Racial: HORDE|All:Fire Nova|Enc:Chain Lightning/Bolt|Enc:Stormstrike|All:Flame Shock|All:Earth Shock</RotationList><RequireCombat>false</RequireCombat><RotationNotes>Gaisberg profiles are copied from Darhanger profiles, but modified for the best PvE experience on HeroesWoW.
 
 Specific commands:
-- Press Left SHIFT to change from Single to AOE mode;
+- Press Left ALT to change from Single to AOE mode;
 
 Notes:
 - For shamans with &amp;gt;110k haste.

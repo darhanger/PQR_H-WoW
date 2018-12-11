@@ -15,7 +15,7 @@ if modtime == nil then
 	modtime = 0
 end
 
-if IsLeftShiftKeyDown() and not GetCurrentKeyBoardFocus() and GetTime() - modtime &amp;gt; 0.3 then
+if IsLeftAltKeyDown() and not GetCurrentKeyBoardFocus() and GetTime() - modtime &amp;gt; 0.3 then
 	modtime = GetTime()
 	if AOE then
 		AOE = false
@@ -1000,4 +1000,9 @@ RunMacroText(&amp;quot;/console Sound_EnableSFX 0&amp;quot;)
 RunMacroText(&amp;quot;/console Sound_EnableSFX 1&amp;quot;)
       return true
     end
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Purge</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>for i=1,40 do
+  local name, icon, _, _, _, _, _, canPurge = UnitBuff(&amp;quot;target&amp;quot;,i)
+  if canPurge then
+    CastSpellByID(8012, &amp;quot;target&amp;quot;)
+  end
 end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></SHAMAN>

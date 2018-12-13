@@ -39,7 +39,9 @@ then return true end
 -- Autotarget script --
 if UnitAffectingCombat(&amp;quot;player&amp;quot;) 
 and UnitExists(&amp;quot;target&amp;quot;) == nil 
-then TargetNearestEnemy() end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Trinket 1</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,13)
+then TargetNearestEnemy()
+RunMacroText("/startattack")
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Trinket 1</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,13)
 if cd == 0 and havecd == 1  
 and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
 and UnitCastingInfo(&amp;quot;player&amp;quot;) == nil
@@ -318,6 +320,28 @@ if not UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)  then
 				if GetContainerItemID(b, s) == 49633 then
 					RunMacroText(&amp;quot;/use &amp;quot;..b..&amp;quot; &amp;quot;..s)
 					return true
+				end
+			end
+		end
+	end
+	--Elixir of Empowerment
+	if not UnitBuffID(&amp;quot;player&amp;quot;, 28514) then
+		for b = 0, 4 do
+			for s = 1, GetContainerNumSlots(b) do
+				if GetContainerItemID(b, s) == 22848 then
+					RunMacroText(&amp;quot;/use &amp;quot;..b..&amp;quot; &amp;quot;..s)
+					return true	
+				end
+			end
+		end
+	end
+	--Lightning Speed
+	if not UnitBuffID(&amp;quot;player&amp;quot;, 60346) then
+		for b = 0, 4 do
+			for s = 1, GetContainerNumSlots(b) do
+				if GetContainerItemID(b, s) == 44331 then
+					RunMacroText(&amp;quot;/use &amp;quot;..b..&amp;quot; &amp;quot;..s)
+					return true	
 				end
 			end
 		end

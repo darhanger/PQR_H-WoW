@@ -311,7 +311,8 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 	end
 
 if not UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)  then
-	--Voter Buff
+	
+	-- Voter Buff --
 	if not UnitBuffID(&amp;quot;player&amp;quot;, 35912) and NoKings == true then
 		for b = 0, 4 do
 			for s = 1, GetContainerNumSlots(b) do
@@ -322,7 +323,8 @@ if not UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)  then
 			end
 		end
 	end
-	--Donor Buff
+	
+	-- Donor Buff -- 
 	if not UnitBuffID(&amp;quot;player&amp;quot;, 35874) then
 		for b = 0, 4 do
 			for s = 1, GetContainerNumSlots(b) do
@@ -333,7 +335,8 @@ if not UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)  then
 			end
 		end
 	end
-	--Kings Buff			
+	
+	-- Kings Buff / Drums -- 				
 	if GetZoneText() ~= &amp;quot;Scarlet Monastery&amp;quot; and not UnitBuffID(&amp;quot;player&amp;quot;, 43223) and not UnitBuffID(&amp;quot;player&amp;quot;, 35912) and not UnitBuffID(&amp;quot;player&amp;quot;, 25898) and NoKings == nil then
 		for b = 0, 4 do
 			for s = 1, GetContainerNumSlots(b) do
@@ -344,7 +347,62 @@ if not UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)  then
 			end
 		end
 	end
-end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Interrupt Engine --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- New Interrupt Engine // Новый движок--
+end
+
+	DPS = nil
+	function DPS()
+			local _, playerClass = UnitClass(&amp;quot;player&amp;quot;)
+			
+			if playerClass == &amp;quot;DEATHKNIGHT&amp;quot;
+			or playerClass == &amp;quot;HUNTER&amp;quot;
+			or playerClass == &amp;quot;WARRIOR&amp;quot;
+			or playerClass == &amp;quot;PALADIN&amp;quot;
+			or playerClass == &amp;quot;ROGUE&amp;quot;
+			then
+				return true
+			end
+		end
+		
+	SpellDPS = nil
+	function SpellDPS()
+			local _, playerClass = UnitClass(&amp;quot;player&amp;quot;)
+			
+			if playerClass == &amp;quot;WARLOCK&amp;quot;
+			or playerClass == &amp;quot;SHAMAN&amp;quot;
+			or playerClass == &amp;quot;MAGE&amp;quot;
+			or playerClass == &amp;quot;DRUID&amp;quot;
+			or playerClass == &amp;quot;PRIEST&amp;quot;
+			then
+				return true
+			end
+		end
+
+
+	-- Elixir of Empowerment / 30 Spell Pen --
+	if SpellDPS() 
+	and not UnitBuffID(&amp;quot;player&amp;quot;, 28514) then
+		for b = 0, 4 do
+			for s = 1, GetContainerNumSlots(b) do
+				if GetContainerItemID(b, s) == 22848 then
+					RunMacroText(&amp;quot;/use &amp;quot;..b..&amp;quot; &amp;quot;..s)
+					return true	
+				end
+			end
+		end
+	end
+	
+	-- Lesser Flask of Resistance / 50 To All Resistance --
+	if DPS()
+	and not UnitBuffID(&amp;quot;player&amp;quot;, 62380) then
+		for b = 0, 4 do
+			for s = 1, GetContainerNumSlots(b) do
+				if GetContainerItemID(b, s) == 44939 then
+					RunMacroText(&amp;quot;/use &amp;quot;..b..&amp;quot; &amp;quot;..s)
+					return true	
+				end
+			end
+		end
+	end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Interrupt Engine --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- New Interrupt Engine // Новый движок--
 if xelperInterruptInit == nil then
 		xelperInterruptInit = true
 		function PQR_InterruptSpell()
@@ -851,7 +909,33 @@ end
 if OH == nil
 then
     CastSpellByID(58790)
-end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Racial</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
+end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Racial</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>pvpdebuffCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 5782) --Fear
+
+if pvpdebuffCheck == nil then
+	pvpdebuffCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 8122) --Psychic scream
+end
+if pvpdebuffCheck == nil then
+	pvpdebuffCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 5484) --Howl of Terror
+end
+if pvpdebuffCheck == nil then
+	pvpdebuffCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 2637) --Hibernate
+end
+if pvpdebuffCheck == nil then
+	pvpdebuffCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 5246) --Intimidating Shout
+end
+if pvpdebuffCheck == nil then
+	pvpdebuffCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 6358) --Seduction
+end
+if pvpdebuffCheck ~= nil then
+	if (expire - GetTime()) &amp;gt;= 4 then 
+	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Undead&amp;quot; and IsSpellKnown(7744) and not CooldownRemains(7744) then
+		CastSpellByID(7744)
+		return true
+		end
+	end
+end
+
+if UnitLevel(&amp;quot;target&amp;quot;) == -1
 and UnitExists(&amp;quot;target&amp;quot;)
 then
 	--Troll Berserking--
@@ -950,11 +1034,16 @@ and UnitAffectingCombat(&amp;quot;player&amp;quot;) == 1
 		CastSpellByID(49238)
 		return true
 	end
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Searing Totem</Name><Default>false</Default><SpellID>2894</SpellID><Actions></Actions><Lua>haveTotem, totemName, startTime, duration = GetTotemInfo(1)
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Searing Totem</Name><Default>false</Default><SpellID>58704</SpellID><Actions></Actions><Lua>haveTotem, totemName, startTime, duration = GetTotemInfo(1)
 
-if not totemName ~= &amp;quot;Fire Elemental Totem&amp;quot;
-and totemName ~= &amp;quot;Searing Totem&amp;quot;
+if totemName ~= &amp;quot;&amp;quot;
 and UnitLevel(&amp;quot;target&amp;quot;) == -1
 and UnitExists(&amp;quot;target&amp;quot;)
 and UnitCanAttack(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) == 1
-then return true else end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></SHAMAN>
+then return false 
+else return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Purge</Name><Default>false</Default><SpellID>8012</SpellID><Actions></Actions><Lua>for i=1,40 do
+  local name, icon, _, _, _, _, _, canPurge = UnitBuff(&amp;quot;target&amp;quot;,i)
+  if canPurge then
+    CastSpellByID(8012, &amp;quot;target&amp;quot;)
+  end
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></SHAMAN>

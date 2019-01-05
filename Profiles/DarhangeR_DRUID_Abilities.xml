@@ -22,12 +22,7 @@ or UnitChannelInfo(&amp;quot;player&amp;quot;) ~= nil
 or UnitCastingInfo(&amp;quot;player&amp;quot;) ~= nil
 or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Drink&amp;quot;)
 or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Food&amp;quot;)
-then return true end
-
--- Autotarget script --
-if UnitAffectingCombat(&amp;quot;player&amp;quot;) 
-and UnitExists(&amp;quot;target&amp;quot;) == nil 
-then TargetNearestEnemy() end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Heal Eng (Simp)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;target&amp;quot;) 
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Heal Eng (Simp)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitExists(&amp;quot;target&amp;quot;) 
   and UnitIsDead(&amp;quot;target&amp;quot;) == nil
   and UnitIsFriend(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) 
   and UnitCanCooperate(&amp;quot;player&amp;quot;,&amp;quot;target&amp;quot;)
@@ -316,7 +311,10 @@ then eclipse = &amp;quot;lunar&amp;quot; end</Lua><RecastDelay>0</RecastDelay><T
 
 
 functionsloaded = true
-end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>B:Moonkin Form</Name><Default>false</Default><SpellID>24858</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;, 24858) ~= nil then return false else return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>B:Moonfire</Name><Default>false</Default><SpellID>48463</SpellID><Actions></Actions><Lua>local MF, _, _, _, _, _, timer = UnitDebuffID(&amp;quot;target&amp;quot;, 48463, &amp;quot;player&amp;quot;)
+end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>B:Moonkin Form</Name><Default>false</Default><SpellID>24858</SpellID><Actions></Actions><Lua>if not UnitBuffID(&amp;quot;player&amp;quot;, 24858) then
+	--CastSpellByID(24858)
+	return true
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>B:Moonfire</Name><Default>false</Default><SpellID>48463</SpellID><Actions></Actions><Lua>local MF, _, _, _, _, _, timer = UnitDebuffID(&amp;quot;target&amp;quot;, 48463, &amp;quot;player&amp;quot;)
 
 if ( MF == nil or ( MF and timer - GetTime() &amp;lt; 2 ) )
 and UnitExists(&amp;quot;target&amp;quot;)
@@ -336,7 +334,8 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 and UnitExists(&amp;quot;target&amp;quot;)
 and UnitCanAttack(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) == 1
 and IsSpellInRange(GetSpellInfo(48465), &amp;quot;target&amp;quot;) == 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Tree of Life</Name><Default>false</Default><SpellID>33891</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;, 33891) ~= nil then return false else return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Lifebloom</Name><Default>false</Default><SpellID>48451</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;, 16870)
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Tree of Life</Name><Default>false</Default><SpellID>33891</SpellID><Actions></Actions><Lua>if (not UnitBuffID(&amp;quot;player&amp;quot;, 33891, &amp;quot;player&amp;quot;) or not UnitBuffID(&amp;quot;player&amp;quot;, 34123, &amp;quot;player&amp;quot;))
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Lifebloom</Name><Default>false</Default><SpellID>48451</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;, 16870)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Remove Curse</Name><Default>false</Default><SpellID>2782</SpellID><Actions></Actions><Lua>local buff = { 30108, 34914, 74562, 74792 }
 local group = &amp;quot;party&amp;quot;
 local members = GetNumPartyMembers()
@@ -434,7 +433,10 @@ if UnitLevel(&amp;quot;target&amp;quot;) == -1
  then
 	--CastSpellByID(50334)
 	return true
-end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Cat Form</Name><Default>false</Default><SpellID>768</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;, 768) ~= nil then return false else return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Rake</Name><Default>false</Default><SpellID>48574</SpellID><Actions></Actions><Lua>local rake, _, _, _, _, _, rtime = UnitDebuffID(&amp;quot;target&amp;quot;, 48574, &amp;quot;player&amp;quot;)
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Cat Form</Name><Default>false</Default><SpellID>768</SpellID><Actions></Actions><Lua>if not UnitBuffID(&amp;quot;player&amp;quot;, 768) then
+	--CastSpellByID(768)
+	return true
+end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Rake</Name><Default>false</Default><SpellID>48574</SpellID><Actions></Actions><Lua>local rake, _, _, _, _, _, rtime = UnitDebuffID(&amp;quot;target&amp;quot;, 48574, &amp;quot;player&amp;quot;)
 local berserk = UnitBuffID(&amp;quot;player&amp;quot;, 50334)
 local clearcast = UnitBuffID(&amp;quot;player&amp;quot;, 16870)
 local cp = GetComboPoints(&amp;quot;player&amp;quot;)
@@ -597,7 +599,10 @@ and UnitExists(&amp;quot;target&amp;quot;)
 and IsSpellInRange(GetSpellInfo(48574), &amp;quot;target&amp;quot;) == 1
 and ( energycost(62078) )
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Rejuvenation (Cat)</Name><Default>false</Default><SpellID>48441</SpellID><Actions></Actions><Lua>if IsLeftAltKeyDown() and GetCurrentKeyBoardFocus() == nil
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Bear Form</Name><Default>false</Default><SpellID>9634</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;, 9634) ~= nil then return false else return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Enrage</Name><Default>false</Default><SpellID>5229</SpellID><Actions></Actions><Lua>if UnitPower(&amp;quot;player&amp;quot;) &amp;lt;= 75
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Bear Form</Name><Default>false</Default><SpellID>9634</SpellID><Actions></Actions><Lua>if not UnitBuffID(&amp;quot;player&amp;quot;, 9634) then
+	--CastSpellByID(9634)
+	return true
+end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Enrage</Name><Default>false</Default><SpellID>5229</SpellID><Actions></Actions><Lua>if UnitPower(&amp;quot;player&amp;quot;) &amp;lt;= 75
 and UnitLevel(&amp;quot;target&amp;quot;) == -1
 and not CooldownRemains(5229)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Mangle (Bear)</Name><Default>false</Default><SpellID>48564</SpellID><Actions></Actions><Lua>local rage = UnitPower(&amp;quot;player&amp;quot;)
@@ -638,7 +643,7 @@ then
 	end	
 	CastSpellByID(48568)
 	return true
-end</Lua><RecastDelay>5550</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Gift of the Wild</Name><Default>false</Default><SpellID>48470</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,48170) == nil
+end</Lua><RecastDelay>5550</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Gift of the Wild</Name><Default>false</Default><SpellID>48470</SpellID><Actions></Actions><Lua>if UnitBuffID(&amp;quot;player&amp;quot;,48470) == nil
 and GetItemCount(44605) &amp;gt;= 1
 and not UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)
 and not IsMounted()
@@ -664,7 +669,8 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><Ca
 	end
 
 if not UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)  then
-	--Voter Buff
+	
+	-- Voter Buff --
 	if not UnitBuffID(&amp;quot;player&amp;quot;, 35912) and NoKings == true then
 		for b = 0, 4 do
 			for s = 1, GetContainerNumSlots(b) do
@@ -675,7 +681,8 @@ if not UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)  then
 			end
 		end
 	end
-	--Donor Buff
+	
+	-- Donor Buff -- 
 	if not UnitBuffID(&amp;quot;player&amp;quot;, 35874) then
 		for b = 0, 4 do
 			for s = 1, GetContainerNumSlots(b) do
@@ -686,7 +693,8 @@ if not UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)  then
 			end
 		end
 	end
-	--Kings Buff			
+	
+	-- Kings Buff / Drums -- 				
 	if GetZoneText() ~= &amp;quot;Scarlet Monastery&amp;quot; and not UnitBuffID(&amp;quot;player&amp;quot;, 43223) and not UnitBuffID(&amp;quot;player&amp;quot;, 35912) and not UnitBuffID(&amp;quot;player&amp;quot;, 25898) and NoKings == nil then
 		for b = 0, 4 do
 			for s = 1, GetContainerNumSlots(b) do
@@ -697,7 +705,62 @@ if not UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)  then
 			end
 		end
 	end
-end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:NO BLEAD</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local cp = GetComboPoints(&amp;quot;player&amp;quot;)
+end
+
+	DPS = nil
+	function DPS()
+			local _, playerClass = UnitClass(&amp;quot;player&amp;quot;)
+			
+			if playerClass == &amp;quot;DEATHKNIGHT&amp;quot;
+			or playerClass == &amp;quot;HUNTER&amp;quot;
+			or playerClass == &amp;quot;WARRIOR&amp;quot;
+			or playerClass == &amp;quot;PALADIN&amp;quot;
+			or playerClass == &amp;quot;ROGUE&amp;quot;
+			then
+				return true
+			end
+		end
+		
+	SpellDPS = nil
+	function SpellDPS()
+			local _, playerClass = UnitClass(&amp;quot;player&amp;quot;)
+			
+			if playerClass == &amp;quot;WARLOCK&amp;quot;
+			or playerClass == &amp;quot;SHAMAN&amp;quot;
+			or playerClass == &amp;quot;MAGE&amp;quot;
+			or playerClass == &amp;quot;DRUID&amp;quot;
+			or playerClass == &amp;quot;PRIEST&amp;quot;
+			then
+				return true
+			end
+		end
+
+
+	-- Elixir of Empowerment / 30 Spell Pen --
+	if SpellDPS() 
+	and not UnitBuffID(&amp;quot;player&amp;quot;, 28514) then
+		for b = 0, 4 do
+			for s = 1, GetContainerNumSlots(b) do
+				if GetContainerItemID(b, s) == 22848 then
+					RunMacroText(&amp;quot;/use &amp;quot;..b..&amp;quot; &amp;quot;..s)
+					return true	
+				end
+			end
+		end
+	end
+	
+	-- Lesser Flask of Resistance / 50 To All Resistance --
+	if DPS()
+	and not UnitBuffID(&amp;quot;player&amp;quot;, 62380) then
+		for b = 0, 4 do
+			for s = 1, GetContainerNumSlots(b) do
+				if GetContainerItemID(b, s) == 44939 then
+					RunMacroText(&amp;quot;/use &amp;quot;..b..&amp;quot; &amp;quot;..s)
+					return true	
+				end
+			end
+		end
+	end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:NO BLEAD</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local cp = GetComboPoints(&amp;quot;player&amp;quot;)
 local sav,_,_,_,_,_, savtime = UnitBuffID(&amp;quot;player&amp;quot;, 52610)
 
 if (UnitName(&amp;quot;target&amp;quot;) == &amp;quot;Sunblade Protector&amp;quot;)
@@ -1205,7 +1268,33 @@ for i = 1, members, 1 do
     then
         CastSpellByID(48443, member)
    end
-end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Racial</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitLevel(&amp;quot;target&amp;quot;) == -1
+end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Racial</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>pvpdebuffCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 5782) --Fear
+
+if pvpdebuffCheck == nil then
+	pvpdebuffCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 8122) --Psychic scream
+end
+if pvpdebuffCheck == nil then
+	pvpdebuffCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 5484) --Howl of Terror
+end
+if pvpdebuffCheck == nil then
+	pvpdebuffCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 2637) --Hibernate
+end
+if pvpdebuffCheck == nil then
+	pvpdebuffCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 5246) --Intimidating Shout
+end
+if pvpdebuffCheck == nil then
+	pvpdebuffCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 6358) --Seduction
+end
+if pvpdebuffCheck ~= nil then
+	if (expire - GetTime()) &amp;gt;= 4 then 
+	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Undead&amp;quot; and IsSpellKnown(7744) and not CooldownRemains(7744) then
+		CastSpellByID(7744)
+		return true
+		end
+	end
+end
+
+if UnitLevel(&amp;quot;target&amp;quot;) == -1
 and UnitExists(&amp;quot;target&amp;quot;)
 then
 	--Troll Berserking--

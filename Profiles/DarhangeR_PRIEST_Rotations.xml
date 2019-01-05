@@ -5,4 +5,6 @@
 - Focus Target for use Power Word:Shield;
 
 Notes:
-- DO NOT TARGET A FRIENDLY PLAYER;</RotationNotes></Rotation></PRIEST>
+- DO NOT TARGET A FRIENDLY PLAYER;</RotationNotes></Rotation><Rotation><RotationName>1</RotationName><RotationDefault>false</RotationDefault><RotationList>-- Function --|S:-- Hotkeys --|-- Start Fight --|-- Interrupt Engine --|Use:Mouseover Skill|D:Inner Fire|D:Prayer of Fortitude|D:Prayer of Spirit|S:Prayer of Shadow Protection|S:Vampiric Embrace|S:Shadowform|-- Offensive Spells --|D:Heal Target Eng(Simp)|D:Mass Dispel|S:Fade|S:Dispersion|D:Pain Suppression(Self)|S:Power Infusion|All:Racial|S:Shadowfiend|S:Shadow Word: Death(Always)|S:Vampiric Touch|S:Shadow Word: Pain|S:Mind Sear (AoE)|S:Devouring Plague|S:Mind Blast|S:Mind Flay|D:Dispel Magic|D:Cure Disease</RotationList><RequireCombat>false</RequireCombat><RotationNotes>Specific commands:
+- Hold Left Alt for use Mass Dispel;
+- Left Shift for enabled/disabled Mind Sear (AoE);</RotationNotes></Rotation></PRIEST>

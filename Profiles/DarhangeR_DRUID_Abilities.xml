@@ -656,7 +656,7 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><Ca
 -- VK: https://vk.com/darhanger
 -- FB: https://fb.com/darhanger
 -- E-mail: civayan@gmail.com</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Healing Touch</Name><Default>false</Default><SpellID>48378</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 60
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Stats Buffs --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if NoKings == nil then
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Stats Buffs / Flask --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if NoKings == nil then
 		for b = 0, 4 do
 			for s = 1, GetContainerNumSlots(b) do
 				if GetContainerItemID(b, s) == 26 then

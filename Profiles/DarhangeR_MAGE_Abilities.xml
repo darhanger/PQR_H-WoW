@@ -274,7 +274,7 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 if not magearmor
 and not UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)
 and not IsMounted()
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Stats Buffs --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if NoKings == nil then
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Stats Buffs / Flask --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if NoKings == nil then
 		for b = 0, 4 do
 			for s = 1, GetContainerNumSlots(b) do
 				if GetContainerItemID(b, s) == 26 then

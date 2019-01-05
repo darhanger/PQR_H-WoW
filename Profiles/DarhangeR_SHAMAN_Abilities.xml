@@ -298,7 +298,7 @@ and UnitExists(&amp;quot;target&amp;quot;)
 and UnitCanAttack(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) == 1
 and not CooldownRemains(49236)
 and IsSpellInRange(GetSpellInfo(49236), &amp;quot;target&amp;quot;) == 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Stats Buffs --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if NoKings == nil then
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Stats Buffs / Flask --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if NoKings == nil then
 		for b = 0, 4 do
 			for s = 1, GetContainerNumSlots(b) do
 				if GetContainerItemID(b, s) == 26 then

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?><ROGUE><Ability><Name>-- Hotkeys --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not leftkeydown then leftkeydown = 0 end
 
+if modtime == nil then
+	modtime = 0
+end
+
 if IsLeftControlKeyDown()  and GetTime() - leftkeydown &amp;gt; 1 then
 	leftkeydown = GetTime()
   	if StopRota  then
@@ -9,10 +13,6 @@ if IsLeftControlKeyDown()  and GetTime() - leftkeydown &amp;gt; 1 then
 		StopRota  = true 
 		PQR_WriteToChat(&amp;quot;Rotation \124cFFE61515stopped!&amp;quot;)
   	end
-end
-
-if modtime == nil then
-	modtime = 0
 end
 
 if IsRightAltKeyDown() and not GetCurrentKeyBoardFocus() and GetTime() - modtime &amp;gt; 0.3 then
@@ -35,7 +35,17 @@ if IsRightShiftKeyDown() and not GetCurrentKeyBoardFocus() and GetTime() - modti
 		Stealth = true
 		PQR_WriteToChat(&amp;quot;Stealth + Garrote: \124cFF15E615Enabled&amp;quot;)
 	end
-end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Start Fight --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if StopRota
+end
+
+if not AOE then
+	function AOE()
+		if AoE == true then
+			return true
+		else
+			return false
+		end
+	end
+end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Start Fight --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if StopRota
 or UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)
 or IsMounted()
 or UnitChannelInfo(&amp;quot;player&amp;quot;) ~= nil
@@ -47,10 +57,10 @@ then return true end
 -- Autotarget script --
 if UnitAffectingCombat(&amp;quot;player&amp;quot;) 
 and UnitExists(&amp;quot;target&amp;quot;) == nil 
-then TargetNearestEnemy() end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Offensive Spells --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) == nil
-or ( not UnitAffectingCombat(&amp;quot;target&amp;quot;) and not UnitIsPlayer(&amp;quot;target&amp;quot;) )
+then TargetNearestEnemy() end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Offensive Spells --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) == nil
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Mouseover Skill</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) and IsMouseButtonDown()
     then RunMacroText(&amp;quot;/click &amp;quot;..GetMouseFocus():GetName()) end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Poison</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if applypoison and GetTime() - applypoison &amp;gt; 4 then applypoison = nil end
+
 if UnitAffectingCombat(&amp;quot;player&amp;quot;) == nil and applypoison == nil then
 
 local activepoisons = { &amp;quot;43231&amp;quot;, &amp;quot;43233&amp;quot; }
@@ -59,14 +69,14 @@ applypoison = GetTime()
 
 if poisonMH == nil then 
   UseItemByName(activepoisons[1],&amp;quot;player&amp;quot;) 
-  if SpellIsTargeting() then PickupInventoryItem(16) end
+	if SpellIsTargeting() then PickupInventoryItem(16) end
 elseif poisonOH == nil then
   UseItemByName(activepoisons[2],&amp;quot;player&amp;quot;) 
-  if SpellIsTargeting() then PickupInventoryItem(17) end
-end
-
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Tricks of the Trade</Name><Default>false</Default><SpellID>57934</SpellID><Actions></Actions><Lua>if threat(&amp;quot;player&amp;quot;) &amp;gt;= 2
+	if SpellIsTargeting() then PickupInventoryItem(17) end
+	end
+end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Tricks of the Trade</Name><Default>false</Default><SpellID>57934</SpellID><Actions></Actions><Lua>if threat(&amp;quot;player&amp;quot;) &amp;gt;= 2
 and UnitExists(&amp;quot;focus&amp;quot;)
+and UnitInRange(&amp;quot;focus&amp;quot;)
 and IsSpellInRange(GetSpellInfo(57934), &amp;quot;focus&amp;quot;) == 1
 and not UnitIsDeadOrGhost(&amp;quot;focus&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Focus</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Stealth</Name><Default>false</Default><SpellID>1784</SpellID><Actions></Actions><Lua>if Stealth == true
@@ -87,7 +97,7 @@ local bleed, _, _, _, _, _, btime = UnitDebuffID(&amp;quot;target&amp;quot;, 486
 if energycost(48668)
 and valid(&amp;quot;target&amp;quot;, 48668)
 --and spender(&amp;quot;eviscerate&amp;quot;)
-and AoE == false
+and AOE() == false
 then
 
 	if cp == 5 and hunger and  bleed and snd then
@@ -104,6 +114,7 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 local energy = UnitPower(&amp;quot;player&amp;quot;)
 
 if energycost(48638)
+and AOE() == false
 and UnitExists(&amp;quot;target&amp;quot;)
 and valid(&amp;quot;target&amp;quot;, 48638)
 and cp &amp;lt; 4
@@ -144,7 +155,7 @@ local hunger = UnitBuffID(&amp;quot;player&amp;quot;, 63848)
 local bleed = UnitDebuffID(&amp;quot;target&amp;quot;, 48672, &amp;quot;player&amp;quot;)
 
 if energycost(57993)
-and AoE == false 
+and AOE() == false
 --and spender(&amp;quot;envenom&amp;quot;)
 and valid(&amp;quot;target&amp;quot;, 57993)
 and deadly and (hunger and bleed ) or ( calc_time ~= nil and calc_time &amp;lt;= 15 )
@@ -188,7 +199,7 @@ and ( bleed == nil
 or ( bleed and btime-GetTime() &amp;lt; 2 ) )
 and ( calc_time == nil
 or ( calc_time ~= nil and calc_time &amp;gt; 15 ) )
-and AoE == false
+and AOE() == false
 and IsSpellInRange(GetSpellInfo(48672), &amp;quot;target&amp;quot;) == 1
 and snd
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Expose Armor</Name><Default>false</Default><SpellID>8647</SpellID><Actions></Actions><Lua>local cp = GetComboPoints(&amp;quot;player&amp;quot;)
@@ -199,20 +210,22 @@ if UnitExists(&amp;quot;target&amp;quot;)
 and valid(&amp;quot;target&amp;quot;, 8647)
 and IsSpellInRange(GetSpellInfo(8647), &amp;quot;target&amp;quot;) == 1
 and energycost(8647)
-and AoE == false
+and AOE() == false
 and cp &amp;gt; 4
 and ( ea == nil
 or (ea and eatime - GetTime() &amp;lt; 2 ) )
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>C:Fan of Knives</Name><Default>false</Default><SpellID>51723</SpellID><Actions></Actions><Lua>local energy = UnitPower(&amp;quot;player&amp;quot;)
 
-if AoE == true
+if AOE() == true
 and energycost(51723)
-and UnitExists(&amp;quot;target&amp;quot;) 
+and UnitExists(&amp;quot;target&amp;quot;)
+and IsSpellInRange(GetSpellInfo(48638), &amp;quot;target&amp;quot;) == 1
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- DarhangeR --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- I&amp;apos;m the original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: 
 -- VK: https://vk.com/darhanger
 -- FB: https://fb.com/darhanger
--- E-mail: civayan@gmail.com</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Racial</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>pvpdebuffCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 5782) --Fear
-
+-- E-mail: civayan@gmail.com</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Racial</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if pvpdebuffCheck == nil then
+	pvpdebuffCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 5782) --Fear
+end
 if pvpdebuffCheck == nil then
 	pvpdebuffCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 8122) --Psychic scream
 end
@@ -265,7 +278,7 @@ then
 		CastSpellByID(20594)
 		return true
 	end
-	--Draenei Stoneform--
+	--Draenei--
 	if 100 * UnitHealth(&amp;quot;player&amp;quot;) / UnitHealthMax(&amp;quot;player&amp;quot;) &amp;lt; 40 
 	and UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Draenei&amp;quot; and IsSpellKnown(28880) and not CooldownRemains(28880) then
 		CastSpellByID(28880)
@@ -302,6 +315,18 @@ if not UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)  then
 		for b = 0, 4 do
 			for s = 1, GetContainerNumSlots(b) do
 				if GetContainerItemID(b, s) == 27 then
+					RunMacroText(&amp;quot;/use &amp;quot;..b..&amp;quot; &amp;quot;..s)
+					return true	
+				end
+			end
+		end
+	end
+	
+	-- Drums of the WIld --
+	if not UnitBuffID(&amp;quot;player&amp;quot;, 48470) and not UnitBuffID(&amp;quot;player&amp;quot;, 48469) and not UnitBuffID(&amp;quot;player&amp;quot;, 72588) then  
+		for b = 0, 4 do
+			for s = 1, GetContainerNumSlots(b) do
+				if GetContainerItemID(b, s) == 49634 then
 					RunMacroText(&amp;quot;/use &amp;quot;..b..&amp;quot; &amp;quot;..s)
 					return true	
 				end
@@ -596,6 +621,11 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False
 		end
 	end
 	
+	function testv()
+	return &amp;quot;\124cFF15E615DarhangeR original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: Discord official chanel: https://discord.gg/zayx7p9&amp;quot;
+	end
+	PQR_WriteToChat(testv())
+	
 		-- Validator --
 	valid = nil
 	function valid(t, spellid)
@@ -852,6 +882,7 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False
 local energy = UnitPower(&amp;quot;player&amp;quot;)
 
 if energycost(48660)
+and AOE() == false
 and UnitExists(&amp;quot;target&amp;quot;)
 and valid(&amp;quot;target&amp;quot;, 48660)
 and cp &amp;lt; 4

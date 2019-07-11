@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?><ROGUE><Ability><Name>-- Hotkeys --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not leftkeydown then leftkeydown = 0 end
 
-if modtime == nil then
-	modtime = 0
-end
-
 if IsLeftControlKeyDown()  and GetTime() - leftkeydown &amp;gt; 1 then
 	leftkeydown = GetTime()
   	if StopRota  then
@@ -13,6 +9,10 @@ if IsLeftControlKeyDown()  and GetTime() - leftkeydown &amp;gt; 1 then
 		StopRota  = true 
 		PQR_WriteToChat(&amp;quot;Rotation \124cFFE61515stopped!&amp;quot;)
   	end
+end
+
+if modtime == nil then
+	modtime = 0
 end
 
 if IsRightAltKeyDown() and not GetCurrentKeyBoardFocus() and GetTime() - modtime &amp;gt; 0.3 then
@@ -52,13 +52,40 @@ or UnitChannelInfo(&amp;quot;player&amp;quot;) ~= nil
 or UnitCastingInfo(&amp;quot;player&amp;quot;) ~= nil
 or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Drink&amp;quot;)
 or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Food&amp;quot;)
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Offensive Spells --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local buff = { 642, 45438, 31224, 23920, 33786, 19263, 21892, 40733 }
+local mob = { &amp;quot;Training Dummy&amp;quot;, &amp;quot;Raider&amp;apos;s Training Dummy&amp;quot; }
+local elite = { &amp;quot;Overlord Ror&amp;quot;, &amp;quot;Ragepaw&amp;quot;, &amp;quot;Liam&amp;quot;, &amp;quot;Galleon&amp;quot; }
+local noaggromobs = nil
+local immunity = nil
+local eliteboss = nil
+
+for i,v in ipairs(buff) do
+  if UnitBuffID(&amp;quot;target&amp;quot;,v) then immunity = 1 end
+end
+
+for i,v in ipairs(mob) do
+  if UnitName(&amp;quot;target&amp;quot;) == v then noaggromobs = 1 end
+end
+
+if immunity
+or UnitCanAttack(&amp;quot;player&amp;quot;,&amp;quot;target&amp;quot;) == nil
+or (UnitAffectingCombat(&amp;quot;target&amp;quot;) == nil and noaggromobs == nil and UnitIsPlayer(&amp;quot;target&amp;quot;) == nil)
+or tonumber(UnitGUID(&amp;quot;target&amp;quot;):sub(5,5),16) == 4
 then return true end
 
--- Autotarget script --
-if UnitAffectingCombat(&amp;quot;player&amp;quot;) 
-and UnitExists(&amp;quot;target&amp;quot;) == nil 
-then TargetNearestEnemy() end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Offensive Spells --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) == nil
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Mouseover Skill</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) and IsMouseButtonDown()
+for i,v in ipairs(elite) do
+	  if UnitName(&amp;quot;target&amp;quot;) == v then eliteboss = 1 end
+	end
+
+IsBoss = nil
+function IsBoss()
+	if UnitExists(&amp;quot;target&amp;quot;)
+	and ( UnitLevel(&amp;quot;target&amp;quot;) == -1 or eliteboss )
+	or tonumber(UnitGUID(&amp;quot;target&amp;quot;):sub(5,5),16) == 4
+		then return 
+			true 
+		end
+	end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Mouseover Skill</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) and IsMouseButtonDown()
     then RunMacroText(&amp;quot;/click &amp;quot;..GetMouseFocus():GetName()) end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Poison</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if applypoison and GetTime() - applypoison &amp;gt; 4 then applypoison = nil end
 
 if UnitAffectingCombat(&amp;quot;player&amp;quot;) == nil and applypoison == nil then
@@ -83,16 +110,16 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Focus</Target><Can
 and IsMounted() == nil
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>C:Adrenaline Rush</Name><Default>false</Default><SpellID>13750</SpellID><Actions></Actions><Lua>local energy = UnitPower(&amp;quot;player&amp;quot;)
 
-if energycost(13750)
-and UnitLevel(&amp;quot;target&amp;quot;) == -1
+if IsBoss() 
+and energycost(13750)
 and UnitExists(&amp;quot;target&amp;quot;)
 and energy &amp;lt; 30
 and IsSpellInRange(GetSpellInfo(48668), &amp;quot;target&amp;quot;) == 1
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>C:Eviscerate</Name><Default>false</Default><SpellID>48668</SpellID><Actions></Actions><Lua>local cp = GetComboPoints(&amp;quot;player&amp;quot;)
 local snd, _, _, _, _, _, sndtime = UnitBuffID(&amp;quot;player&amp;quot;, 6774)
-local energy = UnitPower(&amp;quot;player&amp;quot;)
 local hunger = UnitBuffID(&amp;quot;player&amp;quot;, 63848)
 local bleed, _, _, _, _, _, btime = UnitDebuffID(&amp;quot;target&amp;quot;, 48672, &amp;quot;player&amp;quot;)
+local energy = UnitPower(&amp;quot;player&amp;quot;)
 
 if energycost(48668)
 and valid(&amp;quot;target&amp;quot;, 48668)
@@ -111,7 +138,6 @@ then
 	end
 	
 end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>C:Sinister Strike</Name><Default>false</Default><SpellID>48638</SpellID><Actions></Actions><Lua>local cp = GetComboPoints(&amp;quot;player&amp;quot;)
-local energy = UnitPower(&amp;quot;player&amp;quot;)
 
 if energycost(48638)
 and AOE() == false
@@ -119,27 +145,23 @@ and UnitExists(&amp;quot;target&amp;quot;)
 and valid(&amp;quot;target&amp;quot;, 48638)
 and cp &amp;lt; 4
 and IsSpellInRange(GetSpellInfo(48638), &amp;quot;target&amp;quot;) == 1
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>C:Blade Flurry</Name><Default>false</Default><SpellID>13877</SpellID><Actions></Actions><Lua>local energy = UnitPower(&amp;quot;player&amp;quot;)
-
-if energycost(13877)
-and UnitLevel(&amp;quot;target&amp;quot;) == -1
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>C:Blade Flurry</Name><Default>false</Default><SpellID>13877</SpellID><Actions></Actions><Lua>if IsBoss()
+and energycost(13877)
 and IsSpellInRange(GetSpellInfo(48668), &amp;quot;target&amp;quot;) == 1
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>C:Killing Spree</Name><Default>false</Default><SpellID>51690</SpellID><Actions></Actions><Lua>local energy = UnitPower(&amp;quot;player&amp;quot;)
 
-if energycost(51690)
-and UnitLevel(&amp;quot;target&amp;quot;) == -1
+if IsBoss() 
+and energycost(51690)
 and IsSpellInRange(GetSpellInfo(48668), &amp;quot;target&amp;quot;) == 1
 and UnitBuffID(&amp;quot;player&amp;quot;, 13750) == nil
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Hunger For Blood</Name><Default>false</Default><SpellID>51662</SpellID><Actions></Actions><Lua>local energy = UnitPower(&amp;quot;player&amp;quot;)
-local hob, _, _, _, _, _, hobtime = UnitBuffID(&amp;quot;player&amp;quot;, 63848)
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Hunger For Blood</Name><Default>false</Default><SpellID>51662</SpellID><Actions></Actions><Lua>local hob, _, _, _, _, _, hobtime = UnitBuffID(&amp;quot;player&amp;quot;, 63848)
 local bleed = UnitDebuffID(&amp;quot;target&amp;quot;, 48672, &amp;quot;player&amp;quot;) or UnitDebuffID(&amp;quot;target&amp;quot;, 48676, &amp;quot;player&amp;quot;)
 
 if energycost(51662)
 and bleed
 and ( hob == nil
 or ( hob and hobtime - GetTime() &amp;lt; 2 ) )
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Garrote</Name><Default>false</Default><SpellID>48676</SpellID><Actions></Actions><Lua>local energy = UnitPower(&amp;quot;player&amp;quot;)
-local Stealthed = UnitBuffID(&amp;quot;player&amp;quot;, 1784)
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Garrote</Name><Default>false</Default><SpellID>48676</SpellID><Actions></Actions><Lua>local Stealthed = UnitBuffID(&amp;quot;player&amp;quot;, 1784)
 
 if Stealth == true
 and IsStealthed()
@@ -149,10 +171,10 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Envenom</Name><Default>false</Default><SpellID>57993</SpellID><Actions></Actions><Lua>local envenom = UnitBuffID(&amp;quot;player&amp;quot;, 57993)
 local cp = GetComboPoints(&amp;quot;player&amp;quot;)
 local snd, _, _, _, _, _, sndtime = UnitBuffID(&amp;quot;player&amp;quot;, 6774)
-local energy = UnitPower(&amp;quot;player&amp;quot;)
 local deadly = UnitDebuffID(&amp;quot;target&amp;quot;, 57970, &amp;quot;player&amp;quot;)
 local hunger = UnitBuffID(&amp;quot;player&amp;quot;, 63848)
 local bleed = UnitDebuffID(&amp;quot;target&amp;quot;, 48672, &amp;quot;player&amp;quot;)
+local energy = UnitPower(&amp;quot;player&amp;quot;)
 
 if energycost(57993)
 and AOE() == false
@@ -171,7 +193,6 @@ then
 		return true
 	end
 end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Mutilate</Name><Default>false</Default><SpellID>48666</SpellID><Actions></Actions><Lua>local cp = GetComboPoints(&amp;quot;player&amp;quot;)
-local energy = UnitPower(&amp;quot;player&amp;quot;)
 
 if energycost(48666)
 and UnitExists(&amp;quot;target&amp;quot;)
@@ -180,21 +201,19 @@ and cp &amp;lt; 4
 and IsSpellInRange(GetSpellInfo(48666), &amp;quot;target&amp;quot;) == 1
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Slice and Dice</Name><Default>false</Default><SpellID>6774</SpellID><Actions></Actions><Lua>local snd, _, _, _, _, _, sndtime = UnitBuffID(&amp;quot;player&amp;quot;, 6774)
 local cp = GetComboPoints(&amp;quot;player&amp;quot;)
-local energy = UnitPower(&amp;quot;player&amp;quot;)
 
 if energycost(6774) and cp &amp;gt; 0
 and ( snd == nil
 or ( snd and sndtime - GetTime() &amp;lt; 1 ) )
 and IsSpellInRange(GetSpellInfo(48638), &amp;quot;target&amp;quot;) == 1
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Rupture</Name><Default>false</Default><SpellID>48672</SpellID><Actions></Actions><Lua>local cp = GetComboPoints(&amp;quot;player&amp;quot;)
-local energy = UnitPower(&amp;quot;player&amp;quot;)
 local snd, _, _, _, _, _, sndtime = UnitBuffID(&amp;quot;player&amp;quot;, 6774)
 local bleed,_,_,_,_,_,btime = UnitDebuffID(&amp;quot;target&amp;quot;, 48672, &amp;quot;player&amp;quot;)
 
 if energycost(48672)
 and valid(&amp;quot;target&amp;quot;, 48672)
 and UnitExists(&amp;quot;target&amp;quot;)
-and cp &amp;gt;= 4
+and cp == 5
 and ( bleed == nil
 or ( bleed and btime-GetTime() &amp;lt; 2 ) )
 and ( calc_time == nil
@@ -203,7 +222,6 @@ and AOE() == false
 and IsSpellInRange(GetSpellInfo(48672), &amp;quot;target&amp;quot;) == 1
 and snd
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Expose Armor</Name><Default>false</Default><SpellID>8647</SpellID><Actions></Actions><Lua>local cp = GetComboPoints(&amp;quot;player&amp;quot;)
-local energy = UnitPower(&amp;quot;player&amp;quot;)
 local ea,_,_,_,_,_,eatime = UnitDebuffID(&amp;quot;target&amp;quot;, 8647)
 
 if UnitExists(&amp;quot;target&amp;quot;)
@@ -214,9 +232,7 @@ and AOE() == false
 and cp &amp;gt; 4
 and ( ea == nil
 or (ea and eatime - GetTime() &amp;lt; 2 ) )
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>C:Fan of Knives</Name><Default>false</Default><SpellID>51723</SpellID><Actions></Actions><Lua>local energy = UnitPower(&amp;quot;player&amp;quot;)
-
-if AOE() == true
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>C:Fan of Knives</Name><Default>false</Default><SpellID>51723</SpellID><Actions></Actions><Lua>if AOE() == true
 and energycost(51723)
 and UnitExists(&amp;quot;target&amp;quot;)
 and IsSpellInRange(GetSpellInfo(48638), &amp;quot;target&amp;quot;) == 1
@@ -691,130 +707,7 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False
 		end
 		return false
 	end
-	
-		-- Checks if our Cleanse will have a valid Debuff to Cleanse --
-	function ValidDispel(t)
-		local HasValidDispel = false
-		local i = 1
-		local debuff = UnitDebuff(t, i)
-		local blacklist = {70338, 70337, --Necrotic Plauge
-			           71503, 70311, 70405, 24673
-				}
-		for n = 1, #blacklist do
-			if UnitDebuffID(t, blacklist[n]) then return false end
-		end
-		while debuff do
-			local debuffType = select(5, UnitDebuff(t, i))
-			if debuffType == &amp;quot;Curse&amp;quot;
-			or debuffType  == &amp;quot;Poison&amp;quot;  
-			or debuffType  == &amp;quot;Disease&amp;quot;  then
-				HasValidDispel = true
-			end
-			i = i + 1
-			debuff = UnitDebuff(t, i)
-		end
-		return HasValidDispel
-	end
-
-	function DispelCount()
-		local DispelNumbers = 0
-		for i = 1, #members do
-			if ValidDispel(members[i].Unit) then
-				DispelNumbers = DispelNumbers + 1
-			end
-		end
-		return DispelNumbers
-	end
-
-		-- New Healing Engine --
-	function SheuronEngine(MO, TARGETHEAL, LOWHP, HEALPET)
-		local MouseoverCheck = MO or false
-		local LowHPTarget = LOWHP or 80
-		local TargetHealCheck = TARGETHEAL or false
-		local HEALPET = HEALPET or true
-		lowhpmembers = 0
 		
-		playerHP = CalculateHP(&amp;quot;player&amp;quot;)
-		members = {
-			 --{ 	
-			--Unit = &amp;quot;player&amp;quot;, 
-			--HP = playerHP, 
-			--GUID = UnitGUID(&amp;quot;player&amp;quot;), 
-			--IsPlayer = true, 
-			--}
-			} 
-			
-		-- Adding player to low hp table --
-		if playerHP &amp;lt; LowHPTarget then
-			lowhpmembers = lowhpmembers + 1
-		end	
-			
-			
-		local group = &amp;quot;party&amp;quot;
-		local groupmembers = GetNumPartyMembers()
-
-		if GetNumRaidMembers() &amp;gt; 0 then
-			group = &amp;quot;raid&amp;quot;
-			groupmembers = GetNumRaidMembers()
-		end
-			
-			
-		for i = 1, groupmembers do 
-			local member, memberhp, uidmember = group..i, CalculateHP(group..i), UnitGUID(group..i)	
-		
-		-- Checking all Party/Raid Members for Range/Health
-			if ((UnitExists(member) and CanHeal(member)) or UnitIsUnit(&amp;quot;player&amp;quot;,member))
-			and member ~= nil and memberhp ~= nil and uidmember ~= nil then 	
-				table.insert( members,{ Unit = member, HP = memberhp, GUID = uidmember, IsPlayer = true } ) 
-					
-				-- Setting Low HP Members variable for AoE Healing
-				if memberhp &amp;lt; LowHPTarget and UnitPower(member) &amp;lt; 1500000 then
-					lowhpmembers = lowhpmembers + 1
-				end	
-			end 
-				
-		-- Checking Pets in the group --
-			if HEALPET and lowhpmembers == 0 and UnitExists(group..i..&amp;quot;pet&amp;quot;) and CanHeal(group..i..&amp;quot;pet&amp;quot;) then
-				local memberpet, memberpethp,  uidmemberpet = nil, nil, nil
-				memberpet = group..i..&amp;quot;pet&amp;quot; 
-				memberpethp = CalculateHP(memberpet)		
-				uidmemberpet = UnitGUID(memberpet)
-						
-				if memberpet ~= nil and memberpethp ~= nil and uidmemberpet ~= nil then
-					--table.insert(members, { Unit = memberpet, HP = memberpethp, GUID = uidmemberpet, IsPlayer = false } )
-				end			
-			end
-		end 
-		
-		-- Checking Priority Targeting --
-		if TargetHealCheck and CanHeal(&amp;quot;target&amp;quot;) then
-			table.sort(members, function(x) return UnitIsUnit(&amp;quot;target&amp;quot;,x.Unit) end)
-		elseif MouseoverCheck and CanHeal(&amp;quot;mouseover&amp;quot;) and GetMouseFocus() ~= WorldFrame then
-			table.sort(members, function(x) return UnitIsUnit(&amp;quot;mouseover&amp;quot;,x.Unit) end)
-		end
-	end
-
-		-- Checking Distance --
-	function CheckDistance(unit1,unit2) 
-		local a1,b1 = GetPlayerMapPosition(unit1)
-		local a2,b2 = GetPlayerMapPosition(unit2)
-		local _, h, w = GetMapInfo()
-		local x1 , y1 = a1 * 1000, b1 * 1000
-		local x2 , y2 = a2 * 1000, b2 * 1000
-
-				local distance = sqrt(min(x1 - x2, w - (x1 - x2))^2 + min(y1 - y2, h - (y1-y2))^2)
-			
-			return distance
-	end
-
-	function UnitsClose(t) 
-		local n = -1
-		for i=1,#members do
-		  if CheckDistance(t,members[i].Unit) &amp;lt; 9 and members[i].HP &amp;lt; 95 then n = n + 1 end
-		end 
-		return n
-	end
-	
 		-- Energy Check --
 	energycost = nil
 	function energycost(spellid)
@@ -879,7 +772,6 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False
 
 functionsloaded = true
 end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>S:Hemorrhage</Name><Default>false</Default><SpellID>48660</SpellID><Actions></Actions><Lua>local cp = GetComboPoints(&amp;quot;player&amp;quot;)
-local energy = UnitPower(&amp;quot;player&amp;quot;)
 
 if energycost(48660)
 and AOE() == false
@@ -906,4 +798,8 @@ then
 		CastSpellByID(36554)
 		return true
 	end
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></ROGUE>
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Autotarget script --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) 
+and UnitExists(&amp;quot;target&amp;quot;) == nil
+and UnitIsDead(&amp;quot;target&amp;quot;) == nil
+and SpellIsTargeting() == nil
+then TargetNearestEnemy() end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></ROGUE>

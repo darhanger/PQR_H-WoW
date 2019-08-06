@@ -26,7 +26,7 @@ if IsRightShiftKeyDown() and not GetCurrentKeyBoardFocus() and GetTime() - modti
 	end
 end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Offensive Spells --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local buff = { 642, 45438, 31224, 23920, 33786, 19263, 21892, 40733 }
 local mob = { &amp;quot;Training Dummy&amp;quot;, &amp;quot;Raider&amp;apos;s Training Dummy&amp;quot; }
-local elite = { &amp;quot;Overlord Ror&amp;quot;, &amp;quot;Ragepaw&amp;quot;, &amp;quot;Liam&amp;quot;, &amp;quot;Galleon&amp;quot; }
+local elite = { &amp;quot;Overlord Ror&amp;quot;, &amp;quot;Ragepaw&amp;quot;, &amp;quot;Liam&amp;quot;, &amp;quot;Galleon&amp;quot;, &amp;quot;Fire Giant&amp;quot;, &amp;quot;Hogger&amp;quot;, &amp;quot;Specimen 23&amp;quot; }
 local noaggromobs = nil
 local immunity = nil
 local eliteboss = nil
@@ -42,7 +42,6 @@ end
 if immunity
 or UnitCanAttack(&amp;quot;player&amp;quot;,&amp;quot;target&amp;quot;) == nil
 or (UnitAffectingCombat(&amp;quot;target&amp;quot;) == nil and noaggromobs == nil and UnitIsPlayer(&amp;quot;target&amp;quot;) == nil)
-or tonumber(UnitGUID(&amp;quot;target&amp;quot;):sub(5,5),16) == 4
 then return true end
 
 for i,v in ipairs(elite) do
@@ -53,7 +52,6 @@ IsBoss = nil
 function IsBoss()
 	if UnitExists(&amp;quot;target&amp;quot;)
 	and ( UnitLevel(&amp;quot;target&amp;quot;) == -1 or eliteboss )
-	or tonumber(UnitGUID(&amp;quot;target&amp;quot;):sub(5,5),16) == 4
 		then return 
 			true 
 		end
@@ -438,7 +436,13 @@ if not UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)  then
 	end
 		
 	-- Kings Buff / Drums -- 				
-	if GetZoneText() ~= &amp;quot;Scarlet Monastery&amp;quot; and not UnitBuffID(&amp;quot;player&amp;quot;, 43223) and not UnitBuffID(&amp;quot;player&amp;quot;, 35912) and not UnitBuffID(&amp;quot;player&amp;quot;, 25898) and NoKings == nil then
+	if GetZoneText() ~= &amp;quot;Scarlet Monastery&amp;quot;
+	and not UnitBuffID(&amp;quot;player&amp;quot;, 43223) 
+	and not UnitBuffID(&amp;quot;player&amp;quot;, 35912) 
+	and not UnitBuffID(&amp;quot;player&amp;quot;, 25898)
+	or BG()
+	and NoKings == nil 
+		then
 		for b = 0, 4 do
 			for s = 1, GetContainerNumSlots(b) do
 				if GetContainerItemID(b, s) == 49633 then
@@ -1024,7 +1028,7 @@ if OH == nil or false
 then
     CastSpellByID(58790)
 end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Racial</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if pvpdebuffCheck == nil then
-	pvpdebuffCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 5782) --Fear
+	pvpdebuffCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 6215) --Fear
 end
 if pvpdebuffCheck == nil then
 	pvpdebuffCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 8122) --Psychic scream
@@ -1184,7 +1188,9 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 43039, -- Ice Barrier (Mage)
 43020, -- Mana Shield (Mage)
 48441, -- Rejuvenation (Druid)
-11841 -- WB
+11841, -- WB
+43046, -- Event
+18100 -- Event2
 }
 
 if UnitExists(&amp;quot;target&amp;quot;) then

@@ -61,7 +61,7 @@ and UnitCanAttack(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) == 1
 and IsSpellInRange(GetSpellInfo(42897), &amp;quot;target&amp;quot;) == 1
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Offensive Spells --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local buff = { 642, 45438, 31224, 23920, 33786, 19263, 21892, 40733 }
 local mob = { &amp;quot;Training Dummy&amp;quot;, &amp;quot;Raider&amp;apos;s Training Dummy&amp;quot; }
-local elite = { &amp;quot;Overlord Ror&amp;quot;, &amp;quot;Ragepaw&amp;quot;, &amp;quot;Liam&amp;quot;, &amp;quot;Galleon&amp;quot; }
+local elite = { &amp;quot;Overlord Ror&amp;quot;, &amp;quot;Ragepaw&amp;quot;, &amp;quot;Liam&amp;quot;, &amp;quot;Galleon&amp;quot;, &amp;quot;Fire Giant&amp;quot;, &amp;quot;Hogger&amp;quot;, &amp;quot;Specimen 23&amp;quot; }
 local noaggromobs = nil
 local immunity = nil
 local eliteboss = nil
@@ -77,7 +77,6 @@ end
 if immunity
 or UnitCanAttack(&amp;quot;player&amp;quot;,&amp;quot;target&amp;quot;) == nil
 or (UnitAffectingCombat(&amp;quot;target&amp;quot;) == nil and noaggromobs == nil and UnitIsPlayer(&amp;quot;target&amp;quot;) == nil)
-or tonumber(UnitGUID(&amp;quot;target&amp;quot;):sub(5,5),16) == 4
 then return true end
 
 for i,v in ipairs(elite) do
@@ -88,7 +87,6 @@ IsBoss = nil
 function IsBoss()
 	if UnitExists(&amp;quot;target&amp;quot;)
 	and ( UnitLevel(&amp;quot;target&amp;quot;) == -1 or eliteboss )
-	or tonumber(UnitGUID(&amp;quot;target&amp;quot;):sub(5,5),16) == 4
 		then return 
 			true 
 		end
@@ -231,7 +229,7 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 if not ab or count &amp;lt; 4 
 and UnitExists(&amp;quot;target&amp;quot;)
 and UnitCanAttack(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) == 1
-and IsSpellInRange(GetSpellInfo(42897), &amp;quot;target&amp;quot;) == 1
+and rangeCheck(42897, &amp;quot;target&amp;quot;)
 and ( select(7, GetSpellInfo(42897)) == 0 or GetUnitSpeed(&amp;quot;player&amp;quot;) == 0 )
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Arcane Missiles</Name><Default>false</Default><SpellID>42846</SpellID><Actions></Actions><Lua>local ab, _, _, count = UnitDebuffID(&amp;quot;player&amp;quot;, 36032)
 
@@ -245,7 +243,7 @@ then return true end</Lua><RecastDelay>2000</RecastDelay><Target>Target</Target>
 -- VK: https://vk.com/darhanger
 -- FB: https://fb.com/darhanger
 -- E-mail: civayan@gmail.com</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Racial</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if pvpdebuffCheck == nil then
-	pvpdebuffCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 5782) --Fear
+	pvpdebuffCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 6215) --Fear
 end
 if pvpdebuffCheck == nil then
 	pvpdebuffCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 8122) --Psychic scream
@@ -421,7 +419,13 @@ if not UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)  then
 	end
 		
 	-- Kings Buff / Drums -- 				
-	if GetZoneText() ~= &amp;quot;Scarlet Monastery&amp;quot; and not UnitBuffID(&amp;quot;player&amp;quot;, 43223) and not UnitBuffID(&amp;quot;player&amp;quot;, 35912) and not UnitBuffID(&amp;quot;player&amp;quot;, 25898) and NoKings == nil then
+	if GetZoneText() ~= &amp;quot;Scarlet Monastery&amp;quot;
+	and not UnitBuffID(&amp;quot;player&amp;quot;, 43223) 
+	and not UnitBuffID(&amp;quot;player&amp;quot;, 35912) 
+	and not UnitBuffID(&amp;quot;player&amp;quot;, 25898)
+	or BG()
+	and NoKings == nil 
+		then
 		for b = 0, 4 do
 			for s = 1, GetContainerNumSlots(b) do
 				if GetContainerItemID(b, s) == 49633 then
@@ -921,7 +925,7 @@ do local _,_,_,_,_,_,_,u,_,_,s=UnitBuff(p,i)
 end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Arcane Barrage(Move)</Name><Default>false</Default><SpellID>44781</SpellID><Actions></Actions><Lua>if  GetUnitSpeed(&amp;quot;player&amp;quot;) &amp;gt;= 3
 and UnitCanAttack(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) == 1
 and not CooldownRemains(44781)
-and IsSpellInRange(GetSpellInfo(44781), &amp;quot;target&amp;quot;) == 1
+and rangeCheck(44781, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Autotarget script --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if UnitAffectingCombat(&amp;quot;player&amp;quot;) 
 and UnitExists(&amp;quot;target&amp;quot;) == nil
 and UnitIsDead(&amp;quot;target&amp;quot;) == nil

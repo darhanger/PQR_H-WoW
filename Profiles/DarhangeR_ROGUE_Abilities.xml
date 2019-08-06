@@ -54,7 +54,7 @@ or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Drink&amp;quot;)
 or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Food&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Offensive Spells --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local buff = { 642, 45438, 31224, 23920, 33786, 19263, 21892, 40733 }
 local mob = { &amp;quot;Training Dummy&amp;quot;, &amp;quot;Raider&amp;apos;s Training Dummy&amp;quot; }
-local elite = { &amp;quot;Overlord Ror&amp;quot;, &amp;quot;Ragepaw&amp;quot;, &amp;quot;Liam&amp;quot;, &amp;quot;Galleon&amp;quot; }
+local elite = { &amp;quot;Overlord Ror&amp;quot;, &amp;quot;Ragepaw&amp;quot;, &amp;quot;Liam&amp;quot;, &amp;quot;Galleon&amp;quot;, &amp;quot;Fire Giant&amp;quot;, &amp;quot;Hogger&amp;quot;, &amp;quot;Specimen 23&amp;quot; }
 local noaggromobs = nil
 local immunity = nil
 local eliteboss = nil
@@ -70,7 +70,6 @@ end
 if immunity
 or UnitCanAttack(&amp;quot;player&amp;quot;,&amp;quot;target&amp;quot;) == nil
 or (UnitAffectingCombat(&amp;quot;target&amp;quot;) == nil and noaggromobs == nil and UnitIsPlayer(&amp;quot;target&amp;quot;) == nil)
-or tonumber(UnitGUID(&amp;quot;target&amp;quot;):sub(5,5),16) == 4
 then return true end
 
 for i,v in ipairs(elite) do
@@ -81,7 +80,6 @@ IsBoss = nil
 function IsBoss()
 	if UnitExists(&amp;quot;target&amp;quot;)
 	and ( UnitLevel(&amp;quot;target&amp;quot;) == -1 or eliteboss )
-	or tonumber(UnitGUID(&amp;quot;target&amp;quot;):sub(5,5),16) == 4
 		then return 
 			true 
 		end
@@ -104,7 +102,7 @@ elseif poisonOH == nil then
 end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Tricks of the Trade</Name><Default>false</Default><SpellID>57934</SpellID><Actions></Actions><Lua>if threat(&amp;quot;player&amp;quot;) &amp;gt;= 2
 and UnitExists(&amp;quot;focus&amp;quot;)
 and UnitInRange(&amp;quot;focus&amp;quot;)
-and IsSpellInRange(GetSpellInfo(57934), &amp;quot;focus&amp;quot;) == 1
+and rangeCheck(48638, &amp;quot;focus&amp;quot;)
 and not UnitIsDeadOrGhost(&amp;quot;focus&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Focus</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Stealth</Name><Default>false</Default><SpellID>1784</SpellID><Actions></Actions><Lua>if Stealth == true
 and IsMounted() == nil
@@ -114,7 +112,7 @@ if IsBoss()
 and energycost(13750)
 and UnitExists(&amp;quot;target&amp;quot;)
 and energy &amp;lt; 30
-and IsSpellInRange(GetSpellInfo(48668), &amp;quot;target&amp;quot;) == 1
+and rangeCheck(48638, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>C:Eviscerate</Name><Default>false</Default><SpellID>48668</SpellID><Actions></Actions><Lua>local cp = GetComboPoints(&amp;quot;player&amp;quot;)
 local snd, _, _, _, _, _, sndtime = UnitBuffID(&amp;quot;player&amp;quot;, 6774)
 local hunger = UnitBuffID(&amp;quot;player&amp;quot;, 63848)
@@ -125,6 +123,7 @@ if energycost(48668)
 and valid(&amp;quot;target&amp;quot;, 48668)
 --and spender(&amp;quot;eviscerate&amp;quot;)
 and AOE() == false
+and rangeCheck(48638, &amp;quot;target&amp;quot;)
 then
 
 	if cp == 5 and hunger and  bleed and snd then
@@ -144,15 +143,15 @@ and AOE() == false
 and UnitExists(&amp;quot;target&amp;quot;)
 and valid(&amp;quot;target&amp;quot;, 48638)
 and cp &amp;lt; 4
-and IsSpellInRange(GetSpellInfo(48638), &amp;quot;target&amp;quot;) == 1
+and rangeCheck(48638, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>C:Blade Flurry</Name><Default>false</Default><SpellID>13877</SpellID><Actions></Actions><Lua>if IsBoss()
 and energycost(13877)
-and IsSpellInRange(GetSpellInfo(48668), &amp;quot;target&amp;quot;) == 1
+and rangeCheck(48638, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>C:Killing Spree</Name><Default>false</Default><SpellID>51690</SpellID><Actions></Actions><Lua>local energy = UnitPower(&amp;quot;player&amp;quot;)
 
 if IsBoss() 
 and energycost(51690)
-and IsSpellInRange(GetSpellInfo(48668), &amp;quot;target&amp;quot;) == 1
+and rangeCheck(48638, &amp;quot;target&amp;quot;)
 and UnitBuffID(&amp;quot;player&amp;quot;, 13750) == nil
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Hunger For Blood</Name><Default>false</Default><SpellID>51662</SpellID><Actions></Actions><Lua>local hob, _, _, _, _, _, hobtime = UnitBuffID(&amp;quot;player&amp;quot;, 63848)
 local bleed = UnitDebuffID(&amp;quot;target&amp;quot;, 48672, &amp;quot;player&amp;quot;) or UnitDebuffID(&amp;quot;target&amp;quot;, 48676, &amp;quot;player&amp;quot;)
@@ -166,7 +165,7 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 if Stealth == true
 and IsStealthed()
 and UnitExists(&amp;quot;target&amp;quot;)
-and IsSpellInRange(GetSpellInfo(48676), &amp;quot;target&amp;quot;) == 1
+and rangeCheck(48638, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Cold Blood</Name><Default>false</Default><SpellID>14177</SpellID><Actions></Actions><Lua>if GetComboPoints(&amp;quot;player&amp;quot;, &amp;quot;target&amp;quot;) &amp;gt;= 5
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Envenom</Name><Default>false</Default><SpellID>57993</SpellID><Actions></Actions><Lua>local envenom = UnitBuffID(&amp;quot;player&amp;quot;, 57993)
 local cp = GetComboPoints(&amp;quot;player&amp;quot;)
@@ -181,6 +180,7 @@ and AOE() == false
 --and spender(&amp;quot;envenom&amp;quot;)
 and valid(&amp;quot;target&amp;quot;, 57993)
 and deadly and (hunger and bleed ) or ( calc_time ~= nil and calc_time &amp;lt;= 15 )
+and rangeCheck(48638, &amp;quot;target&amp;quot;)
 then
 
 	if cp &amp;gt;= 4 and envenom == nil then
@@ -198,14 +198,14 @@ if energycost(48666)
 and UnitExists(&amp;quot;target&amp;quot;)
 and valid(&amp;quot;target&amp;quot;, 48666)
 and cp &amp;lt; 4
-and IsSpellInRange(GetSpellInfo(48666), &amp;quot;target&amp;quot;) == 1
+and rangeCheck(48666, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Slice and Dice</Name><Default>false</Default><SpellID>6774</SpellID><Actions></Actions><Lua>local snd, _, _, _, _, _, sndtime = UnitBuffID(&amp;quot;player&amp;quot;, 6774)
 local cp = GetComboPoints(&amp;quot;player&amp;quot;)
 
 if energycost(6774) and cp &amp;gt; 0
 and ( snd == nil
 or ( snd and sndtime - GetTime() &amp;lt; 1 ) )
-and IsSpellInRange(GetSpellInfo(48638), &amp;quot;target&amp;quot;) == 1
+and rangeCheck(48638, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Rupture</Name><Default>false</Default><SpellID>48672</SpellID><Actions></Actions><Lua>local cp = GetComboPoints(&amp;quot;player&amp;quot;)
 local snd, _, _, _, _, _, sndtime = UnitBuffID(&amp;quot;player&amp;quot;, 6774)
 local bleed,_,_,_,_,_,btime = UnitDebuffID(&amp;quot;target&amp;quot;, 48672, &amp;quot;player&amp;quot;)
@@ -219,14 +219,14 @@ or ( bleed and btime-GetTime() &amp;lt; 2 ) )
 and ( calc_time == nil
 or ( calc_time ~= nil and calc_time &amp;gt; 15 ) )
 and AOE() == false
-and IsSpellInRange(GetSpellInfo(48672), &amp;quot;target&amp;quot;) == 1
+and rangeCheck(48638, &amp;quot;target&amp;quot;)
 and snd
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Expose Armor</Name><Default>false</Default><SpellID>8647</SpellID><Actions></Actions><Lua>local cp = GetComboPoints(&amp;quot;player&amp;quot;)
 local ea,_,_,_,_,_,eatime = UnitDebuffID(&amp;quot;target&amp;quot;, 8647)
 
 if UnitExists(&amp;quot;target&amp;quot;)
 and valid(&amp;quot;target&amp;quot;, 8647)
-and IsSpellInRange(GetSpellInfo(8647), &amp;quot;target&amp;quot;) == 1
+and rangeCheck(48638, &amp;quot;target&amp;quot;)
 and energycost(8647)
 and AOE() == false
 and cp &amp;gt; 4
@@ -235,12 +235,12 @@ or (ea and eatime - GetTime() &amp;lt; 2 ) )
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>C:Fan of Knives</Name><Default>false</Default><SpellID>51723</SpellID><Actions></Actions><Lua>if AOE() == true
 and energycost(51723)
 and UnitExists(&amp;quot;target&amp;quot;)
-and IsSpellInRange(GetSpellInfo(48638), &amp;quot;target&amp;quot;) == 1
+and rangeCheck(48638, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- DarhangeR --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- I&amp;apos;m the original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: 
 -- VK: https://vk.com/darhanger
 -- FB: https://fb.com/darhanger
 -- E-mail: civayan@gmail.com</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Racial</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if pvpdebuffCheck == nil then
-	pvpdebuffCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 5782) --Fear
+	pvpdebuffCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 6215) --Fear
 end
 if pvpdebuffCheck == nil then
 	pvpdebuffCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 8122) --Psychic scream
@@ -300,7 +300,58 @@ then
 		CastSpellByID(28880)
 		return true
 	end
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Stats Buffs / Flask --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if NoKings == nil then
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Stats Buffs / Flask --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- Check Druids in party/raid --   
+local group = &amp;quot;party&amp;quot;
+local members = GetNumPartyMembers()
+
+if GetNumRaidMembers() &amp;gt; 0 then
+  group = &amp;quot;raid&amp;quot;
+  members = GetNumRaidMembers()
+end
+
+CheckDudu = nil
+function CheckDudu()
+for i = 1, members, 1 do
+local member = group..tostring(i)
+local _, playerClass = UnitClass(member)
+	if playerClass == &amp;quot;DRUID&amp;quot;
+	and UnitIsFriend(&amp;quot;player&amp;quot;, member)
+		then
+			return true
+		end
+	end
+end	
+		-- BG Check --         
+function BG()
+	if GetZoneText() == &amp;quot;Warsong Gulch&amp;quot;
+			 or GetZoneText() == &amp;quot;Isle of Conquest&amp;quot;
+			 or GetZoneText() == &amp;quot;Arathi Basin&amp;quot;
+			 or GetZoneText() == &amp;quot;Alterac Valley&amp;quot;
+			 or GetZoneText() == &amp;quot;Eye of the Storm&amp;quot;
+			 or GetZoneText() == &amp;quot;Strand of the Ancients&amp;quot;
+			 then
+				return true
+			else
+				return false
+			end
+	end
+	
+		-- Arena Check --
+function Arena ()
+	if GetZoneText() == &amp;quot;Ring of Valor&amp;quot;
+			 or GetZoneText() == &amp;quot;Ruins of Lordaeron&amp;quot;
+			 or GetZoneText() == &amp;quot;Ring of Trials&amp;quot;
+			 or GetZoneText() == &amp;quot;Circle of Blood&amp;quot;
+			 or GetZoneText() == &amp;quot;Dalaran Arena&amp;quot;
+			 then
+				return true
+			else
+				return false
+			end
+	end
+
+
+if NoKings == nil then
 		for b = 0, 4 do
 			for s = 1, GetContainerNumSlots(b) do
 				if GetContainerItemID(b, s) == 26 then
@@ -313,9 +364,27 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 	end
 
 if not UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)  then
+		
+		-- Drums of the WIld --
+	if not CheckDudu()
+	and not UnitBuffID(&amp;quot;player&amp;quot;, 48470) 
+	and not UnitBuffID(&amp;quot;player&amp;quot;, 48469) 
+	and not UnitBuffID(&amp;quot;player&amp;quot;, 72588) then   
+		for b = 0, 4 do
+			for s = 1, GetContainerNumSlots(b) do
+				if GetContainerItemID(b, s) == 49634 then
+					RunMacroText(&amp;quot;/use &amp;quot;..b..&amp;quot; &amp;quot;..s)
+					return true	
+				end
+			end
+		end
+	end
 	
 	-- Voter Buff --
-	if not UnitBuffID(&amp;quot;player&amp;quot;, 35912) and NoKings == true then
+	if not UnitBuffID(&amp;quot;player&amp;quot;, 35912) 
+	and not BG()
+	and not Arena()
+	and NoKings == true then
 		for b = 0, 4 do
 			for s = 1, GetContainerNumSlots(b) do
 				if GetContainerItemID(b, s) == 26 then
@@ -327,7 +396,10 @@ if not UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)  then
 	end
 	
 	-- Donor Buff -- 
-	if not UnitBuffID(&amp;quot;player&amp;quot;, 35874) then
+	if not UnitBuffID(&amp;quot;player&amp;quot;, 35874) 
+	and not BG()
+	and not Arena()
+	then
 		for b = 0, 4 do
 			for s = 1, GetContainerNumSlots(b) do
 				if GetContainerItemID(b, s) == 27 then
@@ -337,21 +409,15 @@ if not UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)  then
 			end
 		end
 	end
-	
-	-- Drums of the WIld --
-	if not UnitBuffID(&amp;quot;player&amp;quot;, 48470) and not UnitBuffID(&amp;quot;player&amp;quot;, 48469) and not UnitBuffID(&amp;quot;player&amp;quot;, 72588) then  
-		for b = 0, 4 do
-			for s = 1, GetContainerNumSlots(b) do
-				if GetContainerItemID(b, s) == 49634 then
-					RunMacroText(&amp;quot;/use &amp;quot;..b..&amp;quot; &amp;quot;..s)
-					return true	
-				end
-			end
-		end
-	end
-	
+		
 	-- Kings Buff / Drums -- 				
-	if GetZoneText() ~= &amp;quot;Scarlet Monastery&amp;quot; and not UnitBuffID(&amp;quot;player&amp;quot;, 43223) and not UnitBuffID(&amp;quot;player&amp;quot;, 35912) and not UnitBuffID(&amp;quot;player&amp;quot;, 25898) and NoKings == nil then
+	if GetZoneText() ~= &amp;quot;Scarlet Monastery&amp;quot;
+	and not UnitBuffID(&amp;quot;player&amp;quot;, 43223) 
+	and not UnitBuffID(&amp;quot;player&amp;quot;, 35912) 
+	and not UnitBuffID(&amp;quot;player&amp;quot;, 25898)
+	or BG()
+	and NoKings == nil 
+		then
 		for b = 0, 4 do
 			for s = 1, GetContainerNumSlots(b) do
 				if GetContainerItemID(b, s) == 49633 then
@@ -778,7 +844,7 @@ and AOE() == false
 and UnitExists(&amp;quot;target&amp;quot;)
 and valid(&amp;quot;target&amp;quot;, 48660)
 and cp &amp;lt; 4
-and IsSpellInRange(GetSpellInfo(48660), &amp;quot;target&amp;quot;) == 1
+and rangeCheck(48660, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>S:Premeditation + Shadowstep</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local Stealthed = UnitBuffID(&amp;quot;player&amp;quot;, 1784)
 
 if Stealth == true
@@ -802,4 +868,8 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 and UnitExists(&amp;quot;target&amp;quot;) == nil
 and UnitIsDead(&amp;quot;target&amp;quot;) == nil
 and SpellIsTargeting() == nil
-then TargetNearestEnemy() end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></ROGUE>
+then TargetNearestEnemy() end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>C:Riposte</Name><Default>false</Default><SpellID>14251</SpellID><Actions></Actions><Lua>if energycost(14251)
+and UnitExists(&amp;quot;target&amp;quot;)
+and valid(&amp;quot;target&amp;quot;, 48638)
+and rangeCheck(48638, &amp;quot;target&amp;quot;)
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></ROGUE>

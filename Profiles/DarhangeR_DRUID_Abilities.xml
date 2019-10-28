@@ -13,7 +13,7 @@ if IsLeftControlKeyDown() and GetTime() - leftkeydown &amp;gt; 1 then
 		StopRota = true 
 		PQR_WriteToChat(&amp;quot;Rotation \124cFFE61515stopped!&amp;quot;)
   	end
-end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Offensive Spells --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local buff = { 642, 45438, 31224, 23920, 33786, 19263, 21892, 40733, 97532 }
+end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Offensive Spells --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local buff = { 642, 45438, 31224, 23920, 33786, 19263, 21892, 40733, 97532, 41451 }
 local mob = { &amp;quot;Training Dummy&amp;quot;, &amp;quot;Raider&amp;apos;s Training Dummy&amp;quot; }
 local elite = { &amp;quot;Overlord Ror&amp;quot;, &amp;quot;Ragepaw&amp;quot;, &amp;quot;Liam&amp;quot;, &amp;quot;Galleon&amp;quot;, &amp;quot;Fire Giant&amp;quot;, &amp;quot;Hogger&amp;quot;, &amp;quot;Specimen 23&amp;quot; }
 local noaggromobs = nil
@@ -938,7 +938,7 @@ and UnitAffectingCombat(&amp;quot;player&amp;quot;) == nil
 and (GetSpellInfo(48470) or GetItemCount(44605) &amp;gt;= 1)
 and not UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)
 and not IsMounted()
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>B:Thorns</Name><Default>false</Default><SpellID>53307</SpellID><Actions></Actions><Lua>if not thorns
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>B:Thorns</Name><Default>false</Default><SpellID>53307</SpellID><Actions></Actions><Lua>if not thorns
 and inCombat() == nil
 and not UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)
 and not IsMounted()
@@ -946,7 +946,9 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><Ca
 -- Discord official chanel: https://discord.gg/zayx7p9
 -- VK: https://vk.com/darhanger
 -- FB: https://fb.com/darhanger
--- E-mail: civayan@gmail.com</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Healing Touch</Name><Default>false</Default><SpellID>48378</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 65
+-- Instagram: https://instagram.com/darhanger
+-- E-mail: civayan@gmail.com
+-- Dev Discord name: DarhangeR#6786</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Healing Touch</Name><Default>false</Default><SpellID>48378</SpellID><Actions></Actions><Lua>if PQR_CustomTargetHP &amp;lt; 65
 and ( select(7, GetSpellInfo(48378)) == 0 or pStay() )
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Stats Buffs / Flask --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- BG Check --         
 function BG()
@@ -1962,9 +1964,9 @@ lacerate = UnitDebuffID(&amp;quot;target&amp;quot;, 48568, &amp;quot;player&amp;
 clearcast = UnitBuffID(&amp;quot;player&amp;quot;, 16870)
 pswitness = UnitBuffID(&amp;quot;player&amp;quot;, 69369)
 -- Forms --
-moonkin = UnitBuffID(&amp;quot;player&amp;quot;, 24858, &amp;quot;player&amp;quot;)
-bearform = UnitBuffID(&amp;quot;player&amp;quot;, 9634, &amp;quot;player&amp;quot;)
-catform = UnitBuffID(&amp;quot;player&amp;quot;, 768, &amp;quot;player&amp;quot;) 
+moonkin = UnitBuffID(&amp;quot;player&amp;quot;, 24858)
+bearform = UnitBuffID(&amp;quot;player&amp;quot;, 9634)
+catform = UnitBuffID(&amp;quot;player&amp;quot;, 768) 
 -- Buffs -- 
 GotW = UnitBuffID(&amp;quot;player&amp;quot;, 48470)
 thorns = UnitBuffID(&amp;quot;player&amp;quot;,53307)
@@ -1977,4 +1979,44 @@ regrowth = UnitBuffID(&amp;quot;player&amp;quot;, 48443)
 -- Other --
 energy = UnitPower(&amp;quot;player&amp;quot;)
 rage = UnitPower(&amp;quot;player&amp;quot;)
-cp = GetComboPoints(&amp;quot;player&amp;quot;)</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></DRUID>
+cp = GetComboPoints(&amp;quot;player&amp;quot;)</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Healthstone --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local stones = { 36892, 36893, 36894 }
+
+for i = 1, #stones do
+   	 if getHp(&amp;quot;player&amp;quot;) &amp;lt;= 25
+	and GetItemCount(stones[i]) &amp;gt;= 1 
+	and not ItemCooldownRemains(stones[i]) then
+       		UseItemByName(stones[i])
+	end
+end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Offensive Spells(H) --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local buff = { 642, 45438, 31224, 23920, 33786, 19263, 21892, 40733, 97532, 41451 }
+local mob = { &amp;quot;Training Dummy&amp;quot;, &amp;quot;Raider&amp;apos;s Training Dummy&amp;quot; }
+local elite = { &amp;quot;Overlord Ror&amp;quot;, &amp;quot;Ragepaw&amp;quot;, &amp;quot;Liam&amp;quot;, &amp;quot;Galleon&amp;quot;, &amp;quot;Fire Giant&amp;quot;, &amp;quot;Hogger&amp;quot;, &amp;quot;Specimen 23&amp;quot; }
+local noaggromobs = nil
+local immunity = nil
+local eliteboss = nil
+
+for i,v in ipairs(buff) do
+  if UnitBuffID(&amp;quot;target&amp;quot;,v) then immunity = 1 end
+end
+
+for i,v in ipairs(mob) do
+  if UnitName(&amp;quot;target&amp;quot;) == v then noaggromobs = 1 end
+end
+
+if UnitCanAttack(&amp;quot;player&amp;quot;,&amp;quot;target&amp;quot;) == nil
+or (UnitAffectingCombat(&amp;quot;target&amp;quot;) == nil and noaggromobs == nil and UnitIsPlayer(&amp;quot;target&amp;quot;) == nil)
+or tonumber(UnitGUID(&amp;quot;target&amp;quot;):sub(5,5),16) == 4
+then return true end
+
+for i,v in ipairs(elite) do
+	  if UnitName(&amp;quot;target&amp;quot;) == v then eliteboss = 1 end
+	end
+
+IsBoss = nil
+function IsBoss()
+	if UnitExists(&amp;quot;target&amp;quot;)
+	and ( UnitLevel(&amp;quot;target&amp;quot;) == -1 or eliteboss )
+	or tonumber(UnitGUID(&amp;quot;target&amp;quot;):sub(5,5),16) == 4
+		then return 
+			true 
+		end
+	end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></DRUID>

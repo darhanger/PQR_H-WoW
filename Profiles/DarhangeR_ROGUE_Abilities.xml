@@ -52,7 +52,7 @@ or UnitChannelInfo(&amp;quot;player&amp;quot;) ~= nil
 or UnitCastingInfo(&amp;quot;player&amp;quot;) ~= nil
 or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Drink&amp;quot;)
 or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Food&amp;quot;)
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Offensive Spells --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local buff = { 642, 45438, 31224, 23920, 33786, 19263, 21892, 40733, 97532 }
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Offensive Spells --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local buff = { 642, 45438, 31224, 23920, 33786, 19263, 21892 }
 local mob = { &amp;quot;Training Dummy&amp;quot;, &amp;quot;Raider&amp;apos;s Training Dummy&amp;quot; }
 local elite = { &amp;quot;Overlord Ror&amp;quot;, &amp;quot;Ragepaw&amp;quot;, &amp;quot;Liam&amp;quot;, &amp;quot;Galleon&amp;quot;, &amp;quot;Fire Giant&amp;quot;, &amp;quot;Hogger&amp;quot;, &amp;quot;Specimen 23&amp;quot; }
 local noaggromobs = nil
@@ -103,7 +103,7 @@ elseif poisonOH == nil then
 end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Tricks of the Trade</Name><Default>false</Default><SpellID>57934</SpellID><Actions></Actions><Lua>if threat(&amp;quot;player&amp;quot;) &amp;gt;= 2
 and UnitExists(&amp;quot;focus&amp;quot;)
 and UnitInRange(&amp;quot;focus&amp;quot;)
-and rangeCheck(48638, &amp;quot;focus&amp;quot;)
+and rangeCheck(57934, &amp;quot;focus&amp;quot;)
 and not UnitIsDeadOrGhost(&amp;quot;focus&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Focus</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Stealth</Name><Default>false</Default><SpellID>1784</SpellID><Actions></Actions><Lua>if Stealth == true
 and IsMounted() == nil
@@ -126,7 +126,7 @@ then
 	if cp == 5 and hunger and  rapture and snd then
 		return true
 	end
-	if cp &amp;gt;= 4 and snd and energy &amp;gt; 40 and rapture then
+	if cp &amp;gt;= 5 and snd and energy &amp;gt; 40 and rapture then
 		return true
 	end
 	if cp == 5 and calc_time ~= nil and calc_time &amp;lt; 10 then
@@ -172,10 +172,10 @@ and deadly and (hunger and rapture) or ( calc_time ~= nil and calc_time &amp;lt;
 and rangeCheck(48638, &amp;quot;target&amp;quot;)
 then
 
-	if cp &amp;gt;= 4 and envenom == nil then
+	if cp &amp;gt;= 5 and envenom == nil then
 		return true
 	end
-	if cp &amp;gt;= 4 and energy &amp;gt; 90 then
+	if cp &amp;gt;= 5 and energy &amp;gt; 80 then
 		return true
 	end
 	if cp &amp;gt;= 2 and ( snd and sndtime - GetTime() &amp;lt; 2 ) then
@@ -222,9 +222,12 @@ and energycost(51723)
 and CanAttack()
 and rangeCheck(48638, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- DarhangeR --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- I&amp;apos;m the original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: 
+-- Discord official chanel: https://discord.gg/zayx7p9
 -- VK: https://vk.com/darhanger
 -- FB: https://fb.com/darhanger
--- E-mail: civayan@gmail.com</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Racial --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if racialCheck == nil then
+-- Instagram: https://instagram.com/darhanger
+-- E-mail: civayan@gmail.com
+-- Dev Discord name: DarhangeR#6786</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Racial --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if racialCheck == nil then
 	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 6215) --Fear
 end
 if racialCheck == nil then
@@ -961,4 +964,12 @@ hunger = UnitBuffID(&amp;quot;player&amp;quot;, 63848)
 Stealthed = UnitBuffID(&amp;quot;player&amp;quot;, 1784)
 -- Other --
 cp = GetComboPoints(&amp;quot;player&amp;quot;)
-energy = UnitPower(&amp;quot;player&amp;quot;)</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></ROGUE>
+energy = UnitPower(&amp;quot;player&amp;quot;)</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Healthstone --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local stones = { 36892, 36893, 36894 }
+
+for i = 1, #stones do
+   	 if getHp(&amp;quot;player&amp;quot;) &amp;lt;= 25
+	and GetItemCount(stones[i]) &amp;gt;= 1 
+	and not ItemCooldownRemains(stones[i]) then
+       		UseItemByName(stones[i])
+	end
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></ROGUE>

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?><HUNTER><Ability><Name>-- Hotkeys --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not leftkeydown then leftkeydown = 0 end
 
+if modtime == nil then
+	modtime = 0
+end
+
 if IsLeftControlKeyDown() and GetTime() - leftkeydown &amp;gt; 1 then
 	leftkeydown = GetTime()
   	if StopRota then 
@@ -11,6 +15,8 @@ if IsLeftControlKeyDown() and GetTime() - leftkeydown &amp;gt; 1 then
 
   	end
 end
+
+if not rightkeydown then rightkeydown = 0 end
 
 if modtime == nil then
 	modtime = 0
@@ -35,6 +41,12 @@ if not AOE then
 			return false
 		end
 	end
+end
+
+if not rightkeydown then rightkeydown = 0 end
+
+if modtime == nil then
+	modtime = 0
 end
 
 if IsRightAltKeyDown() and not GetCurrentKeyBoardFocus() and GetTime() - modtime &amp;gt; 0.3 then
@@ -93,11 +105,20 @@ function IsBoss()
 		then return 
 			true 
 		end
-	end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Tranquilizing Shot</Name><Default>false</Default><SpellID>19801</SpellID><Actions></Actions><Lua>local i = 1
+	end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Tranquilizing Shot</Name><Default>false</Default><SpellID>19801</SpellID><Actions></Actions><Lua>buff = { }
+local candispel = 1
+
+for i,v in ipairs(buff) do
+ if UnitDebuffID(&amp;quot;target&amp;quot;,v) then candispel = nil end
+end
+
+local i = 1
 local buff,_,_,_,bufftype = UnitBuff(&amp;quot;target&amp;quot;, i)
 while buff do
-  if bufftype == &amp;quot;Magic&amp;quot; or buff == &amp;quot;Enrage&amp;quot;
+  if (bufftype == &amp;quot;Magic&amp;quot; or buff == &amp;quot;Enrage&amp;quot;) 
+  and candispel
   and rangeCheck(19801, &amp;quot;target&amp;quot;)
+  and not CooldownRemains(19801)
   then
     return true
   end
@@ -176,87 +197,47 @@ and rangeCheck(53209, &amp;quot;target&amp;quot;)
 and not CooldownRemains(49048)
 and PQR_IsCastingSpell(49048) == false
 and pStay()
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Racial --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 6215) --Fear
-end
-if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 8122) --Psychic scream
-end
-if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 5484) --Howl of Terror
-end
-if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 2637) --Hibernate
-end
-if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 5246) --Intimidating Shout
-end
-if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 6358) --Seduction
-end
-	 
-	 -- Undead --
-if racialCheck ~= nil then
-	if (expire - GetTime()) &amp;gt;= 4 then 
-	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Undead&amp;quot; and IsSpellKnown(7744) and not CooldownRemains(7744)
-	and CanAttack() then
-		CastSpellByID(7744)
-		return true
-		end
-	end
-end
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Racial --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local debuff = { 6215, 8122, 5484, 2637, 5246, 6358 }
+local hracial = { 33697, 20572, 33702, 26297 }
+local alracial = { 20594, 28880, 59542 }
+local urace = {&amp;quot;Undead&amp;quot;, &amp;quot;Worgen&amp;quot; }
+local hrace = { &amp;quot;Troll&amp;quot;, &amp;quot;Orc&amp;quot; }
+local alrace = { &amp;quot;Dwarf&amp;quot;, &amp;quot;Draenei&amp;quot;, &amp;quot;Naga&amp;quot; }
+local myrace = UnitRace(&amp;quot;player&amp;quot;)
 
-	-- Worgen --
-if racialCheck ~= nil then
-	if (expire - GetTime()) &amp;gt;= 4 then 
-	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Worgen&amp;quot; and IsSpellKnown(7744) and not CooldownRemains(7744)
-	and CanAttack() then
-		CastSpellByID(7744)
-		return true
-		end
-	end
+for i = 1, #debuff do
+  if UnitDebuffID(&amp;quot;player&amp;quot;,debuff[i])
+   and tContains(urace, UnitRace(&amp;quot;player&amp;quot;))
+   and IsSpellKnown(7744) 
+   and not CooldownRemains(7744)
+   and CanAttack() then
+    CastSpellByID(7744)
+    return true
+  end
 end
 
 if IsBoss()
-and CanAttack()
-then
-	--Troll Berserking--
-	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Troll&amp;quot; and IsSpellKnown(26297) and not CooldownRemains(26297) then
-		CastSpellByID(26297)
-		return true
-	end
-	--Orc Blood Fury--
-	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Orc&amp;quot; and IsSpellKnown(33697) and not CooldownRemains(33697) then 
-		CastSpellByID(33697)
-		return true
-	end
-	--Orc Blood Fury 2--
-	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Orc&amp;quot; and IsSpellKnown(20572) and not CooldownRemains(20572) then
-		CastSpellByID(20572)
-		return true
-	end
+ and CanAttack()
+ and tContains(hrace, UnitRace(&amp;quot;player&amp;quot;)) then
+  for i = 1, #hracial do
+    if IsSpellKnown(hracial[i]) 
+     and not CooldownRemains(hracial[i]) then 
+      CastSpellByID(hracial[i])
+      return true
+    end
+  end
 end
 
-if CanAttack()
-then
-	--Dwarf Stoneform--
-	if getHp(&amp;quot;player&amp;quot;) &amp;lt;= 35 
-	and UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Dwarf&amp;quot; and IsSpellKnown(20594) and not CooldownRemains(20594) then
-		CastSpellByID(20594)
-		return true
-	end
-	--Draenei--
-	if getHp(&amp;quot;player&amp;quot;) &amp;lt;= 30 
-	and UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Draenei&amp;quot; and IsSpellKnown(28880) and not CooldownRemains(28880) then
-		CastSpellByID(28880)
-		return true
-	end
-	--Naga--
-	if getHp(&amp;quot;player&amp;quot;) &amp;lt;= 30 
-	and UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Naga&amp;quot; and IsSpellKnown(59542) and not CooldownRemains(59542) then
-		CastSpellByID(59542)
-		return true
-	end
+if CanAttack() 
+and getHp(&amp;quot;player&amp;quot;) &amp;lt;= 35 
+and tContains(alrace, UnitRace(&amp;quot;player&amp;quot;)) then
+  for i = 1, #alracial do
+    if IsSpellKnown(alracial[i]) 
+     and not CooldownRemains(alracial[i]) then
+      CastSpellByID(alracial[i])
+      return true
+    end
+  end
 end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>S:Mongoose Bite</Name><Default>false</Default><SpellID>53339</SpellID><Actions></Actions><Lua>if CanAttack()
 and rangeCheck(53339, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>S:Raptor Strike</Name><Default>false</Default><SpellID>48996</SpellID><Actions></Actions><Lua>if CanAttack()
@@ -316,6 +297,8 @@ function BG()
 			 or GetZoneText() == &amp;quot;Alterac Valley&amp;quot;
 			 or GetZoneText() == &amp;quot;Eye of the Storm&amp;quot;
 			 or GetZoneText() == &amp;quot;Strand of the Ancients&amp;quot;
+			 or GetZoneText() == &amp;quot;Warsong Flag Room&amp;quot;
+			 or GetZoneText() == &amp;quot;Silverwing Hold&amp;quot;
 			 then
 				return true
 			else
@@ -333,7 +316,7 @@ function BGs()
 				return false
 			end
 	end
-
+	
 		-- Arena Check --
 function Arena ()
 	if GetZoneText() == &amp;quot;Ring of Valor&amp;quot;
@@ -420,7 +403,6 @@ if not UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)  then
 	and not UnitBuffID(&amp;quot;player&amp;quot;, 25898)
 	and not Arena()
 	or BG()
-	or BGs()
 	and NoKings == nil
 		then
 		for b = 0, 4 do
@@ -507,24 +489,9 @@ if xelperInterruptInit == nil then
 				return 1766
 			elseif playerClass == &amp;quot;SHAMAN&amp;quot; then
 				return 57994
-			elseif playerClass == &amp;quot;WARRIOR&amp;quot; then
-				local BattleStance = UnitBuffID(&amp;quot;player&amp;quot;, 2457)
-				if BattleStance ~= nil then
-					return 57755
-				else
-				local DefensiveStance = UnitBuffID(&amp;quot;player&amp;quot;, 71)
-				if DefensiveStance ~= nil then
-					return 72
-				else
-				local BerserkerStance = UnitBuffID(&amp;quot;player&amp;quot;, 2458)
-				if BerserkerStance ~= nil then
-					return 6552
-				else
-					return 57755
-					end	
-				end
-			end
-		end
+			else
+				return 0
+		end	
 	end
 end
 
@@ -574,7 +541,7 @@ if castInterruptable then
 	end
 
 	--make sure the interrupt spell is available
-	local interruptSpell = PQR_InterruptSpell()
+	local interruptSpell = 34490 
 	if interruptSpell ~= 0 then
 		
 		local interruptName = GetSpellInfo(interruptSpell)
@@ -605,7 +572,7 @@ if not PQR_InterruptStart then
 	--PQR_AddInterrupt(GetSpellInfo(16914)) --Hurricane
 
 	--This is the delay before interrupting in seconds.
-	PQR_InterruptDelay = 0.05
+	PQR_InterruptDelay = 0.15
 	
 	--This is the percentage of the cast to wait before interrupting
 	PQR_InterruptPercent = math.random(30,60)

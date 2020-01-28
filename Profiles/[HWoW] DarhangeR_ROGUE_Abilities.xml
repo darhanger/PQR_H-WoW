@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?><ROGUE><Ability><Name>-- Hotkeys --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not leftkeydown then leftkeydown = 0 end
 
+if modtime == nil then
+	modtime = 0
+end
+
 if IsLeftControlKeyDown()  and GetTime() - leftkeydown &amp;gt; 1 then
 	leftkeydown = GetTime()
   	if StopRota  then
@@ -10,6 +14,18 @@ if IsLeftControlKeyDown()  and GetTime() - leftkeydown &amp;gt; 1 then
 		PQR_WriteToChat(&amp;quot;Rotation \124cFFE61515stopped!&amp;quot;)
   	end
 end
+
+if not AOE then
+	function AOE()
+		if AoE == true then
+			return true
+		else
+			return false
+		end
+	end
+end
+
+if not rightkeydown then rightkeydown = 0 end
 
 if modtime == nil then
 	modtime = 0
@@ -26,6 +42,12 @@ if IsRightAltKeyDown() and not GetCurrentKeyBoardFocus() and GetTime() - modtime
 	end
 end
 
+if not rightkeydown then rightkeydown = 0 end
+
+if modtime == nil then
+	modtime = 0
+end
+
 if IsRightShiftKeyDown() and not GetCurrentKeyBoardFocus() and GetTime() - modtime &amp;gt; 0.3 then
 	modtime = GetTime()
 	if Stealth then
@@ -35,16 +57,6 @@ if IsRightShiftKeyDown() and not GetCurrentKeyBoardFocus() and GetTime() - modti
 		Stealth = true
 		PQR_WriteToChat(&amp;quot;Stealth + Garrote: \124cFF15E615Enabled&amp;quot;)
 	end
-end
-
-if not AOE then
-	function AOE()
-		if AoE == true then
-			return true
-		else
-			return false
-		end
-	end
 end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Start Fight --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if StopRota
 or UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)
 or IsMounted()
@@ -52,7 +64,7 @@ or UnitChannelInfo(&amp;quot;player&amp;quot;) ~= nil
 or UnitCastingInfo(&amp;quot;player&amp;quot;) ~= nil
 or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Drink&amp;quot;)
 or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Food&amp;quot;)
-then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Offensive Spells --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local buff = { 642, 45438, 31224, 23920, 33786, 19263, 21892 }
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Offensive Spells --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local buff = { 642, 45438, 31224, 23920, 33786, 19263, 21892, 40733, 97532, 41451, 40546 }
 local mob = { &amp;quot;Training Dummy&amp;quot;, &amp;quot;Raider&amp;apos;s Training Dummy&amp;quot; }
 local elite = { &amp;quot;Overlord Ror&amp;quot;, &amp;quot;Ragepaw&amp;quot;, &amp;quot;Liam&amp;quot;, &amp;quot;Galleon&amp;quot;, &amp;quot;Fire Giant&amp;quot;, &amp;quot;Hogger&amp;quot;, &amp;quot;Specimen 23&amp;quot; }
 local noaggromobs = nil
@@ -135,9 +147,9 @@ then
 	
 end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>C:Sinister Strike</Name><Default>false</Default><SpellID>48638</SpellID><Actions></Actions><Lua>if energycost(48638)
 and AOE() == false
+and cp &amp;lt; 5
 and CanAttack()
 and valid(&amp;quot;target&amp;quot;, 48638)
-and cp &amp;lt; 5
 and rangeCheck(48638, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>C:Blade Flurry</Name><Default>false</Default><SpellID>13877</SpellID><Actions></Actions><Lua>if IsBoss()
 and energycost(13877)
@@ -227,87 +239,47 @@ then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><Ca
 -- FB: https://fb.com/darhanger
 -- Instagram: https://instagram.com/darhanger
 -- E-mail: civayan@gmail.com
--- Dev Discord name: DarhangeR#6786</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Racial --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 6215) --Fear
-end
-if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 8122) --Psychic scream
-end
-if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 5484) --Howl of Terror
-end
-if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 2637) --Hibernate
-end
-if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 5246) --Intimidating Shout
-end
-if racialCheck == nil then
-	racialCheck, _, _, _, _, _, expire = UnitDebuffID(&amp;quot;player&amp;quot;, 6358) --Seduction
-end
-	 
-	 -- Undead --
-if racialCheck ~= nil then
-	if (expire - GetTime()) &amp;gt;= 4 then 
-	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Undead&amp;quot; and IsSpellKnown(7744) and not CooldownRemains(7744)
-	and CanAttack() then
-		CastSpellByID(7744)
-		return true
-		end
-	end
-end
+-- Dev Discord name: DarhangeR#6786</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- All:Racial --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local debuff = { 6215, 8122, 5484, 2637, 5246, 6358 }
+local hracial = { 33697, 20572, 33702, 26297 }
+local alracial = { 20594, 28880, 59542 }
+local urace = {&amp;quot;Undead&amp;quot;, &amp;quot;Worgen&amp;quot; }
+local hrace = { &amp;quot;Troll&amp;quot;, &amp;quot;Orc&amp;quot; }
+local alrace = { &amp;quot;Dwarf&amp;quot;, &amp;quot;Draenei&amp;quot;, &amp;quot;Naga&amp;quot; }
+local myrace = UnitRace(&amp;quot;player&amp;quot;)
 
-	-- Worgen --
-if racialCheck ~= nil then
-	if (expire - GetTime()) &amp;gt;= 4 then 
-	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Worgen&amp;quot; and IsSpellKnown(7744) and not CooldownRemains(7744)
-	and CanAttack() then
-		CastSpellByID(7744)
-		return true
-		end
-	end
+for i = 1, #debuff do
+  if UnitDebuffID(&amp;quot;player&amp;quot;,debuff[i])
+   and tContains(urace, UnitRace(&amp;quot;player&amp;quot;))
+   and IsSpellKnown(7744) 
+   and not CooldownRemains(7744)
+   and CanAttack() then
+    CastSpellByID(7744)
+    return true
+  end
 end
 
 if IsBoss()
-and CanAttack()
-then
-	--Troll Berserking--
-	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Troll&amp;quot; and IsSpellKnown(26297) and not CooldownRemains(26297) then
-		CastSpellByID(26297)
-		return true
-	end
-	--Orc Blood Fury--
-	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Orc&amp;quot; and IsSpellKnown(33697) and not CooldownRemains(33697) then 
-		CastSpellByID(33697)
-		return true
-	end
-	--Orc Blood Fury 2--
-	if UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Orc&amp;quot; and IsSpellKnown(20572) and not CooldownRemains(20572) then
-		CastSpellByID(20572)
-		return true
-	end
+ and CanAttack()
+ and tContains(hrace, UnitRace(&amp;quot;player&amp;quot;)) then
+  for i = 1, #hracial do
+    if IsSpellKnown(hracial[i]) 
+     and not CooldownRemains(hracial[i]) then 
+      CastSpellByID(hracial[i])
+      return true
+    end
+  end
 end
 
-if CanAttack()
-then
-	--Dwarf Stoneform--
-	if getHp(&amp;quot;player&amp;quot;) &amp;lt;= 35 
-	and UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Dwarf&amp;quot; and IsSpellKnown(20594) and not CooldownRemains(20594) then
-		CastSpellByID(20594)
-		return true
-	end
-	--Draenei--
-	if getHp(&amp;quot;player&amp;quot;) &amp;lt;= 30 
-	and UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Draenei&amp;quot; and IsSpellKnown(28880) and not CooldownRemains(28880) then
-		CastSpellByID(28880)
-		return true
-	end
-	--Naga--
-	if getHp(&amp;quot;player&amp;quot;) &amp;lt;= 30 
-	and UnitRace(&amp;quot;player&amp;quot;) == &amp;quot;Naga&amp;quot; and IsSpellKnown(59542) and not CooldownRemains(59542) then
-		CastSpellByID(59542)
-		return true
-	end
+if CanAttack() 
+and getHp(&amp;quot;player&amp;quot;) &amp;lt;= 35 
+and tContains(alrace, UnitRace(&amp;quot;player&amp;quot;)) then
+  for i = 1, #alracial do
+    if IsSpellKnown(alracial[i]) 
+     and not CooldownRemains(alracial[i]) then
+      CastSpellByID(alracial[i])
+      return true
+    end
+  end
 end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Stats Buffs / Flask --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- Check Druids in party/raid --   
 local group = &amp;quot;party&amp;quot;
 local members = GetNumPartyMembers()
@@ -339,6 +311,8 @@ function BG()
 			 or GetZoneText() == &amp;quot;Alterac Valley&amp;quot;
 			 or GetZoneText() == &amp;quot;Eye of the Storm&amp;quot;
 			 or GetZoneText() == &amp;quot;Strand of the Ancients&amp;quot;
+			 or GetZoneText() == &amp;quot;Warsong Flag Room&amp;quot;
+			 or GetZoneText() == &amp;quot;Silverwing Hold&amp;quot;
 			 then
 				return true
 			else
@@ -356,7 +330,7 @@ function BGs()
 				return false
 			end
 	end
-
+	
 		-- Arena Check --
 function Arena ()
 	if GetZoneText() == &amp;quot;Ring of Valor&amp;quot;
@@ -443,7 +417,6 @@ if not UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)  then
 	and not UnitBuffID(&amp;quot;player&amp;quot;, 25898)
 	and not Arena()
 	or BG()
-	or BGs()
 	and NoKings == nil
 		then
 		for b = 0, 4 do
@@ -502,11 +475,60 @@ end
 	
 	-- Lesser Flask of Resistance / 50 To All Resistance --
 	if DPS()
-	and not UnitBuffID(&amp;quot;player&amp;quot;, 62380) 
+	and not UnitBuffID(&amp;quot;player&amp;quot;, 62380)
+	and not UnitBuffID(&amp;quot;player&amp;quot;, 1784)	
 	and not Arena() then
 		for b = 0, 4 do
 			for s = 1, GetContainerNumSlots(b) do
 				if GetContainerItemID(b, s) == 44939 then
+					RunMacroText(&amp;quot;/use &amp;quot;..b..&amp;quot; &amp;quot;..s)
+					return true	
+				end
+			end
+		end
+	end
+
+	-- Elixir of Detect Lesser Invisibility / Detecting Lesser Invisbility --
+	if DPS()
+	and not UnitBuffID(&amp;quot;player&amp;quot;, 6512) 
+	and not UnitBuffID(&amp;quot;player&amp;quot;, 1784)	
+	and ( BG() or BGs() )
+	and not Arena() then
+		for b = 0, 4 do
+			for s = 1, GetContainerNumSlots(b) do
+				if GetContainerItemID(b, s) == 3828 then
+					RunMacroText(&amp;quot;/use &amp;quot;..b..&amp;quot; &amp;quot;..s)
+					return true	
+				end
+			end
+		end
+	end
+	
+	-- Elixir of the Searching Eye / Increased Stealth detection --
+	if DPS()
+	and not UnitBuffID(&amp;quot;player&amp;quot;, 28496)
+	and not UnitBuffID(&amp;quot;player&amp;quot;, 1784)		
+	and ( BG() or BGs() )
+	and not Arena() then
+		for b = 0, 4 do
+			for s = 1, GetContainerNumSlots(b) do
+				if GetContainerItemID(b, s) == 22830 then
+					RunMacroText(&amp;quot;/use &amp;quot;..b..&amp;quot; &amp;quot;..s)
+					return true	
+				end
+			end
+		end
+	end
+	
+	-- Elixir of Camouflage / Increased Stealth detection --
+	if DPS()
+	and not UnitBuffID(&amp;quot;player&amp;quot;, 28489)
+	and not UnitBuffID(&amp;quot;player&amp;quot;, 1784)		
+	and ( BG() or BGs() )
+	and not Arena() then
+		for b = 0, 4 do
+			for s = 1, GetContainerNumSlots(b) do
+				if GetContainerItemID(b, s) == 22823 then
 					RunMacroText(&amp;quot;/use &amp;quot;..b..&amp;quot; &amp;quot;..s)
 					return true	
 				end
@@ -530,24 +552,9 @@ if xelperInterruptInit == nil then
 				return 1766
 			elseif playerClass == &amp;quot;SHAMAN&amp;quot; then
 				return 57994
-			elseif playerClass == &amp;quot;WARRIOR&amp;quot; then
-				local BattleStance = UnitBuffID(&amp;quot;player&amp;quot;, 2457)
-				if BattleStance ~= nil then
-					return 57755
-				else
-				local DefensiveStance = UnitBuffID(&amp;quot;player&amp;quot;, 71)
-				if DefensiveStance ~= nil then
-					return 72
-				else
-				local BerserkerStance = UnitBuffID(&amp;quot;player&amp;quot;, 2458)
-				if BerserkerStance ~= nil then
-					return 6552
-				else
-					return 57755
-					end	
-				end
-			end
-		end
+			else
+				return 0
+		end	
 	end
 end
 
@@ -597,7 +604,7 @@ if castInterruptable then
 	end
 
 	--make sure the interrupt spell is available
-	local interruptSpell = PQR_InterruptSpell()
+	local interruptSpell = 1766 
 	if interruptSpell ~= 0 then
 		
 		local interruptName = GetSpellInfo(interruptSpell)
@@ -628,7 +635,7 @@ if not PQR_InterruptStart then
 	--PQR_AddInterrupt(GetSpellInfo(16914)) --Hurricane
 
 	--This is the delay before interrupting in seconds.
-	PQR_InterruptDelay = 0.05
+	PQR_InterruptDelay = 0.15
 	
 	--This is the percentage of the cast to wait before interrupting
 	PQR_InterruptPercent = math.random(30,60)
@@ -657,7 +664,7 @@ if not spells then
 		&amp;quot;Cyclone&amp;quot;,
 		&amp;quot;Polymorph&amp;quot;
 		}
-end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Function --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not functionsloaded then
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Function --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not functionsloaded then
 
 		-- Glyph Check -- 
 	glyph = function(glyphID)
@@ -865,6 +872,37 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False
 		end 
 	end
 
+		-- Expose Armor Pvp --
+	eapvp = nil
+	function eapvp()
+	local _, targetClass = UnitClass(&amp;quot;target&amp;quot;)
+		if ( targetClass == &amp;quot;DEATHKNIGHT&amp;quot;
+		or targetClass == &amp;quot;PALADIN&amp;quot;
+		or targetClass == &amp;quot;WARRIOR&amp;quot;
+		or targetClass == &amp;quot;SHAMAN&amp;quot;
+		or UnitBuffID(&amp;quot;target&amp;quot;, 9634)
+		or UnitBuffID(&amp;quot;target&amp;quot;, 24858)
+		or UnitBuffID(&amp;quot;target&amp;quot;, 33891)
+		or UnitBuffID(&amp;quot;target&amp;quot;, 47241) ) then
+			return true
+		end
+	end
+
+		-- Ghostly Strike Pvp --
+	GStrike = nil
+	function GStrike()
+	local _, targetClass = UnitClass(&amp;quot;target&amp;quot;)
+		if ( targetClass == &amp;quot;DEATHKNIGHT&amp;quot;
+		or targetClass == &amp;quot;PALADIN&amp;quot;
+		or targetClass == &amp;quot;WARRIOR&amp;quot;
+		or targetClass == &amp;quot;SHAMAN&amp;quot;
+		or targetClass == &amp;quot;ROGUE&amp;quot;
+		or UnitBuffID(&amp;quot;target&amp;quot;, 9634)
+		or UnitBuffID(&amp;quot;target&amp;quot;, 768) ) then
+			return true
+		end
+	end
+
 		-- Finish move --
 	spender = nil
 	function spender(type)
@@ -917,11 +955,110 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False
 	end
 
 functionsloaded = true
+end
+
+        --- Behind Target Check ---
+if not FrameCreated then
+
+	NotBehindTarget = 0
+
+	local DarhangeR = CreateFrame(&amp;quot;Frame&amp;quot;)
+	DarhangeR:SetScript(&amp;quot;OnEvent&amp;quot;, function(self,event,...)
+		if event == &amp;quot;UI_ERROR_MESSAGE&amp;quot; then
+			local msg = ...
+			if msg:find(&amp;quot;behind&amp;quot;) ~= nil then
+				NotBehindTarget = GetTime()
+				PQR_WriteToChat(&amp;quot;|cff00ffffNot behind the target for Shred! |r&amp;quot;)
+			end
+			if msg:find(&amp;quot;Target not in&amp;quot;) ~= nil and Healing == true then
+				CantHeal = GetTime()
+			end
+		end
+		if event == &amp;quot;UNIT_SPELLCAST_SENT&amp;quot; then
+			local unit, spell = ...
+			if unit == &amp;quot;player&amp;quot; and spell == GetSpellInfo(61384) and CheckSpell == 61384 then
+				SpellSuccess = true
+			end
+		end
+		if event == &amp;quot;CHAT_MSG_WHISPER&amp;quot; then
+			local msg, sender = ...
+			for k = 1, #toons do
+				--Follow toon
+				if sender == toons[k] and string.find(msg, &amp;quot;follow&amp;quot;) then
+					RunMacroText(&amp;quot;/follow &amp;quot;..sender)
+				end
+			end
+		end
+		if event == &amp;quot;COMBAT_LOG_EVENT_UNFILTERED&amp;quot; then
+			local _, subevent, _, source, _, _, dest, _, spellID, spellName, _, amount, stolen, absorbed, resist = ...
+			if source == UnitName(&amp;quot;player&amp;quot;) then
+				if subevent == &amp;quot;SPELL_CAST_SUCCESS&amp;quot; then
+					if spellID == CheckSpell then
+						SpellSuccess = true
+					end
+					if spellID == 2782 then
+						PQR_WriteToChat(&amp;quot;Just dispelled &amp;quot;..dest)
+					end
+				end
+				--Check for Clearcasting
+				if subevent == &amp;quot;SPELL_AURA_APPLIED&amp;quot; or subevent == &amp;quot;SPELL_AURA_REFRESH&amp;quot; then
+					if spellID == 16870 then
+						GotClearCast = GetTime()
+					end
+				end
+			end
+			if source == &amp;quot;The Curator&amp;quot; then
+				if subevent == &amp;quot;UNIT_DIED&amp;quot; then
+					CuratorDebuff = nil
+				end
+				if subevent == &amp;quot;SPELL_AURA_APPLIED&amp;quot; then
+					if spellID == 21892 then
+						PQR_WriteToChat(&amp;quot;The Curator just applied Arcane Protection&amp;quot;)
+						CuratorDebuff = GetTime()
+					end
+				end
+			end
+		end
+		--Spell casting events
+		if event == &amp;quot;UNIT_SPELLCAST_START&amp;quot; then
+			local unit, spell = ...
+			if unit == &amp;quot;player&amp;quot; then
+				if spell == GetSpellInfo(32375) and CheckSpell == 32375 then
+					SpellSuccess = true
+				end
+				if spell == GetSpellInfo(33786) and CheckSpell == 33786 then
+					SpellSuccess = true
+				end
+				if spell == GetSpellInfo(61384) and CheckSpell == 61384 then
+					SpellSuccess = true
+				end
+			end
+		end
+		if event == &amp;quot;ZONE_CHANGED_NEW_AREA&amp;quot; then
+			zoned = GetTime()
+			CheckSpell = 0
+		end
+		if event == &amp;quot;PLAYER_DEAD&amp;quot; then
+			CheckSpell = 0
+		end
+	end)
+	
+	DarhangeR:RegisterEvent(&amp;quot;UI_ERROR_MESSAGE&amp;quot;)
+
+	FrameCreated = true
+
+	function NotBehindCheck()
+		if GetTime() - NotBehindTarget &amp;lt; 4 then
+			return true
+		else
+			return false
+		end
+	end
 end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>S:Hemorrhage</Name><Default>false</Default><SpellID>48660</SpellID><Actions></Actions><Lua>if energycost(48660)
 and AOE() == false
+and cp &amp;lt; 5
 and CanAttack()
 and valid(&amp;quot;target&amp;quot;, 48660)
-and cp &amp;lt; 5
 and rangeCheck(48660, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>S:Premeditation + Shadowstep</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if Stealth == true
 and Stealthed
@@ -972,4 +1109,91 @@ for i = 1, #stones do
 	and not ItemCooldownRemains(stones[i]) then
        		UseItemByName(stones[i])
 	end
-end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></ROGUE>
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Poison (PvP)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if applypoison and GetTime() - applypoison &amp;gt; 4 then applypoison = nil end
+
+if UnitAffectingCombat(&amp;quot;player&amp;quot;) == nil and applypoison == nil then
+
+local activepoisons = { &amp;quot;43235&amp;quot;, &amp;quot;43233&amp;quot; }
+local _,poisonMH,_,_,poisonOH,_,_,poisonTR = GetWeaponEnchantInfo()
+applypoison = GetTime()
+
+if poisonMH == nil then 
+  UseItemByName(activepoisons[1],&amp;quot;player&amp;quot;) 
+	if SpellIsTargeting() then PickupInventoryItem(16) end
+elseif poisonOH == nil then
+  UseItemByName(activepoisons[2],&amp;quot;player&amp;quot;) 
+	if SpellIsTargeting() then PickupInventoryItem(17) end
+	end
+end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Expose Armor (PvP)</Name><Default>false</Default><SpellID>8647</SpellID><Actions></Actions><Lua>local ea,_,_,_,_,_,eatime = UnitDebuffID(&amp;quot;target&amp;quot;, 8647)
+
+if eapvp()
+and CanAttack()
+and valid(&amp;quot;target&amp;quot;, 8647)
+and rangeCheck(48638, &amp;quot;target&amp;quot;)
+and energycost(8647)
+and AOE() == false
+and cp &amp;gt; 4
+and ( ea == nil
+or (ea and eatime - GetTime() &amp;lt; 2 ) )
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Kidney Shot (PvP)</Name><Default>false</Default><SpellID>8643</SpellID><Actions></Actions><Lua>local snd, _, _, _, _, _, sndtime = UnitBuffID(&amp;quot;player&amp;quot;, 6774)
+
+if energycost(8643)
+and AOE() == false
+and valid(&amp;quot;target&amp;quot;, 8643)
+and not CooldownRemains(8643)
+and CanAttack()
+and (hunger and rapture) or ( calc_time ~= nil and calc_time &amp;lt;= 15 )
+and rangeCheck(48638, &amp;quot;target&amp;quot;)
+then
+	if cp &amp;gt;= 5 then
+		return true
+	end
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Cheap Shot (PvP)</Name><Default>false</Default><SpellID>1833</SpellID><Actions></Actions><Lua>if Stealth == true
+and Stealthed 
+and CanAttack()
+and rangeCheck(1833, &amp;quot;target&amp;quot;)
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>A:Dismantle</Name><Default>false</Default><SpellID>51722</SpellID><Actions></Actions><Lua>local buff = { 46924, 13750, 13877, 49016, 12292, 31884 }
+
+for i,v in ipairs(buff) do
+ if UnitBuffID(&amp;quot;target&amp;quot;,v)
+  and CanAttack()
+  and not CooldownRemains(51722) 
+  and rangeCheck(51722, &amp;quot;target&amp;quot;)
+  then return true end   
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Trinket 2 (PvP)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,14)
+
+if cd == 0 and havecd == 1
+and getHp(&amp;quot;player&amp;quot;) &amp;lt;= 20
+and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
+and UnitCastingInfo(&amp;quot;player&amp;quot;) == nil
+and inCombat()
+and CanAttack()
+then 
+	UseInventoryItem(14) 
+  return true
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>C:Backstab</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if cp &amp;lt; 5
+and AOE() == false
+and CanAttack()
+and rangeCheck(48660, &amp;quot;target&amp;quot;) then
+	if NotBehindCheck() == false
+	and valid(&amp;quot;target&amp;quot;, 48657)
+	and UnitDebuffID(&amp;quot;target&amp;quot;, 8643) then
+		CastSpellByID(48657)
+		return true
+	elseif NotBehindCheck() == true 
+	and valid(&amp;quot;target&amp;quot;, 48660) then
+		CastSpellByID(48660)
+		return true
+	end
+end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>S:Ghostly Strike</Name><Default>false</Default><SpellID>14278</SpellID><Actions></Actions><Lua>if GStrike() 
+and getHp(&amp;quot;player&amp;quot;) &amp;lt;= 40
+and energycost(14278)
+and CanAttack()
+and valid(&amp;quot;target&amp;quot;, 14278)
+and rangeCheck(14278, &amp;quot;target&amp;quot;)
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>C:Evasion</Name><Default>false</Default><SpellID>26669</SpellID><Actions></Actions><Lua>if GStrike() 
+and getHp(&amp;quot;player&amp;quot;) &amp;lt;= 25
+and CanAttack()
+and not CooldownRemains(26669)
+and rangeCheck(14278, &amp;quot;target&amp;quot;)
+then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability></ROGUE>

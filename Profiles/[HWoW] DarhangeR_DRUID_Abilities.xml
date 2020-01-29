@@ -505,130 +505,7 @@ then eclipse = &amp;quot;lunar&amp;quot; end</Lua><RecastDelay>0</RecastDelay><T
 	end
 		
 end
-HealEngine()
-
-    -- Druid Stuff -- 
-if not FrameCreated then
-
-	NotBehindTarget = 0
-
-	local DarhangeR = CreateFrame(&amp;quot;Frame&amp;quot;)
-	DarhangeR:SetScript(&amp;quot;OnEvent&amp;quot;, function(self,event,...)
-		if event == &amp;quot;UI_ERROR_MESSAGE&amp;quot; then
-			local msg = ...
-			if msg:find(&amp;quot;behind&amp;quot;) ~= nil then
-				NotBehindTarget = GetTime()
-				PQR_WriteToChat(&amp;quot;|cff00ffffNot behind the target for Shred! |r&amp;quot;)
-			end
-			if msg:find(&amp;quot;Target not in&amp;quot;) ~= nil and Healing == true then
-				CantHeal = GetTime()
-			end
-		end
-		if event == &amp;quot;UNIT_SPELLCAST_SENT&amp;quot; then
-			local unit, spell = ...
-			if unit == &amp;quot;player&amp;quot; and spell == GetSpellInfo(61384) and CheckSpell == 61384 then
-				SpellSuccess = true
-			end
-		end
-		if event == &amp;quot;CHAT_MSG_WHISPER&amp;quot; then
-			local msg, sender = ...
-			for k = 1, #toons do
-				--Follow toon
-				if sender == toons[k] and string.find(msg, &amp;quot;follow&amp;quot;) then
-					RunMacroText(&amp;quot;/follow &amp;quot;..sender)
-				end
-			end
-		end
-		if event == &amp;quot;COMBAT_LOG_EVENT_UNFILTERED&amp;quot; then
-			local _, subevent, _, source, _, _, dest, _, spellID, spellName, _, amount, stolen, absorbed, resist = ...
-			if source == UnitName(&amp;quot;player&amp;quot;) then
-				if subevent == &amp;quot;SPELL_CAST_SUCCESS&amp;quot; then
-					if spellID == CheckSpell then
-						SpellSuccess = true
-					end
-					if spellID == 2782 then
-						PQR_WriteToChat(&amp;quot;Just dispelled &amp;quot;..dest)
-					end
-				end
-				--Check for Clearcasting
-				if subevent == &amp;quot;SPELL_AURA_APPLIED&amp;quot; or subevent == &amp;quot;SPELL_AURA_REFRESH&amp;quot; then
-					if spellID == 16870 then
-						GotClearCast = GetTime()
-					end
-				end
-			end
-			if source == &amp;quot;The Curator&amp;quot; then
-				if subevent == &amp;quot;UNIT_DIED&amp;quot; then
-					CuratorDebuff = nil
-				end
-				if subevent == &amp;quot;SPELL_AURA_APPLIED&amp;quot; then
-					if spellID == 21892 then
-						PQR_WriteToChat(&amp;quot;The Curator just applied Arcane Protection&amp;quot;)
-						CuratorDebuff = GetTime()
-					end
-				end
-			end
-		end
-		--Spell casting events
-		if event == &amp;quot;UNIT_SPELLCAST_START&amp;quot; then
-			local unit, spell = ...
-			if unit == &amp;quot;player&amp;quot; then
-				if spell == GetSpellInfo(32375) and CheckSpell == 32375 then
-					SpellSuccess = true
-				end
-				if spell == GetSpellInfo(33786) and CheckSpell == 33786 then
-					SpellSuccess = true
-				end
-				if spell == GetSpellInfo(61384) and CheckSpell == 61384 then
-					SpellSuccess = true
-				end
-			end
-		end
-		if event == &amp;quot;ZONE_CHANGED_NEW_AREA&amp;quot; then
-			zoned = GetTime()
-			CheckSpell = 0
-		end
-		if event == &amp;quot;PLAYER_DEAD&amp;quot; then
-			CheckSpell = 0
-		end
-	end)
-	
-	DarhangeR:RegisterEvent(&amp;quot;UI_ERROR_MESSAGE&amp;quot;)
-
-
-	FrameCreated = true
-
-	function Wait()
-		if UnitExists(&amp;quot;target&amp;quot;) and UnitName(&amp;quot;target&amp;quot;) == &amp;quot;The Curator&amp;quot; then
-			if UnitCastingInfo(&amp;quot;target&amp;quot;) == &amp;quot;Evocation&amp;quot; or UnitChannelInfo(&amp;quot;target&amp;quot;) == &amp;quot;Evocation&amp;quot; then
-				return false
-			end
- 			 if CuratorDebuff ~= nil and GetTime() - CuratorDebuff &amp;gt; 12 and GetTime() - CuratorDebuff &amp;lt; 17 then
-				return true
-			else
-				return false
-			end
-		end
-		return false
-	end
-
-	function RecentClearCast()
-		if GetTime() - GotClearCast &amp;lt; .5 then
-			return true
-		else
-			return false
-		end
-	end
-
-	function NotBehindCheck()
-		if GetTime() - NotBehindTarget &amp;lt; 4 or UnitName(&amp;quot;target&amp;quot;) == &amp;quot;The Curator&amp;quot; then
-			return true
-		else
-			return false
-		end
-	end
-
-end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>B:Moonkin Form</Name><Default>false</Default><SpellID>24858</SpellID><Actions></Actions><Lua>if not moonkin
+HealEngine()</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>B:Moonkin Form</Name><Default>false</Default><SpellID>24858</SpellID><Actions></Actions><Lua>if not moonkin
 and not dash
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>B:Moonfire</Name><Default>false</Default><SpellID>48463</SpellID><Actions></Actions><Lua>local mfire, _, _, _, _, _, timer = UnitDebuffID(&amp;quot;target&amp;quot;, 48463, &amp;quot;player&amp;quot;)
 
@@ -769,15 +646,16 @@ and rangeCheck(48574, &amp;quot;target&amp;quot;)
 	--CastSpellByID(48574)
 	return true
 end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Shred</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if cp &amp;lt; 5
-and energycost(48572)
 and ( mangle or CantMangle() == true )
 and rake
 and CanAttack()
 then
-	if NotBehindCheck() == false then
+	if not PQR_NotBehindTarget()
+	and energycost(48572) then
 		CastSpellByID(48572)
 		return true
-	elseif NotBehindCheck() == true then
+	elseif PQR_NotBehindTarget()
+	and energycost(48566) then
 		CastSpellByID(48566)
 		return true
 	end
@@ -843,7 +721,7 @@ and energycost(48566)
 and AOE() == false
 and ( mangle == nil
 or time - GetTime() &amp;lt; 1 )
-and rangeCheck(48574, &amp;quot;target&amp;quot;)
+and rangeCheck(48566, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>R:Tranquility</Name><Default>false</Default><SpellID>48447</SpellID><Actions></Actions><Lua>if lowhpmembers &amp;gt;= 8
 and not CooldownRemains(48447)
 and PQR_IsCastingSpell(48447) == false
@@ -1479,7 +1357,6 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 	function _castSpell(spellid,tar)
 		if UnitCastingInfo(&amp;quot;player&amp;quot;) == nil
 		and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
-		--and IsPlayerSpell(spellid) == true
 		and cdRemains(spellid) == 0
 		then
 			if tar ~= nil
@@ -1502,130 +1379,7 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 	end
 		
 end
-HealEngine()
-
-    -- Druid Stuff --
-if not FrameCreated then
-
-	NotBehindTarget = 0
-
-	local DarhangeR = CreateFrame(&amp;quot;Frame&amp;quot;)
-	DarhangeR:SetScript(&amp;quot;OnEvent&amp;quot;, function(self,event,...)
-		if event == &amp;quot;UI_ERROR_MESSAGE&amp;quot; then
-			local msg = ...
-			if msg:find(&amp;quot;behind&amp;quot;) ~= nil then
-				NotBehindTarget = GetTime()
-				PQR_WriteToChat(&amp;quot;|cff00ffffNot behind the target for Shred! |r&amp;quot;)
-			end
-			if msg:find(&amp;quot;Target not in&amp;quot;) ~= nil and Healing == true then
-				CantHeal = GetTime()
-			end
-		end
-		if event == &amp;quot;UNIT_SPELLCAST_SENT&amp;quot; then
-			local unit, spell = ...
-			if unit == &amp;quot;player&amp;quot; and spell == GetSpellInfo(61384) and CheckSpell == 61384 then
-				SpellSuccess = true
-			end
-		end
-		if event == &amp;quot;CHAT_MSG_WHISPER&amp;quot; then
-			local msg, sender = ...
-			for k = 1, #toons do
-				--Follow toon
-				if sender == toons[k] and string.find(msg, &amp;quot;follow&amp;quot;) then
-					RunMacroText(&amp;quot;/follow &amp;quot;..sender)
-				end
-			end
-		end
-		if event == &amp;quot;COMBAT_LOG_EVENT_UNFILTERED&amp;quot; then
-			local _, subevent, _, source, _, _, dest, _, spellID, spellName, _, amount, stolen, absorbed, resist = ...
-			if source == UnitName(&amp;quot;player&amp;quot;) then
-				if subevent == &amp;quot;SPELL_CAST_SUCCESS&amp;quot; then
-					if spellID == CheckSpell then
-						SpellSuccess = true
-					end
-					if spellID == 2782 then
-						PQR_WriteToChat(&amp;quot;Just dispelled &amp;quot;..dest)
-					end
-				end
-				--Check for Clearcasting
-				if subevent == &amp;quot;SPELL_AURA_APPLIED&amp;quot; or subevent == &amp;quot;SPELL_AURA_REFRESH&amp;quot; then
-					if spellID == 16870 then
-						GotClearCast = GetTime()
-					end
-				end
-			end
-			if source == &amp;quot;The Curator&amp;quot; then
-				if subevent == &amp;quot;UNIT_DIED&amp;quot; then
-					CuratorDebuff = nil
-				end
-				if subevent == &amp;quot;SPELL_AURA_APPLIED&amp;quot; then
-					if spellID == 21892 then
-						PQR_WriteToChat(&amp;quot;The Curator just applied Arcane Protection&amp;quot;)
-						CuratorDebuff = GetTime()
-					end
-				end
-			end
-		end
-		--Spell casting events
-		if event == &amp;quot;UNIT_SPELLCAST_START&amp;quot; then
-			local unit, spell = ...
-			if unit == &amp;quot;player&amp;quot; then
-				if spell == GetSpellInfo(32375) and CheckSpell == 32375 then
-					SpellSuccess = true
-				end
-				if spell == GetSpellInfo(33786) and CheckSpell == 33786 then
-					SpellSuccess = true
-				end
-				if spell == GetSpellInfo(61384) and CheckSpell == 61384 then
-					SpellSuccess = true
-				end
-			end
-		end
-		if event == &amp;quot;ZONE_CHANGED_NEW_AREA&amp;quot; then
-			zoned = GetTime()
-			CheckSpell = 0
-		end
-		if event == &amp;quot;PLAYER_DEAD&amp;quot; then
-			CheckSpell = 0
-		end
-	end)
-	
-	DarhangeR:RegisterEvent(&amp;quot;UI_ERROR_MESSAGE&amp;quot;)
-
-
-	FrameCreated = true
-
-	function Wait()
-		if UnitExists(&amp;quot;target&amp;quot;) and UnitName(&amp;quot;target&amp;quot;) == &amp;quot;The Curator&amp;quot; then
-			if UnitCastingInfo(&amp;quot;target&amp;quot;) == &amp;quot;Evocation&amp;quot; or UnitChannelInfo(&amp;quot;target&amp;quot;) == &amp;quot;Evocation&amp;quot; then
-				return false
-			end
- 			 if CuratorDebuff ~= nil and GetTime() - CuratorDebuff &amp;gt; 12 and GetTime() - CuratorDebuff &amp;lt; 17 then
-				return true
-			else
-				return false
-			end
-		end
-		return false
-	end
-
-	function RecentClearCast()
-		if GetTime() - GotClearCast &amp;lt; .5 then
-			return true
-		else
-			return false
-		end
-	end
-
-	function NotBehindCheck()
-		if GetTime() - NotBehindTarget &amp;lt; 4 or UnitName(&amp;quot;target&amp;quot;) == &amp;quot;The Curator&amp;quot; then
-			return true
-		else
-			return false
-		end
-	end
-
-end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:-- Hotkeys --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not leftkeydown then leftkeydown = 0 end
+HealEngine()</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:-- Hotkeys --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not leftkeydown then leftkeydown = 0 end
 
 if modtime == nil then
 	modtime = 0
@@ -1670,17 +1424,19 @@ if IsRightAltKeyDown() and not GetCurrentKeyBoardFocus() and GetTime() - modtime
 end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>F:Shred (PRO)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local savage,_,_,_,_,_, savagetime = UnitBuffID(&amp;quot;player&amp;quot;, 52610)
 local rake, _, _, _, _, _, raketime = UnitDebuffID(&amp;quot;target&amp;quot;, 48574, &amp;quot;player&amp;quot;)
 
-if energycost(48572) and ( mangle or CantMangle() == true )
-and CanAttack()
+if CanAttack()
+and ( mangle or CantMangle() == true )
 and rangeCheck(48574, &amp;quot;target&amp;quot;)
 and ( ( cp &amp;lt;= 4 or rip(0.8) ) and rake and raketime - GetTime() &amp;gt;= 0.4 and ( energy &amp;gt;= 80 or berserk == 50334 or ( CooldownRemains(50213) == false or CooldownRemains(50213) &amp;lt;= 3 ) )
 or ( calc_time ~= nil and calc_time &amp;lt;= 9 )
 or ( cp &amp;lt;= 0 and ( savage == nil or ( savage and savagetime - GetTime() &amp;lt;= 2 ) ) ) )
 then
-	if NotBehindCheck() == false then
+	if not PQR_NotBehindTarget()
+	and energycost(48572) then
 		CastSpellByID(48572)
 		return true
-	elseif NotBehindCheck() == true then
+	elseif PQR_NotBehindTarget()
+	and energycost(48566) then
 		CastSpellByID(48566)
 		return true
 	end

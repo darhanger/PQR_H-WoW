@@ -955,110 +955,10 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 	end
 
 functionsloaded = true
-end
-
-        --- Behind Target Check ---
-if not FrameCreated then
-
-	NotBehindTarget = 0
-
-	local DarhangeR = CreateFrame(&amp;quot;Frame&amp;quot;)
-	DarhangeR:SetScript(&amp;quot;OnEvent&amp;quot;, function(self,event,...)
-		if event == &amp;quot;UI_ERROR_MESSAGE&amp;quot; then
-			local msg = ...
-			if msg:find(&amp;quot;behind&amp;quot;) ~= nil then
-				NotBehindTarget = GetTime()
-				PQR_WriteToChat(&amp;quot;|cff00ffffNot behind the target for Shred! |r&amp;quot;)
-			end
-			if msg:find(&amp;quot;Target not in&amp;quot;) ~= nil and Healing == true then
-				CantHeal = GetTime()
-			end
-		end
-		if event == &amp;quot;UNIT_SPELLCAST_SENT&amp;quot; then
-			local unit, spell = ...
-			if unit == &amp;quot;player&amp;quot; and spell == GetSpellInfo(61384) and CheckSpell == 61384 then
-				SpellSuccess = true
-			end
-		end
-		if event == &amp;quot;CHAT_MSG_WHISPER&amp;quot; then
-			local msg, sender = ...
-			for k = 1, #toons do
-				--Follow toon
-				if sender == toons[k] and string.find(msg, &amp;quot;follow&amp;quot;) then
-					RunMacroText(&amp;quot;/follow &amp;quot;..sender)
-				end
-			end
-		end
-		if event == &amp;quot;COMBAT_LOG_EVENT_UNFILTERED&amp;quot; then
-			local _, subevent, _, source, _, _, dest, _, spellID, spellName, _, amount, stolen, absorbed, resist = ...
-			if source == UnitName(&amp;quot;player&amp;quot;) then
-				if subevent == &amp;quot;SPELL_CAST_SUCCESS&amp;quot; then
-					if spellID == CheckSpell then
-						SpellSuccess = true
-					end
-					if spellID == 2782 then
-						PQR_WriteToChat(&amp;quot;Just dispelled &amp;quot;..dest)
-					end
-				end
-				--Check for Clearcasting
-				if subevent == &amp;quot;SPELL_AURA_APPLIED&amp;quot; or subevent == &amp;quot;SPELL_AURA_REFRESH&amp;quot; then
-					if spellID == 16870 then
-						GotClearCast = GetTime()
-					end
-				end
-			end
-			if source == &amp;quot;The Curator&amp;quot; then
-				if subevent == &amp;quot;UNIT_DIED&amp;quot; then
-					CuratorDebuff = nil
-				end
-				if subevent == &amp;quot;SPELL_AURA_APPLIED&amp;quot; then
-					if spellID == 21892 then
-						PQR_WriteToChat(&amp;quot;The Curator just applied Arcane Protection&amp;quot;)
-						CuratorDebuff = GetTime()
-					end
-				end
-			end
-		end
-		--Spell casting events
-		if event == &amp;quot;UNIT_SPELLCAST_START&amp;quot; then
-			local unit, spell = ...
-			if unit == &amp;quot;player&amp;quot; then
-				if spell == GetSpellInfo(32375) and CheckSpell == 32375 then
-					SpellSuccess = true
-				end
-				if spell == GetSpellInfo(33786) and CheckSpell == 33786 then
-					SpellSuccess = true
-				end
-				if spell == GetSpellInfo(61384) and CheckSpell == 61384 then
-					SpellSuccess = true
-				end
-			end
-		end
-		if event == &amp;quot;ZONE_CHANGED_NEW_AREA&amp;quot; then
-			zoned = GetTime()
-			CheckSpell = 0
-		end
-		if event == &amp;quot;PLAYER_DEAD&amp;quot; then
-			CheckSpell = 0
-		end
-	end)
-	
-	DarhangeR:RegisterEvent(&amp;quot;UI_ERROR_MESSAGE&amp;quot;)
-
-	FrameCreated = true
-
-	function NotBehindCheck()
-		if GetTime() - NotBehindTarget &amp;lt; 4 then
-			return true
-		else
-			return false
-		end
-	end
-end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>S:Hemorrhage</Name><Default>false</Default><SpellID>48660</SpellID><Actions></Actions><Lua>if energycost(48660)
+end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>S:Hemorrhage</Name><Default>false</Default><SpellID>48660</SpellID><Actions></Actions><Lua>if cp &amp;lt; 5
 and AOE() == false
-and cp &amp;lt; 5
 and CanAttack()
-and valid(&amp;quot;target&amp;quot;, 48660)
+and energycost(48660)
 and rangeCheck(48660, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>S:Premeditation + Shadowstep</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if Stealth == true
 and Stealthed
@@ -1174,14 +1074,15 @@ then
 end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>C:Backstab</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if cp &amp;lt; 5
 and AOE() == false
 and CanAttack()
-and rangeCheck(48660, &amp;quot;target&amp;quot;) then
-	if NotBehindCheck() == false
-	and valid(&amp;quot;target&amp;quot;, 48657)
+and rangeCheck(48660, &amp;quot;target&amp;quot;)
+then
+	if not PQR_NotBehindTarget()
+	and energycost(48657)
 	and UnitDebuffID(&amp;quot;target&amp;quot;, 8643) then
 		CastSpellByID(48657)
 		return true
-	elseif NotBehindCheck() == true 
-	and valid(&amp;quot;target&amp;quot;, 48660) then
+	elseif PQR_NotBehindTarget()
+	and energycost(48660) then
 		CastSpellByID(48660)
 		return true
 	end

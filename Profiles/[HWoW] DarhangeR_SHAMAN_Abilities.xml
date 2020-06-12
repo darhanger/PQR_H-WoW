@@ -74,12 +74,15 @@ function IsBoss()
 			true 
 		end
 	end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Start Fight --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if StopRota
-or UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)
 or IsMounted()
-or UnitChannelInfo(&amp;quot;player&amp;quot;) ~= nil
-or UnitCastingInfo(&amp;quot;player&amp;quot;) ~= nil
-or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Drink&amp;quot;)
-or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Food&amp;quot;)
+or UnitInVehicle(&amp;quot;player&amp;quot;)
+or UnitIsDeadOrGhost(&amp;quot;target&amp;quot;) 
+or UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)
+or UnitChannelInfo(&amp;quot;player&amp;quot;)
+or UnitCastingInfo(&amp;quot;player&amp;quot;)
+or UnitBuff(&amp;quot;target&amp;quot;, 59301)
+or UnitBuff(&amp;quot;player&amp;quot;, GetSpellInfo(430))
+or UnitBuff(&amp;quot;player&amp;quot;, GetSpellInfo(433))
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>Use:Trinket (Heal)</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local _,cd,havecd = GetInventoryItemCooldown(&amp;quot;player&amp;quot;,13)
 
 if PQR_CustomTargetHP &amp;lt;= 15
@@ -370,7 +373,7 @@ and CanAttack()
 and not CooldownRemains(49271)
 and rangeCheck(49271, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- DarhangeR --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- I&amp;apos;m the original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: 
--- Discord official chanel: https://discord.gg/zayx7p9
+-- Discord official chanel: https://discord.gg/VF3HWes
 -- VK: https://vk.com/darhanger
 -- FB: https://fb.com/darhanger
 -- Instagram: https://instagram.com/darhanger
@@ -871,7 +874,7 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 	end
 		
 	function testv()
-	return &amp;quot;\124cFF15E615DarhangeR original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: Discord official chanel: https://discord.gg/zayx7p9&amp;quot;
+	return &amp;quot;\124cFF15E615DarhangeR original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: Discord official chanel: https://discord.gg/VF3HWes&amp;quot;
 	end
 	PQR_WriteToChat(testv())
 	
@@ -879,18 +882,11 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 	CooldownRemains = nil
 	function CooldownRemains(spell)
 		local start, duration, enable = GetSpellCooldown(spell)
-		if ( start &amp;gt; 0 and duration &amp;gt; 1.5 ) then
+		if ( start &amp;gt; 0 and duration &amp;gt; 1.5 )
+		and not gcd() then
 			return start + duration - GetTime()
 		else
 			return false
-		end
-	end
-
-		-- Amount of Cooldown that remains --
-	function cdRemains(spellid)
-		if select(2,GetSpellCooldown(spellid)) + (select(1,GetSpellCooldown(spellid)) - GetTime()) &amp;gt; 0
-			then return select(2,GetSpellCooldown(spellid)) + (select(1,GetSpellCooldown(spellid)) - GetTime())
-		else return 0
 		end
 	end
 
@@ -904,10 +900,21 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 			return false
 		end
 	end
-	
+		
+		-- GCD Check --
+	function gcd()
+	local _, d = GetSpellCooldown(61304)
+		if (d ~= 0) then
+			return true
+		else
+			return false
+		end
+	end	
+			
 		-- Range Check Simple --
 	function rangeCheck(spellid,unit)
 	if IsSpellInRange(GetSpellInfo(spellid),unit) == 1
+	and not gcd()
 	then
 		return true
 		end
@@ -937,57 +944,6 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False
 		else
 			return false
 		end
-	end
-
-		-- CastSpell --
-	function _castSpell(spellid,tar)
-		if UnitCastingInfo(&amp;quot;player&amp;quot;) == nil
-		and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
-		--and IsPlayerSpell(spellid) == true
-		and cdRemains(spellid) == 0
-		then
-			if tar ~= nil
-			and rangeCheck(spellid,tar) == nil
-				then
-				return false
-			elseif tar ~= nil
-			and rangeCheck(spellid,tar) == true
-				then
-				CastSpellByID(spellid, tar)
-				return true
-			elseif tar == nil
-				then
-				CastSpellByID(spellid)
-				return true
-			else
-		return false
-		end
-	end
-	end
-	
-		-- Tabled Cast Time Checking for When you Last Cast Something.
-	CheckCastTime = {}
-	Nova_CheckLastCast = nil
-	function Nova_CheckLastCast(spellid, ytime) -- SpellID of Spell To Check, How long of a gap are you looking for?
-		if ytime &amp;gt; 0 then
-			if #CheckCastTime &amp;gt; 0 then
-				for i=1, #CheckCastTime do
-					if CheckCastTime[i].SpellID == spellid then
-						if GetTime() - CheckCastTime[i].CastTime &amp;gt; ytime then
-							CheckCastTime[i].CastTime = GetTime()
-							return true
-						else
-							return false
-						end
-					end
-				end
-			end
-			table.insert(CheckCastTime, { SpellID = spellid, CastTime = GetTime() } )
-			return true
-		elseif ytime &amp;lt;= 0 then
-			return true
-		end
-		return false
 	end
 
 functionsloaded = true

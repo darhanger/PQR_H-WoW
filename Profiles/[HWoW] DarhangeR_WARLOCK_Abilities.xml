@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?><WARLOCK><Ability><Name>-- Start Fight --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if StopRota
-or UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)
 or IsMounted()
-or UnitChannelInfo(&amp;quot;player&amp;quot;) ~= nil
-or UnitCastingInfo(&amp;quot;player&amp;quot;) ~= nil
-or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Drink&amp;quot;)
-or UnitBuff(&amp;quot;player&amp;quot;, &amp;quot;Food&amp;quot;)
+or UnitInVehicle(&amp;quot;player&amp;quot;)
+or UnitIsDeadOrGhost(&amp;quot;target&amp;quot;) 
+or UnitIsDeadOrGhost(&amp;quot;player&amp;quot;)
+or UnitChannelInfo(&amp;quot;player&amp;quot;)
+or UnitCastingInfo(&amp;quot;player&amp;quot;)
+or UnitBuff(&amp;quot;target&amp;quot;, 59301)
+or UnitBuff(&amp;quot;player&amp;quot;, GetSpellInfo(430))
+or UnitBuff(&amp;quot;player&amp;quot;, GetSpellInfo(433))
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Custom</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Offensive Spells --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>local buff = { 642, 45438, 31224, 23920, 33786, 19263, 21892, 40733, 97532, 41451 }
 local mob = { &amp;quot;Training Dummy&amp;quot;, &amp;quot;Raider&amp;apos;s Training Dummy&amp;quot; }
 local elite = { &amp;quot;Overlord Ror&amp;quot;, &amp;quot;Ragepaw&amp;quot;, &amp;quot;Liam&amp;quot;, &amp;quot;Galleon&amp;quot;, &amp;quot;Fire Giant&amp;quot; }
@@ -252,7 +255,7 @@ and CanAttack()
 and rangeCheck(54785, &amp;quot;target&amp;quot;)
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Target</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>All:Demon Armor</Name><Default>false</Default><SpellID>47889</SpellID><Actions></Actions><Lua>if not demonarmor
 then return true end</Lua><RecastDelay>0</RecastDelay><Target>Player</Target><CancelChannel>False</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- DarhangeR --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>-- I&amp;apos;m the original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: 
--- Discord official chanel: https://discord.gg/zayx7p9
+-- Discord official chanel: https://discord.gg/VF3HWes
 -- VK: https://vk.com/darhanger
 -- FB: https://fb.com/darhanger
 -- Instagram: https://instagram.com/darhanger
@@ -591,8 +594,9 @@ if IsRightAltKeyDown() and not GetCurrentKeyBoardFocus() and GetTime() - modtime
 end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>True</CancelChannel><LuaBefore></LuaBefore><LuaAfter></LuaAfter></Ability><Ability><Name>-- Function --</Name><Default>false</Default><SpellID>0</SpellID><Actions></Actions><Lua>if not functionsloaded then
 		
 		-- Party Check -- 
-	partyCheck = function()
-		if GetNumRaidMembers() &amp;gt; 0 or GetNumPartyMembers() &amp;gt; 0 then
+	function partyCheck()
+		if GetNumRaidMembers() &amp;gt; 0 
+		or GetNumPartyMembers() &amp;gt; 0 then
 			return true
 		else
 			return false
@@ -693,18 +697,11 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>True</
 	CooldownRemains = nil
 	function CooldownRemains(spell)
 		local start, duration, enable = GetSpellCooldown(spell)
-		if ( start &amp;gt; 0 and duration &amp;gt; 1.5 ) then
+		if ( start &amp;gt; 0 and duration &amp;gt; 1.5 )
+		and not gcd() then
 			return start + duration - GetTime()
 		else
 			return false
-		end
-	end
-
-		-- Amount of Cooldown that remains --
-	function cdRemains(spellid)
-		if select(2,GetSpellCooldown(spellid)) + (select(1,GetSpellCooldown(spellid)) - GetTime()) &amp;gt; 0
-			then return select(2,GetSpellCooldown(spellid)) + (select(1,GetSpellCooldown(spellid)) - GetTime())
-		else return 0
 		end
 	end
 
@@ -719,9 +716,20 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>True</
 		end
 	end
 	
+		-- GCD Check --
+	function gcd()
+	local _, d = GetSpellCooldown(61304)
+		if (d ~= 0) then
+			return true
+		else
+			return false
+		end
+	end	
+			
 		-- Range Check Simple --
 	function rangeCheck(spellid,unit)
 	if IsSpellInRange(GetSpellInfo(spellid),unit) == 1
+	and not gcd()
 	then
 		return true
 		end
@@ -753,59 +761,8 @@ end</Lua><RecastDelay>0</RecastDelay><Target>Click</Target><CancelChannel>True</
 		end
 	end
 	
-		-- CastSpell --
-	function _castSpell(spellid,tar)
-		if UnitCastingInfo(&amp;quot;player&amp;quot;) == nil
-		and UnitChannelInfo(&amp;quot;player&amp;quot;) == nil
-		--and IsPlayerSpell(spellid) == true
-		and cdRemains(spellid) == 0
-		then
-			if tar ~= nil
-			and rangeCheck(spellid,tar) == nil
-				then
-				return false
-			elseif tar ~= nil
-			and rangeCheck(spellid,tar) == true
-				then
-				CastSpellByID(spellid, tar)
-				return true
-			elseif tar == nil
-				then
-				CastSpellByID(spellid)
-				return true
-			else
-		return false
-		end
-	end
-	end
-	
-		-- Tabled Cast Time Checking for When you Last Cast Something.
-	CheckCastTime = {}
-	Nova_CheckLastCast = nil
-	function Nova_CheckLastCast(spellid, ytime) -- SpellID of Spell To Check, How long of a gap are you looking for?
-		if ytime &amp;gt; 0 then
-			if #CheckCastTime &amp;gt; 0 then
-				for i=1, #CheckCastTime do
-					if CheckCastTime[i].SpellID == spellid then
-						if GetTime() - CheckCastTime[i].CastTime &amp;gt; ytime then
-							CheckCastTime[i].CastTime = GetTime()
-							return true
-						else
-							return false
-						end
-					end
-				end
-			end
-			table.insert(CheckCastTime, { SpellID = spellid, CastTime = GetTime() } )
-			return true
-		elseif ytime &amp;lt;= 0 then
-			return true
-		end
-		return false
-	end
-	
 	function testv()
-	return &amp;quot;\124cFF15E615DarhangeR original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: Discord official chanel: https://discord.gg/zayx7p9&amp;quot;
+	return &amp;quot;\124cFF15E615DarhangeR original developer of dat profiles. Any changes, copying or sharing without my knowledge direct copyright infringement. For more info: Discord official chanel: https://discord.gg/VF3HWes&amp;quot;
 	end
 	PQR_WriteToChat(testv())
 	

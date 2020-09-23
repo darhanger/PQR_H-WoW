@@ -1,3 +1,9 @@
+**PQR HWoW 1.2** - this is my last release for Heroes WoW. It is closed and will not be updated anymore! Why? Cuz server dead. 
+<br>
+At the moment, I only provide support for **[WotLK Profiles for nHub](https://github.com/darhanger/WotLK_Profiles_for_nHub)**
+<details>
+  <summary>CLOSED</summary>
+
 # [Donate/Help US](https://github.com/darhanger/PQR-HWoW/wiki/Donate)
 
 # [Download Clean WoW 3.3.5a client with ruRu/enGB/enUS](https://github.com/darhanger/PQR-HWoW/wiki/Clean-World-of-Warcraft:-Wrath-of-the-Lich-King-%5BruRU---enGB---enUS%5D-3.3.5a-(12340))- language package.
@@ -48,3 +54,4 @@ Support Status Meanings
 ## [Warrior](https://github.com/darhanger/PQR-HWoW/wiki/List-of-Profiles#warrior)
 + DPS - ✅
 + Tank - ✅
+</details>
